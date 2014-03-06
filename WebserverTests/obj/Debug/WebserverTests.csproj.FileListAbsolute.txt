@@ -1,0 +1,7 @@
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\WebserverTests\bin\Debug\WebserverTests.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\WebserverTests\bin\Debug\WebserverTests.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\WebserverTests\bin\Debug\SWE1_webserver_KR.exe
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\WebserverTests\bin\Debug\SWE1_webserver_KR.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\WebserverTests\obj\Debug\WebserverTests.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\WebserverTests\obj\Debug\WebserverTests.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\WebserverTests\obj\Debug\WebserverTests.pdb

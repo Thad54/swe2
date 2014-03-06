@@ -1,0 +1,9 @@
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\dataPlugin\obj\Debug\dataPlugin.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\dataPlugin\bin\Debug\dataPlugin.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\dataPlugin\bin\Debug\dataPlugin.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\dataPlugin\bin\Debug\SWE1_webserver_KR.exe
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\dataPlugin\bin\Debug\SWE1_webserver_KR.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\dataPlugin\obj\Debug\dataPlugin.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\dataPlugin\obj\Debug\dataPlugin.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\SWE1_webserver_KR\bin\Debug\dataPlugin.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\SWE1_webserver_KR\bin\Debug\dataPlugin.pdb

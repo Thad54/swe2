@@ -1,0 +1,16 @@
+C:\Users\Dreydn\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\bin\Debug\naviPlugin.dll
+C:\Users\Dreydn\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\bin\Debug\naviPlugin.pdb
+C:\Users\Dreydn\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\bin\Debug\SWE1_webserver_KR.exe
+C:\Users\Dreydn\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\bin\Debug\SWE1_webserver_KR.pdb
+C:\Users\Dreydn\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\obj\Debug\naviPlugin.csprojResolveAssemblyReference.cache
+C:\Users\Dreydn\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\obj\Debug\naviPlugin.dll
+C:\Users\Dreydn\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\obj\Debug\naviPlugin.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\bin\Debug\naviPlugin.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\bin\Debug\naviPlugin.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\bin\Debug\SWE1_webserver_KR.exe
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\bin\Debug\SWE1_webserver_KR.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\obj\Debug\naviPlugin.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\obj\Debug\naviPlugin.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\naviPlugin\obj\Debug\naviPlugin.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\SWE1_webserver_KR\bin\Debug\naviPlugin.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\SWE1_webserver_KR\bin\Debug\naviPlugin.pdb

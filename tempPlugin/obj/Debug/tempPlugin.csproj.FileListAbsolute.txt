@@ -1,0 +1,9 @@
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\tempPlugin\bin\Debug\tempPlugin.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\tempPlugin\bin\Debug\tempPlugin.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\tempPlugin\bin\Debug\SWE1_webserver_KR.exe
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\tempPlugin\bin\Debug\SWE1_webserver_KR.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\tempPlugin\obj\Debug\tempPlugin.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\tempPlugin\obj\Debug\tempPlugin.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\tempPlugin\obj\Debug\tempPlugin.pdb
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\SWE1_webserver_KR\bin\Debug\tempPlugin.dll
+C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\SWE1_webserver_KR\bin\Debug\tempPlugin.pdb
