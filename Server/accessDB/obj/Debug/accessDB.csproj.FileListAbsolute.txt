@@ -1,0 +1,5 @@
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\accessDB.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\accessDB.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\accessDB\obj\Debug\accessDB.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\accessDB\obj\Debug\accessDB.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\accessDB\obj\Debug\accessDB.csprojResolveAssemblyReference.cache

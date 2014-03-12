@@ -4,3 +4,9 @@ C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\SWE1_webse
 C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\weatherPlugin\obj\Debug\weatherPlugin.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\weatherPlugin\obj\Debug\weatherPlugin.dll
 C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\weatherPlugin\obj\Debug\weatherPlugin.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\weatherPlugin.dll.config
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\weatherPlugin.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\weatherPlugin.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\weatherPlugin\obj\Debug\weatherPlugin.csprojResolveAssemblyReference.cache
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\weatherPlugin\obj\Debug\weatherPlugin.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\weatherPlugin\obj\Debug\weatherPlugin.pdb

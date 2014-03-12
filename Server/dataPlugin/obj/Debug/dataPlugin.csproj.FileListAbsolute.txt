@@ -7,3 +7,8 @@ C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\dataPlugin
 C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\dataPlugin\obj\Debug\dataPlugin.pdb
 C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\SWE1_webserver_KR\bin\Debug\dataPlugin.dll
 C:\Users\Martin\Documents\GitHub\kernjak_rechberger\SWE1_webserver_KR\SWE1_webserver_KR\bin\Debug\dataPlugin.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\dataPlugin.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\dataPlugin.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\dataPlugin\obj\Debug\dataPlugin.csprojResolveAssemblyReference.cache
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\dataPlugin\obj\Debug\dataPlugin.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\dataPlugin\obj\Debug\dataPlugin.pdb
