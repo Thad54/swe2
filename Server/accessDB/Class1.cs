@@ -32,9 +32,10 @@ namespace accessDB
         {
             StringBuilder answer = new StringBuilder();
 
+
             using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
             {
-                string query = "Select FirstName from Contact";
+                string query = @"Select FirstName from Contact";
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -51,7 +52,7 @@ namespace accessDB
                 {
 
 
-                        answer.Append("<!DOCTYPE html><html><body>");
+                        answer.Append("<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'></head><body>");
 
                         while (reader.Read())
                         {
