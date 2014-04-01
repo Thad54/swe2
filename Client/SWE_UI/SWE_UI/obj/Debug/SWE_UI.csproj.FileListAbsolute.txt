@@ -1,1 +1,16 @@
 C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\SWE_UI.exe.config
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\SWE_UI.exe.config
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\SWE_UI.exe
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\SWE_UI.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\contacts.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\contacts.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csprojResolveAssemblyReference.cache
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\MainWindow.baml
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\MainWindow.g.cs
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\App.g.cs
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI_MarkupCompile.cache
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.g.resources
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.Properties.Resources.resources
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csproj.GenerateResource.Cache
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.exe
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.pdb

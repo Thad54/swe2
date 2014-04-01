@@ -20,9 +20,21 @@ namespace SWE_UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private proxy _proxy;
+
         public MainWindow()
         {
             InitializeComponent();
+            _proxy = new proxy();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+          var contacts = _proxy.searchContacts(contactSearch.Text);
+
+            foreach(var con in contacts){
+
+            }
         }
     }
 }
