@@ -15,6 +15,7 @@ Create Table Contact(
 	Address			nvarchar(50),
 	BillingAddress	nvarchar(50),
 	DeliveryAddress	nvarchar(50),
+	deleted			datetime,
 	Company_FK		int
 )
 /*

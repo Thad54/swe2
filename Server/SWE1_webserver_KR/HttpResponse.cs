@@ -223,16 +223,20 @@ namespace SWE1_webserver_KR
                Console.WriteLine("get post data end");
                StreamReader inputData = new StreamReader(ms);
                string data = inputData.ReadToEnd();
+
+               var dictionary = new Dictionary<string, string>();
+               dictionary.Add("xml", data);
               // string url = GetUrl();
                hurl.CWebURL(GetUrl());
                hurl.PostParameters(data);
                
-               Console.WriteLine("POST request: {0}", hurl.WebAddress);
+            //   Console.WriteLine("POST request: {0}", hurl.WebAddress);
 
-               writeSuccess();
-              OutPutStream.WriteLine("<html><body><h1>test server</h1>");
-              OutPutStream.WriteLine("<a href=/test>return</a><p>");
-              OutPutStream.WriteLine("postbody: <pre>{0}</pre>", hurl.WebParameters["foo"]);
+             //  writeSuccess("text/plain");
+
+               plugins.handleRequest(url, dictionary, OutPutStream);
+             // OutPutStream.WriteLine("OK");
+             
 
            }
 

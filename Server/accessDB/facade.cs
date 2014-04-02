@@ -13,7 +13,7 @@ namespace accessDB
     {
         private businessL _bl;
 
-        accessDB()
+        public accessDB()
         {
             _bl = new businessL();
         }
@@ -25,7 +25,7 @@ namespace accessDB
         public bool checkRequest(string input)
         {
             string[] url = input.Split('/');
-            if (url[1].Equals("db"))
+            if (url[1].Equals("accessDB"))
             {
                 return true;
             }

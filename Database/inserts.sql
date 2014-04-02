@@ -1,11 +1,11 @@
-Insert into Contact(FirstName, UID)
+Insert into Contact(FirstName, UID )
 	values('Musterfirma', 123456789);	
 
-Insert into Contact(FirstName, LastName, Company_FK)
-	values('Max', 'Musterman', 0);
+Insert into Contact(FirstName, LastName, Company_FK, Title, Suffix, CreationDate, Address, BillingAddress, DeliveryAddress)
+	values('Max', 'Musterman', 0, 'Mag.', ' ', '12-9-1980', 'Sponheimerstraﬂe 10', 'M¸llerstraﬂe 8', 'Lieferstraﬂe 12');
 	
-Insert into Contact(FirstName, Lastname)
-	values('Maxine', 'Musterman');
+Insert into Contact(FirstName, Lastname, Title, Suffix, CreationDate, Address, BillingAddress, DeliveryAddress)
+	values('Maxine', 'Musterman', 'Dr.', ' ', '10-7-1976', 'Heimstraﬂe 5', 'Rechnungsgasse 8', 'Lieferweg 17');
 	
 Insert into Bill([DATE], DueBy, Comment, Message, Contact_FK)	
 	Values(GETDATE(),DATEADD(DAY, 60 ,GETDATE()), 'Kommentar', 'Nachricht', 1);

@@ -35,12 +35,9 @@ namespace SWE1_webserver_KR
         }
         public void PostParameters(string stream)
         {
-            string[] pairs = stream.Split('&');
-            foreach (string pair in pairs)
-            {
-                string[] parts = pair.Split('=');
-                _webParameters.Add(parts[0].ToString(), parts[1].ToString());
-            }
+           
+                _webParameters.Add("Xml", stream);
+            
         
         }
 

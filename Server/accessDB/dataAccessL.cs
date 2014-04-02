@@ -16,10 +16,10 @@ namespace accessDB
 
             using ( SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
             {
-                string query = @"Select FirstName, LastName, Title, Suffix, Address, CreationDate, BillingAddress, DeliveryAddress  from Contact where FirstName like %@name% or LastName like %@name%";
+                string query = "Select FirstName, LastName, Title, Suffix, Address, CreationDate, BillingAddress, DeliveryAddress  from Contact where FirstName like @name or LastName like @name";
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@name", searchText);
+                cmd.Parameters.AddWithValue("@name", "%"+searchText+"%");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

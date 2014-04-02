@@ -32,9 +32,15 @@ namespace SWE_UI
         {
           var contacts = _proxy.searchContacts(contactSearch.Text);
 
-            foreach(var con in contacts){
+          if (contacts.Count == 0)
+          {
+              SearchResult.Text = "No Contacts found";
+          }
 
+            foreach(var con in contacts){
+                SearchResult.Text += con.name + " | " + con.lastName +"\n";
             }
+
         }
     }
 }
