@@ -20,15 +20,17 @@ namespace SWE_UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private proxy _proxy;
+  //      private proxy _proxy;
 
         public MainWindow()
         {
             InitializeComponent();
-            _proxy = new proxy();
+ //           _proxy = new proxy();
+
+          this.DataContext = new ViewModel.ViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+  /*      private void Button_Click(object sender, RoutedEventArgs e)
         {
           var contacts = _proxy.searchContacts(contactSearch.Text);
 
@@ -42,5 +44,20 @@ namespace SWE_UI
             }
 
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var contacts = _proxy.searchContacts(contactSearch.Text);
+
+            if (contacts.Count == 0)
+            {
+                SearchResult.Text = "No Contacts found";
+            }
+
+            foreach (var con in contacts)
+            {
+                SearchResult.Text += con.name + " | " + con.lastName + "\n";
+            }
+        }*/
     }
 }

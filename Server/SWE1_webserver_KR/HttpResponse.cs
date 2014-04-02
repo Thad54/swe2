@@ -101,7 +101,8 @@ namespace SWE1_webserver_KR
                }
                outputStream.Flush();
                // bs.Flush(); // flush any remaining output
-      //         inputStream = null;  // bs = null;
+               inputStream.Flush();
+               inputStream = null;  // bs = null;
                reader = null;
                outputStream = null; // bs = null;            
                socket.Close();
@@ -233,8 +234,11 @@ namespace SWE1_webserver_KR
             //   Console.WriteLine("POST request: {0}", hurl.WebAddress);
 
              //  writeSuccess("text/plain");
-
+              // inputStream.Flush();
                plugins.handleRequest(url, dictionary, OutPutStream);
+               
+              // inputStream.Close();
+
              // OutPutStream.WriteLine("OK");
              
 
