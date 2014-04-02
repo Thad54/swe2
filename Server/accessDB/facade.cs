@@ -11,6 +11,13 @@ namespace accessDB
 {
     public class accessDB : iPlugin
     {
+        private businessL _bl;
+
+        accessDB()
+        {
+            _bl = new businessL();
+        }
+
         public string getName()
         {
             return "accessDB";
@@ -30,41 +37,26 @@ namespace accessDB
 
         public void handleRequest(Dictionary<string, string> data, StreamWriter OutPutStream)
         {
-            StringBuilder answer = new StringBuilder();
+            var answer = new StringBuilder();
+            var xml = new StringReader(data["xml"]);
+         //   var xml = new System.Xml.XmlReader();
 
+            var xs = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.command));
+            var com = (XmlExchange.command) xs.Deserialize(xml);
 
-            using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
+            if ((com.type == "search") && (com.table == "contacts"))
             {
-                string query = @"Select FirstName from Contact";
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
+                var result = _bl.searchContacts(com.searchText);
 
-              /*  foreach (SqlParameter par in myparam)
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<XmlExchange.contact>));
+
+                using (TextWriter writer = new StringWriter(answer))
                 {
-                    if (par != null)
-                    {
-                        cmd.Parameters.Add(par);
-                    }
-                }*/
+                    serializer.Serialize(writer, result);
+                }
+            }
 
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-
-
-                        answer.Append("<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'></head><body>");
-
-                        while (reader.Read())
-                        {
-                            answer.AppendFormat("<p>{0}</p>", reader.GetString(0));
-                        }
-
-                        answer.Append("</body></html>");
-
-
-                } // end reader using
-            } // end connection using
-
+ 
              WriteResponse(answer.ToString(), "text/html", OutPutStream);
         }
 

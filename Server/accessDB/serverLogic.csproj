@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="contacts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\contacts\bin\Debug\contacts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,9 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\contacts\contacts.csproj">
+    <ProjectReference Include="..\contacts\XmlExchange.csproj">
       <Project>{8c5370f4-6883-4a26-9c66-d9a140aea229}</Project>
-      <Name>contacts</Name>
+      <Name>XmlExchange</Name>
     </ProjectReference>
     <ProjectReference Include="..\SWE1_webserver_KR\SWE1_webserver_KR.csproj">
       <Project>{ff49c175-fae2-4e44-b1ea-d7c416a5d296}</Project>

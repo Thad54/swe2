@@ -4,15 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace contacts
+namespace XmlExchange
 {
-    public class contact
+    public class contact : iTable
     {
         public string name;
+        public string lastName;
+        public string title;
+        public string Suffix;
+        public string address;
+        public string billingAddress;
+        public string shippingAddress;
+        public DateTime creationDate;
+        public int uid;
+        public int id;
+        public string company;
 
-        public bool isHere()
-        {
-            return true;
-        }
     }
 }

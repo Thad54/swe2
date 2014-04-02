@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "weatherPlugin", "weatherPlu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "serverLogic", "accessDB\serverLogic.csproj", "{62AE2395-01C8-4AE3-ADAC-A949BEC90086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "contacts", "contacts\contacts.csproj", "{8C5370F4-6883-4A26-9C66-D9A140AEA229}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlExchange", "contacts\XmlExchange.csproj", "{8C5370F4-6883-4A26-9C66-D9A140AEA229}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
