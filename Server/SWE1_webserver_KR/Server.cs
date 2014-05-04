@@ -36,6 +36,8 @@ namespace SWE1_webserver_KR
         }
         public void startServer()
         {
+            plugins = new pluginM();
+            plugins.loadPlugins();
             listener = new HttpListener();
             listener.Prefixes.Add("http://localhost:"+port+"/");
           //  listener.Prefixes.Add("http://127.0.0.1:" + port + "/");
@@ -91,9 +93,15 @@ namespace SWE1_webserver_KR
         private void handlePOSTrequest()
         { 
             string input = new StreamReader(context.Request.InputStream, 
-    context.Request.ContentEncoding).ReadToEnd();
+            context.Request.ContentEncoding).ReadToEnd();
             hurl.PostParameters(input);
-            plugins.handleRequest(hurl.WebAddress,hurl.WebParameters,HttpListenerResponse response = context.Response;);
+            hurl.CWebURL(context.Request.RawUrl);
+
+            StreamWriter writer = new StreamWriter(context.Response.OutputStream);
+
+            plugins.handleRequest(hurl.WebAddress, hurl.WebParameters, writer);
+            writer.Flush();
+            writer.Close();
         
         }
    }

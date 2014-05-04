@@ -38,7 +38,7 @@ namespace accessDB
         public void handleRequest(Dictionary<string, string> data, StreamWriter OutPutStream)
         {
             var answer = new StringBuilder();
-            var xml = new StringReader(data["xml"]);
+            var xml = new StringReader(data["Xml"]);
          //   var xml = new System.Xml.XmlReader();
 
             var xs = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.command));

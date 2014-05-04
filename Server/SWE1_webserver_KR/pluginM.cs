@@ -36,7 +36,7 @@ namespace SWE1_webserver_KR
 
         }
 
-        public void handleRequest(string url, Dictionary<string, string> data, StreamWriter outputStream)
+       public void handleRequest(string url, Dictionary<string, string> data, StreamWriter outputStream)
         {
             foreach (iPlugin addin in plugins)
                 {
