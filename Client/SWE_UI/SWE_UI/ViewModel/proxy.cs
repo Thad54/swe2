@@ -23,7 +23,6 @@ namespace SWE_UI
             com.searchText = text;
 
             SendString(serialize(com));
-
             string answer = ReceiveString();
 
             var xml = new StringReader(answer);
@@ -41,7 +40,9 @@ namespace SWE_UI
 
             byte[] data = Encoding.UTF8.GetBytes(input.ToString());
             request.ContentLength = data.Length;
-            dataStream = request.GetRequestStream();
+
+                dataStream = request.GetRequestStream();
+
             dataStream.Write(data, 0, data.Length);
             dataStream.Close();
            // this.Receive();
@@ -68,6 +69,8 @@ namespace SWE_UI
             reader.Close();
             dataStream.Close();
             response.Close();
+
+            Response = Response.Substring(Response.IndexOf('<'));
             return Response;
         }
 

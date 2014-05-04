@@ -27,9 +27,16 @@ namespace SWE_UI.ViewModel
         {
             _clickCommand = new DelegateCommand<string>(
                 (s) => {
-                    var proxy = new proxy(); 
-                    var result = proxy.searchContacts(_searchText);
-
+                    var proxy = new proxy();
+                    var result = new List<XmlExchange.contact>();
+                    try
+                    {
+                        result = proxy.searchContacts(_searchText);
+                    }
+                    catch(Exception)
+                    {
+                        return;
+                    }
                     if (result.Count == 0)
                     {
                         Contacts = "No Contact Found";

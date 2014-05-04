@@ -19,56 +19,69 @@ namespace SWE1_webserver_KR
 {
     class Server
     {
-        
 
-   public class NewHttpServer
-   {
-    private int port;
-        private string name;
-        private HttpListener listener;
-        private HttpListenerContext context;
-        HttpUrl hurl = new HttpUrl();
-        private pluginM plugins;
-        public NewHttpServer(int _port, string _name)
+
+        public class NewHttpServer
         {
-            port = _port;
-            name = _name;
-        }
-        public void startServer()
-        {
-            plugins = new pluginM();
-            plugins.loadPlugins();
-            listener = new HttpListener();
-            listener.Prefixes.Add("http://localhost:"+port+"/");
-          //  listener.Prefixes.Add("http://127.0.0.1:" + port + "/");
-           // listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
-            listener.Start();
-            Console.WriteLine(" Start listening...");
-            ThreadPool.QueueUserWorkItem(new WaitCallback(startListening));
- 
-        }
- 
-        private void startListening(object o)
-        {
-            while (true)
+            private int port;
+            private string name;
+            private HttpListener listener;
+            private HttpListenerContext context;
+            private pluginM plugins;
+            public NewHttpServer(int _port, string _name)
             {
-                Console.WriteLine("listening...");
-                context = listener.GetContext();
-                sendResponse();
+                port = _port;
+                name = _name;
             }
-        }
- 
-        private void sendResponse()
-        {
+            public void startServer()
+            {
+                plugins = new pluginM();
+                plugins.loadPlugins();
+                listener = new HttpListener();
+                listener.Prefixes.Add("http://localhost:" + port + "/");
+                //  listener.Prefixes.Add("http://127.0.0.1:" + port + "/");
+                // listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
+                listener.Start();
+                Console.WriteLine(" Start listening...");
+                ThreadPool.QueueUserWorkItem(new WaitCallback(startListening));
 
-            if (context.Request.HttpMethod == "GET")
-            { handleGETrequest(); }
-            else if (context.Request.HttpMethod == "POST")
-            { handlePOSTrequest(); }
-            else
+            }
+
+            private void startListening(object o)
+            {
+                while (true)
+                {
+                    Console.WriteLine("listening...");
+                    context = listener.GetContext();
+                    sendResponse();
+                }
+            }
+
+            private void sendResponse()
             {
 
+                if (context.Request.HttpMethod == "GET")
+                { handleGETrequest(); }
+                else if (context.Request.HttpMethod == "POST")
+                { handlePOSTrequest(); }
+                else
+                {
 
+
+
+                    HttpListenerResponse response = context.Response;
+                    string responseString = "<HTML><BODY><h3> Your connected to<h1> " + name + "</h1></h3></BODY></HTML>";
+                    byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
+                    response.ContentLength64 = buffer.Length;
+                    System.IO.Stream output = response.OutputStream;
+                    output.Write(buffer, 0, buffer.Length);
+                    output.Close();
+                }
+            }
+            private void handleGETrequest()
+            {
+                var hurl = new HttpUrl();
+                hurl.CWebURL(context.Request.RawUrl);
 
                 HttpListenerResponse response = context.Response;
                 string responseString = "<HTML><BODY><h3> Your connected to<h1> " + name + "</h1></h3></BODY></HTML>";
@@ -78,40 +91,29 @@ namespace SWE1_webserver_KR
                 output.Write(buffer, 0, buffer.Length);
                 output.Close();
             }
+            private void handlePOSTrequest()
+            {
+                var hurl = new HttpUrl();
+                string input = new StreamReader(context.Request.InputStream,
+                context.Request.ContentEncoding).ReadToEnd();
+                hurl.PostParameters(input);
+                hurl.CWebURL(context.Request.RawUrl);
+
+                StreamWriter writer = new StreamWriter(context.Response.OutputStream);
+
+                plugins.handleRequest(hurl.WebAddress, hurl.WebParameters, writer);
+                writer.Flush();
+                writer.Close();
+
+            }
         }
-        private void handleGETrequest()
-        { hurl.CWebURL(context.Request.RawUrl);
-
-        HttpListenerResponse response = context.Response;
-        string responseString = "<HTML><BODY><h3> Your connected to<h1> " + name + "</h1></h3></BODY></HTML>";
-        byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
-        response.ContentLength64 = buffer.Length;
-        System.IO.Stream output = response.OutputStream;
-        output.Write(buffer, 0, buffer.Length);
-        output.Close();
-        }
-        private void handlePOSTrequest()
-        { 
-            string input = new StreamReader(context.Request.InputStream, 
-            context.Request.ContentEncoding).ReadToEnd();
-            hurl.PostParameters(input);
-            hurl.CWebURL(context.Request.RawUrl);
-
-            StreamWriter writer = new StreamWriter(context.Response.OutputStream);
-
-            plugins.handleRequest(hurl.WebAddress, hurl.WebParameters, writer);
-            writer.Flush();
-            writer.Close();
-        
-        }
-   }
 
 
-   #region old server
+        #region old server
 
-   public class MyHttpServer 
+        public class MyHttpServer
         {
-            
+
             protected int port;
             TcpListener listener;
             bool is_active = true;
@@ -139,8 +141,8 @@ namespace SWE1_webserver_KR
                 }
             }
 
-           
+
         }
     }
-   #endregion
+        #endregion
 }
