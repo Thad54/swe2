@@ -40,13 +40,16 @@ namespace SWE1_webserver_KR
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
 
-            Server.MyHttpServer httpServer = new Server.MyHttpServer(Convert.ToInt16(textPort.Text));
+            Server.NewHttpServer httpServer = new Server.NewHttpServer(Convert.ToInt16(textPort.Text), "SERVER");
+            label1.Text = "Running...";
+            httpServer.startServer();
+
+           /* Server.MyHttpServer httpServer = new Server.MyHttpServer(Convert.ToInt16(textPort.Text));
 
             label1.Text = "Running...";
             Thread thread = new Thread(new ThreadStart(httpServer.listen));
-            thread.Start();
+            thread.Start();*/
             
         }
 

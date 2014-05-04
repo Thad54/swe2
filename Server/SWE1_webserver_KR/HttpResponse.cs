@@ -227,6 +227,7 @@ namespace SWE1_webserver_KR
 
                var dictionary = new Dictionary<string, string>();
                dictionary.Add("xml", data);
+               ms.Close();
               // string url = GetUrl();
                hurl.CWebURL(GetUrl());
                hurl.PostParameters(data);
