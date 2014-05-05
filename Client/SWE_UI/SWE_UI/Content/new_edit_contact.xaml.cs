@@ -10,23 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SWE_UI
+namespace SWE_UI.Content
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for new_edit_contact.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class new_edit_contact : Window
     {
-
-        public MainWindow()
+        public new_edit_contact()
         {
             InitializeComponent();
-
-          this.DataContext = new ViewModel.ViewModel();
         }
-
     }
 }
