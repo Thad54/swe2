@@ -5,7 +5,7 @@
     <TabControl>
         <TabItem Header="Search Contact">
             <StackPanel>
-                <GroupBox Header="Person" IsEnabled="{Binding CanEditPerson}">
+                <GroupBox Header="Person" IsEnabled="{Binding CanSearchPerson}">
                     <StackPanel>
                         <Label Content="First Name" />
                         <TextBox Name="contactSearch"  TextWrapping="Wrap" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
@@ -13,7 +13,7 @@
                         <TextBox TextWrapping="Wrap" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"/>                       
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Company" IsEnabled="{Binding CanEditCompany}">
+                <GroupBox Header="Company" IsEnabled="{Binding CanSearchCompany}">
                     <StackPanel>
                         <Label Content="Name" />
                         <TextBox  TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}"/>
@@ -30,6 +30,8 @@
         <TabItem Header="New/Edit Contact">
             <StackPanel>
                 <GroupBox Header="Name">
+                    <StackPanel>
+                    <GroupBox Header="Person" IsEnabled="{Binding CanEditPerson}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -41,15 +43,33 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="75"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Content ="Prefix"/>
-                        <TextBox Grid.Row="1" Grid.Column="0"/>
+                        <Label Grid.Row="0" Grid.Column="0" Content ="Title"/>
+                                <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding Title_Edit, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Grid.Row="0" Grid.Column="1" Content ="First Name"/>
-                        <TextBox Grid.Row="1" Grid.Column="1"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FirstName_Edit, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Grid.Row="0" Grid.Column="2" Content ="Last Name"/>
-                        <TextBox Grid.Row="1" Grid.Column="2"/>
+                                <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding LastName_Edit, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Grid.Row="0" Grid.Column="3" Content ="Suffix"/>
-                        <TextBox Grid.Row="1" Grid.Column="3"/>
+                                <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Suffix_Edit, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Company" IsEnabled="{Binding CanEditCompany}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content ="Name"/>
+                                <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding CompanyName_Edit, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Content ="UID"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding UID_Edit, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </GroupBox>
+                    </StackPanel>
                 </GroupBox>
                 <GroupBox Header="Address">
                     <StackPanel>
@@ -61,9 +81,13 @@
                         <TextBox/>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Company">
-                    <Label Content="Employing Company"/>
+                <GroupBox Header="Employing Company" IsEnabled="{Binding CanEditPerson}">
+                    <ComboBox>
+                        <ComboBoxItem Content="Test1"></ComboBoxItem>
+                        <ComboBoxItem Content="Test2"></ComboBoxItem>
+                    </ComboBox>
                 </GroupBox>
+                <Button Content="Submit" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding EditContactClicked}" />
             </StackPanel>
         </TabItem>
         <TabItem Header="New Bill">

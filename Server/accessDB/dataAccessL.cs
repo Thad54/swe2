@@ -27,14 +27,14 @@ namespace accessDB
                     while (reader.Read())
                     {
                         var con = new XmlExchange.contact();
-                        con.name = reader.GetString(0);
-                        con.lastName = reader.GetString(1);
-                        con.title = reader.GetString(2);
-                        con.Suffix = reader.GetString(3);
-                        con.address = reader.GetString(4);
-                        con.creationDate = reader.GetDateTime(5);
-                        con.billingAddress= reader.GetString(6);
-                        con.shippingAddress = reader.GetString(7);
+                        con.name = reader[0] as string;
+                        con.lastName = reader[1] as string;
+                        con.title = reader[2] as string;
+                        con.Suffix = reader[3] as string;
+                        con.address = reader[4] as string;
+                        con.creationDate = reader[5] as DateTime? ?? default(DateTime);
+                        con.billingAddress = reader[6] as string;
+                        con.shippingAddress = reader[7] as string;
 
                         list.Add(con);
 

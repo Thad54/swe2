@@ -30,9 +30,9 @@ C:\Users\Alexander\Documents\repo\swe2.1\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.P
 C:\Users\Alexander\Documents\repo\swe2.1\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csproj.GenerateResource.Cache
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SearchResults.baml
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SearchResults.g.cs
-C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csprojResolveAssemblyReference.cache
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\new_edit_contact.baml
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\new_edit_contact.g.cs
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI_MarkupCompile.lref
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Themes\Generic.baml
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csprojResolveAssemblyReference.cache
