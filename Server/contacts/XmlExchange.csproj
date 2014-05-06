@@ -7,7 +7,7 @@
     <ProjectGuid>{8C5370F4-6883-4A26-9C66-D9A140AEA229}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>contacts</RootNamespace>
+    <RootNamespace>XmlExchange</RootNamespace>
     <AssemblyName>contacts</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,6 +43,7 @@
     <Compile Include="command.cs" />
     <Compile Include="contact.cs" />
     <Compile Include="iTable.cs" />
+    <Compile Include="message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

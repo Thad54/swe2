@@ -15,10 +15,18 @@ namespace accessDB
             _dl = new dataAccessL();
         }
 
-       public List<XmlExchange.contact> searchContacts(string text)
+       public List<XmlExchange.contact> searchPerson(XmlExchange.contact contact)
         {
+            return _dl.searchPerson(contact, onlyActive: true);
+        }
 
-            return _dl.searchContact(text, onlyActive: true);
+        public List<XmlExchange.contact> searchCompany(XmlExchange.contact contact)
+        {
+            return _dl.searchCompany(contact, onlyActive: true);
+        }
+
+        public XmlExchange.message editContact(XmlExchange.contact contact){
+            return _dl.editContact(contact);
         }
     }
 }

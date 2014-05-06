@@ -14,13 +14,17 @@ namespace SWE_UI
         private WebRequest request;
         private Stream dataStream;
         public string Response { get; set; }
-        public List<XmlExchange.contact> searchContacts(string text)
+        public List<XmlExchange.contact> searchPerson(string firstName, string lastName)
         {
             var com = new XmlExchange.command();
+            var contact = new XmlExchange.contact();
+
+            contact.name = firstName;
+            contact.lastName = lastName;
 
             com.type = "search";
-            com.table = "contacts";
-            com.searchText = text;
+            com.table = "person";
+            com.contact = contact;
 
             SendString(serialize(com));
             string answer = ReceiveString();
@@ -31,6 +35,49 @@ namespace SWE_UI
             var contacts = (List<XmlExchange.contact>) xs.Deserialize(xml);
         
             return contacts;
+        }
+
+        public List<XmlExchange.contact> searchCompany(string companyName, string uid)
+        {
+            var com = new XmlExchange.command();
+            var contact = new XmlExchange.contact();
+
+            contact.company = companyName;
+            contact.uid = uid;
+
+            com.type = "search";
+            com.table = "company";
+            com.contact = contact;
+
+            SendString(serialize(com));
+            string answer = ReceiveString();
+
+            var xml = new StringReader(answer);
+
+            var xs = new System.Xml.Serialization.XmlSerializer(typeof(List<XmlExchange.contact>));
+            var contacts = (List<XmlExchange.contact>)xs.Deserialize(xml);
+
+            return contacts;
+        }
+
+        public XmlExchange.message EditContact(XmlExchange.contact contact)
+        {
+            var com = new XmlExchange.command();
+            com.type = "edit";
+            com.table = "contacts";
+            com.contact = contact;
+
+            SendString(serialize(com));
+            string answer = ReceiveString();
+
+            var xml = new StringReader(answer);
+
+            var xs = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.message));
+            var message = (XmlExchange.message)xs.Deserialize(xml);
+
+            return message;
+
+
         }
         public void SendString(String input)
         {

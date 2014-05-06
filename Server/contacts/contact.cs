@@ -16,8 +16,9 @@ namespace XmlExchange
         public string billingAddress;
         public string shippingAddress;
         public DateTime creationDate;
-        public int uid;
-        public int id;
+        public string uid;
+        public int? id;
+        public int? companyID;
         public string company;
 
     }

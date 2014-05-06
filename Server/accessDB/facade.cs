@@ -43,12 +43,33 @@ namespace accessDB
 
             var xs = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.command));
             var com = (XmlExchange.command) xs.Deserialize(xml);
+            
 
-            if ((com.type == "search") && (com.table == "contacts"))
+            if (com.type == "search")
             {
-                var result = _bl.searchContacts(com.searchText);
+                var result = new List<XmlExchange.contact>();
+
+                if (com.table == "person")
+                {
+                    result = _bl.searchPerson(com.contact);
+                }
+                else
+                {
+                    result = _bl.searchCompany(com.contact);
+                }
 
                 var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<XmlExchange.contact>));
+
+                using (TextWriter writer = new StringWriter(answer))
+                {
+                    serializer.Serialize(writer, result);
+                }
+            }
+            else if (com.type == "edit" && com.table == "contacts")
+            {
+                var result = _bl.editContact(com.contact);
+
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.message));
 
                 using (TextWriter writer = new StringWriter(answer))
                 {
