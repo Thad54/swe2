@@ -1,0 +1,3 @@
+nuget
+
+Install-Package System.Windows.Interactivity.WPF

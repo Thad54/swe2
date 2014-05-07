@@ -27,16 +27,6 @@ namespace SWE_UI
 
           this.DataContext = new ViewModel.ViewModel();
         }
-
-        private void ComboBox_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ComboBox_Selected_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+   
     }
 }

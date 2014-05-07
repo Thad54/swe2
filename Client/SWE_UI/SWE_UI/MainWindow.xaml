@@ -95,7 +95,7 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                 </GroupBox>
-                <Label Content="Date of Birth"/>
+                <Label Content="Date of Birth / Founded"/>
                 <DatePicker SelectedDate="{Binding CreationDate_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="7"/>
                 <StackPanel Orientation="Horizontal">
                     <Button Content="Submit" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding EditContactClicked}" />
