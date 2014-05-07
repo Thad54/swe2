@@ -54,6 +54,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\accessDB\serverLogic.csproj">
+      <Project>{62ae2395-01c8-4ae3-adac-a949bec90086}</Project>
+      <Name>serverLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\contacts\XmlExchange.csproj">
+      <Project>{8c5370f4-6883-4a26-9c66-d9a140aea229}</Project>
+      <Name>XmlExchange</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SWE1_webserver_KR\SWE1_webserver_KR.csproj">
       <Project>{ff49c175-fae2-4e44-b1ea-d7c416a5d296}</Project>
       <Name>SWE1_webserver_KR</Name>

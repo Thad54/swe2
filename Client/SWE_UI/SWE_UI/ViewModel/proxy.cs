@@ -8,7 +8,7 @@ using System.Net;
 
 namespace SWE_UI
 {
-    class proxy
+    public class proxy
     {
 
         private WebRequest request;
@@ -117,10 +117,13 @@ namespace SWE_UI
             dataStream.Close();
             response.Close();
 
-            Response = Response.Substring(Response.IndexOf('<'));
+            Response = trimXML(Response);
             return Response;
         }
-
+        public string trimXML(String totrim)
+        {
+            return totrim.Substring(totrim.IndexOf('<'));
+        }
         private string serialize(XmlExchange.command com){
 
             var xs = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.command));

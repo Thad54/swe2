@@ -40,3 +40,12 @@ C:\Users\Alexander\Documents\repo\swe2.1\Server\SWE1_webserver_KR\obj\Debug\SWE1
 C:\Users\Alexander\Documents\repo\swe2.1\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Form1.resources
 C:\Users\Alexander\Documents\repo\swe2.1\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Properties.Resources.resources
 C:\Users\Alexander\Documents\repo\swe2.1\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.csproj.GenerateResource.Cache
+C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\bin\Debug\SWE1_webserver_KR.exe.config
+C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.exe
+C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.pdb
+C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\bin\Debug\SWE1_webserver_KR.exe
+C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\bin\Debug\SWE1_webserver_KR.pdb
+C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Form1.resources
+C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Properties.Resources.resources
+C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.csproj.GenerateResource.Cache
