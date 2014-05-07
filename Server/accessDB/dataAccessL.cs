@@ -16,7 +16,7 @@ namespace accessDB
 
             using ( SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
             {
-                string query = "Select Con.CNT_ID, Con.Title, Con.FirstName, Con.LastName, Con.Suffix, Con.Address, Con.CreationDate, Con.BillingAddress, Con.DeliveryAddress, C.FirstName Company, C.UID   from Contact Con left join Contact C on C.CNT_ID = Con.Company_FK  where Con.FirstName like @FirstName and Con.LastName like @LastName";
+                string query = "Select Con.CNT_ID, Con.Title, Con.FirstName, Con.LastName, Con.Suffix, Con.Address, Con.CreationDate, Con.BillingAddress, Con.DeliveryAddress, C.FirstName Company, C.UID, C.CNT_ID   from Contact Con left join Contact C on C.CNT_ID = Con.Company_FK  where Con.FirstName like @FirstName and Con.LastName like @LastName";
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@FirstName", "%"+contact.name+"%");
@@ -39,6 +39,8 @@ namespace accessDB
                         con.shippingAddress = reader[8] as string;
                         con.company = reader[9] as string;
                         con.uid = reader[10] as string;
+                        con.companyID = reader[11] as int? ?? default(int);
+                        con.isCompany = false;
 
                         list.Add(con);
 
@@ -78,7 +80,7 @@ namespace accessDB
                         con.creationDate = reader[4] as DateTime? ?? default(DateTime);
                         con.billingAddress = reader[5] as string;
                         con.shippingAddress = reader[6] as string;
-
+                        con.isCompany = true;
 
                         list.Add(con);
 

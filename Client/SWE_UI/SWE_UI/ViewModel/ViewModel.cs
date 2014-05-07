@@ -9,39 +9,93 @@ using System.ComponentModel;
 
 namespace SWE_UI.ViewModel
 {
-    public class ViewModel : INotifyPropertyChanged
+    public class ViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string prop)
+        private proxy _proxy = new proxy(); 
+
+        public void clearEdit()
         {
-            var temp = PropertyChanged;
-            if (temp != null)
+            _ContactID = null;
+            Address_Edit = string.Empty;
+            BillingAddress_Edit = string.Empty;
+            ShippingAddress_Edit = string.Empty;
+            CreationDate_Edit = DateTime.Now;
+            Title_Edit = string.Empty;
+            FirstName_Edit = string.Empty;
+            LastName_Edit = string.Empty;
+            Suffix_Edit = string.Empty;
+            CompanyName_Edit = string.Empty;
+            UID_Edit = string.Empty;
+            CompanyID_Edit = null;
+        }
+        public void fillEdit(XmlExchange.contact con){
+
+
+            if (con.isCompany == false)
             {
-                temp(this, new PropertyChangedEventArgs(prop));
+                Title_Edit = con.title;
+                FirstName_Edit = con.name;
+                LastName_Edit = con.lastName;
+                Suffix_Edit = con.Suffix;
+
+                foreach( var item in _EmployingCompanyData_Edit){
+                    if (item.id == con.companyID)
+                    {
+                        CompanyID_Edit = item;
+                    }
+                }
+               /* var company = new XmlExchange.contact();
+
+                company.id = con.companyID;
+                company.name = con.company;
+                company.uid = con.uid;
+
+                CompanyID_Edit = company;*/
             }
+            else
+            {
+                CompanyName_Edit = con.name;
+                UID_Edit = con.uid;
+            }
+
+
+            _ContactID = con.id;
+            _EditCommand.RaiseCanExecuteChanged();
+            Address_Edit = con.address;
+            BillingAddress_Edit = con.billingAddress;
+            ShippingAddress_Edit = con.shippingAddress;
+
+            CreationDate_Edit = con.creationDate;
+
+            tabItem = 2;
+  
         }
 
         #region commands
         private readonly DelegateCommand<string> _SearchCommand;
         private readonly DelegateCommand<string> _EditCommand;
+        private readonly DelegateCommand<string> _ClearEditCommand;
 
         public ViewModel()
         {
+            
+
             _SearchCommand = new DelegateCommand<string>(
                 (s) =>
                 {
 
-                    var proxy = new proxy();
                     var result = new List<XmlExchange.contact>();
+                    EmployingCompanyData_Edit = result;
+
                     try
                     {
                         if (CanSearchCompany == true)
                         {
-                            result = proxy.searchCompany(_CompanyName, _UID);
+                            result = _proxy.searchCompany(_CompanyName, _UID);
                         }
                         else
                         {
-                            result = proxy.searchPerson(_FirstName, _LastName);
+                            result = _proxy.searchPerson(_FirstName, _LastName);
                         }
                     }
                     catch (Exception)
@@ -53,13 +107,31 @@ namespace SWE_UI.ViewModel
                         Contacts = "No Contact Found";
                         return;
                     }
-                    var sb = new StringBuilder();
+
+                    if (result.Count == 1)
+                    {
+                        clearEdit();
+                        fillEdit(result.Last());
+                        return;
+                    }
+
+                     SearchResults _searchResultWindow = new SearchResults();
+                     Search_ViewModel _searchViewModel = new Search_ViewModel();
+
+                     _searchResultWindow.DataContext = _searchViewModel;
+                     _searchViewModel.setMainViewModel(this);
+                     _searchViewModel.setWindow(_searchResultWindow);
+
+                    _searchViewModel.contacts = result;
+                    _searchResultWindow.Show();
+
+                    /*var sb = new StringBuilder();
 
                     foreach (var con in result)
                     {
                         sb.AppendFormat("{0} | {1} | \n", con.name, con.lastName);
                     }
-                    Contacts = sb.ToString();
+                    Contacts = sb.ToString();*/
 
                 }, //Execute
                 (s) =>
@@ -80,7 +152,6 @@ namespace SWE_UI.ViewModel
                 (s) =>
                 {
 
-                    var proxy = new proxy();
                     var result = new XmlExchange.message();
                     var contact = new XmlExchange.contact();
 
@@ -91,7 +162,7 @@ namespace SWE_UI.ViewModel
                         contact.lastName = _LastName_Edit;
                         contact.Suffix = _Suffix_Edit;
                         contact.uid = string.Empty;
-                        contact.companyID = _CompanyID_Edit;
+                        contact.companyID = _CompanyID_Edit.id;
                     }
                     else
                     {
@@ -112,7 +183,7 @@ namespace SWE_UI.ViewModel
 
                     try
                     {
-                        result = proxy.EditContact(contact);
+                        result = _proxy.EditContact(contact);
                     }
                     catch (Exception)
                     {
@@ -122,7 +193,28 @@ namespace SWE_UI.ViewModel
                     {
                         System.Windows.MessageBox.Show(result.text);
                     }
+                    EmployingCompanyData_Edit = _proxy.searchCompany("", ""); 
 
+                }, //Execute
+                (s) =>
+                {
+                    if (_ContactID == null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+
+                } //CanExecute
+                );
+
+            _ClearEditCommand = new DelegateCommand<string>(
+                (s) =>
+                {
+                    clearEdit();
+                    _EditCommand.RaiseCanExecuteChanged();
                 }, //Execute
                 (s) =>
                 {
@@ -141,6 +233,30 @@ namespace SWE_UI.ViewModel
         {
             get { return _EditCommand; }
         }
+
+        public DelegateCommand<string> ClearEditClicked
+        {
+            get { return _ClearEditCommand; }
+        }
+
+        #endregion
+
+        #region tabControl
+
+        private int _tabItem;
+        public int tabItem
+        {
+            set
+            {
+                _tabItem = value;
+                OnPropertyChanged("tabItem");
+            }
+            get
+            {
+                return _tabItem;     
+            }
+        }
+
         #endregion
 
         #region SearchContact
@@ -154,9 +270,7 @@ namespace SWE_UI.ViewModel
             }
 
             get
-            {
-                //  var newW = new SearchResults();
-                //  newW.Show();
+            {      
                 return _contacts;
             }
         }
@@ -253,9 +367,47 @@ namespace SWE_UI.ViewModel
 
         #region EditContact
 
-        private int? _ContactID = 2;
+        private int? _ContactID;
 
-        private int? _CompanyID_Edit = 0;
+        private XmlExchange.contact _CompanyID_Edit;
+        public XmlExchange.contact CompanyID_Edit
+        {
+            get {
+                return _CompanyID_Edit;
+            }
+
+            set
+            {
+                _CompanyID_Edit = value;
+                OnPropertyChanged("CompanyID_Edit");
+            }
+        }
+
+        private List<XmlExchange.contact> _EmployingCompanyData_Edit;
+        public List<XmlExchange.contact> EmployingCompanyData_Edit
+        {
+            set
+            {
+                _EmployingCompanyData_Edit = value;
+                OnPropertyChanged("EmployingCompanyData_Edit");
+            }
+            get {
+                //var list = new List<string>();
+
+                _EmployingCompanyData_Edit = _proxy.searchCompany("", "");
+
+                var empty = new XmlExchange.contact();
+                empty.id = null;
+                _EmployingCompanyData_Edit.Add(empty);
+
+                /*foreach (var elem in _EmployingCompanyData_Edit)
+                {
+                    list.Add(elem.name + "; " + elem.uid);
+                }*/
+
+                return _EmployingCompanyData_Edit;
+            }
+        }
 
         private DateTime _CreationDate_Edit = DateTime.Now;
         public DateTime CreationDate_Edit
@@ -264,7 +416,7 @@ namespace SWE_UI.ViewModel
             set
             {
                 _CreationDate_Edit = value;
-                //           _clickCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("CreationDate_Edit");
             }
         }
 
@@ -273,11 +425,10 @@ namespace SWE_UI.ViewModel
         {
             get { return _Title_Edit; }
             set
-            {
+            {      
                 _Title_Edit = value;
-                _EditCommand.RaiseCanExecuteChanged();
                 NotifyChange_Edit();
-                //           _clickCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("Title_Edit");
             }
         }
 
@@ -288,8 +439,8 @@ namespace SWE_UI.ViewModel
             set
             {
                 _FirstName_Edit = value;
-                _EditCommand.RaiseCanExecuteChanged();
                 NotifyChange_Edit();
+                OnPropertyChanged("FirstName_Edit");
                 //           _clickCommand.RaiseCanExecuteChanged();
             }
         }
@@ -301,8 +452,8 @@ namespace SWE_UI.ViewModel
             set
             {
                 _LastName_Edit = value;
-                _EditCommand.RaiseCanExecuteChanged();
                 NotifyChange_Edit();
+                OnPropertyChanged("LastName_Edit");
                 //           _clickCommand.RaiseCanExecuteChanged();
             }
         }
@@ -314,8 +465,8 @@ namespace SWE_UI.ViewModel
             set
             {
                 _Suffix_Edit = value;
-                _EditCommand.RaiseCanExecuteChanged();
                 NotifyChange_Edit();
+                OnPropertyChanged("Suffix_Edit");
                 //           _clickCommand.RaiseCanExecuteChanged();
             }
         }
@@ -327,8 +478,8 @@ namespace SWE_UI.ViewModel
             set
             {
                 _CompanyName_Edit = value;
-                _EditCommand.RaiseCanExecuteChanged();
                 NotifyChange_Edit();
+                OnPropertyChanged("CompanyName_Edit");
                 //           _clickCommand.RaiseCanExecuteChanged();
             }
         }
@@ -340,8 +491,8 @@ namespace SWE_UI.ViewModel
             set
             {
                 _UID_Edit = value;
-                _EditCommand.RaiseCanExecuteChanged();
                 NotifyChange_Edit();
+                OnPropertyChanged("UID_Edit");
                 //           _clickCommand.RaiseCanExecuteChanged();
             }
         }
@@ -353,6 +504,7 @@ namespace SWE_UI.ViewModel
             set
             {
                 _Address_Edit = value;
+                OnPropertyChanged("Address_Edit");
             }
         }
 
@@ -363,6 +515,7 @@ namespace SWE_UI.ViewModel
             set
             {
                 _ShippingAddress_Edit = value;
+                OnPropertyChanged("ShippingAddress_Edit");
             }
         }
 
@@ -373,6 +526,7 @@ namespace SWE_UI.ViewModel
             set
             {
                 _BillingAddress_Edit = value;
+                OnPropertyChanged("BillingAddress_Edit");
             }
         }
 

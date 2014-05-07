@@ -1,11 +1,14 @@
-Insert into Contact(FirstName, UID )
-	values('Musterfirma', 123456789);	
+Insert into Contact(FirstName, UID , CreationDate, Address, BillingAddress, DeliveryAddress)
+	values('Musterfirma', 123456789, '12-9-1990', 'Firmengasse 7', 'Rechenstrasse 4', 'Paketweg 89');
+
+Insert into Contact(FirstName, UID , CreationDate, Address, BillingAddress, DeliveryAddress)
+	values('Vorpis', 123456789, '8-7-1995', 'Hohlgasse 13', 'Reichengasse 8', 'Huberstrasse 5');		
 
 Insert into Contact(FirstName, LastName, Company_FK, Title, Suffix, CreationDate, Address, BillingAddress, DeliveryAddress)
-	values('Max', 'Musterman', 0, 'Mag.', ' ', '12-9-1980', 'Sponheimerstraﬂe 10', 'M¸llerstraﬂe 8', 'Lieferstraﬂe 12');
+	values('Max', 'Musterman', 0, 'Mag.', 'BA', '12-9-1980', 'Sponheimerstrasse 10', 'M¸llerstraﬂe 8', 'Lieferstrasse 12');
 	
 Insert into Contact(FirstName, Lastname, Title, Suffix, CreationDate, Address, BillingAddress, DeliveryAddress)
-	values('Maxine', 'Musterman', 'Dr.', ' ', '10-7-1976', 'Heimstraﬂe 5', 'Rechnungsgasse 8', 'Lieferweg 17');
+	values('Maxine', 'Musterman', 'Dr.', 'MA', '10-7-1976', 'Heimstrasse 5', 'Rechnungsgasse 8', 'Lieferweg 17');
 	
 Insert into Bill([DATE], DueBy, Comment, Message, Contact_FK)	
 	Values(GETDATE(),DATEADD(DAY, 60 ,GETDATE()), 'Kommentar', 'Nachricht', 1);

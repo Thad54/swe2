@@ -28,5 +28,6 @@ namespace accessDB
         public XmlExchange.message editContact(XmlExchange.contact contact){
             return _dl.editContact(contact);
         }
+
     }
 }
