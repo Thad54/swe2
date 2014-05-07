@@ -38,6 +38,8 @@ namespace SWE_UI.ViewModel
                 LastName_Edit = con.lastName;
                 Suffix_Edit = con.Suffix;
 
+                EmployingCompanyData_Edit = _proxy.searchCompany("", "");
+
                 foreach( var item in _EmployingCompanyData_Edit){
                     if (item.id == con.companyID)
                     {
@@ -75,6 +77,8 @@ namespace SWE_UI.ViewModel
         private readonly DelegateCommand<string> _SearchCommand;
         private readonly DelegateCommand<string> _EditCommand;
         private readonly DelegateCommand<string> _ClearEditCommand;
+        private readonly DelegateCommand<string> _LoadAllCompaniesCommand;
+        private readonly DelegateCommand<string> _SearchCompanyRefCommand;
 
         public ViewModel()
         {
@@ -193,7 +197,9 @@ namespace SWE_UI.ViewModel
                     {
                         System.Windows.MessageBox.Show(result.text);
                     }
-                    EmployingCompanyData_Edit = _proxy.searchCompany("", ""); 
+                    EmployingCompanyData_Edit = _proxy.searchCompany("", "");
+                    clearEdit();
+                    tabItem = 0;
 
                 }, //Execute
                 (s) =>
@@ -222,6 +228,43 @@ namespace SWE_UI.ViewModel
 
                 } //CanExecute
                 );
+
+            _LoadAllCompaniesCommand = new DelegateCommand<string>(
+                (s) =>
+                {
+                    EmployingCompanyData_Edit = _proxy.searchCompany("", "");
+                }, //Execute
+                (s) =>
+                {
+                    return true;
+
+                } //CanExecute
+                );
+
+            _SearchCompanyRefCommand = new DelegateCommand<string>(
+                (s) =>
+                {
+                    var result = _proxy.searchCompany(_CompanyRefName, "");
+                    if (result.Count == 0)
+                    {
+                        CompanyRefName = "No Company found";
+                        CompanyID_Edit = null;
+                        return;
+
+                    } else if(result.Count == 1){
+                        EmployingCompanyData_Edit = result;
+                        CompanyID_Edit = _EmployingCompanyData_Edit[0];
+                        return;
+                    }
+                    EmployingCompanyData_Edit = result;
+                    CompanySelectorOpen = true;
+                }, //Execute
+                (s) =>
+                {
+                    return true;
+
+                } //CanExecute
+                );
         }
 
         public DelegateCommand<string> SearchContactClicked
@@ -237,6 +280,16 @@ namespace SWE_UI.ViewModel
         public DelegateCommand<string> ClearEditClicked
         {
             get { return _ClearEditCommand; }
+        }
+
+        public DelegateCommand<string> SearchCompanyRef_Edit
+        {
+            get { return _SearchCompanyRefCommand; }
+        }
+
+        public DelegateCommand<string> LoadAllCompanies_Edit
+        {
+            get { return _LoadAllCompaniesCommand; }
         }
 
         #endregion
@@ -369,6 +422,32 @@ namespace SWE_UI.ViewModel
 
         private int? _ContactID;
 
+        private bool _CompanySelectorOpen;
+        public bool CompanySelectorOpen
+        {
+            set
+            {
+                _CompanySelectorOpen = value;
+                OnPropertyChanged("CompanySelectorOpen");
+            }
+            get
+            {
+                return _CompanySelectorOpen;
+            }
+        }
+
+        private string _CompanyRefName;
+        public string CompanyRefName
+        {
+            set {
+                _CompanyRefName = value;
+                OnPropertyChanged("CompanyRefName");
+            }
+            get {
+                return _CompanyRefName;
+            }
+        }
+
         private XmlExchange.contact _CompanyID_Edit;
         public XmlExchange.contact CompanyID_Edit
         {
@@ -389,21 +468,20 @@ namespace SWE_UI.ViewModel
             set
             {
                 _EmployingCompanyData_Edit = value;
+                var empty = new XmlExchange.contact();
+                empty.id = null;
+                _EmployingCompanyData_Edit.Add(empty);
                 OnPropertyChanged("EmployingCompanyData_Edit");
             }
             get {
                 //var list = new List<string>();
 
-                _EmployingCompanyData_Edit = _proxy.searchCompany("", "");
+                /*_EmployingCompanyData_Edit = _proxy.searchCompany("", "");
 
                 var empty = new XmlExchange.contact();
                 empty.id = null;
-                _EmployingCompanyData_Edit.Add(empty);
+                _EmployingCompanyData_Edit.Add(empty);*/
 
-                /*foreach (var elem in _EmployingCompanyData_Edit)
-                {
-                    list.Add(elem.name + "; " + elem.uid);
-                }*/
 
                 return _EmployingCompanyData_Edit;
             }
