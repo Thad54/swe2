@@ -23,3 +23,14 @@ C:\Users\Alexander\Documents\repo\swe2\Server\WebserverTests\bin\Debug\accessDB.
 C:\Users\Alexander\Documents\repo\swe2\Server\WebserverTests\bin\Debug\contacts.dll
 C:\Users\Alexander\Documents\repo\swe2\Server\WebserverTests\bin\Debug\accessDB.pdb
 C:\Users\Alexander\Documents\repo\swe2\Server\WebserverTests\bin\Debug\contacts.pdb
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\WebserverTests.dll
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\WebserverTests.pdb
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\accessDB.dll
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\contacts.dll
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\SWE1_webserver_KR.exe
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\accessDB.pdb
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\contacts.pdb
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\SWE1_webserver_KR.pdb
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\obj\Debug\WebserverTests.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\obj\Debug\WebserverTests.dll
+C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\obj\Debug\WebserverTests.pdb

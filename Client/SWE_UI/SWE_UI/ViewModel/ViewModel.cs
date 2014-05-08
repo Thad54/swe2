@@ -27,6 +27,7 @@ namespace SWE_UI.ViewModel
             CompanyName_Edit = string.Empty;
             UID_Edit = string.Empty;
             CompanyID_Edit = null;
+            _EditCommand.RaiseCanExecuteChanged();
         }
         public void fillEdit(XmlExchange.contact con){
 
