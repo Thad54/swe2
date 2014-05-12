@@ -13,73 +13,9 @@ namespace SWE_UI.ViewModel
     {
         private proxy _proxy = new proxy(); 
 
-        public void clearEdit()
-        {
-            _ContactID = null;
-            Address_Edit = string.Empty;
-            BillingAddress_Edit = string.Empty;
-            ShippingAddress_Edit = string.Empty;
-            CreationDate_Edit = DateTime.Now;
-            Title_Edit = string.Empty;
-            FirstName_Edit = string.Empty;
-            LastName_Edit = string.Empty;
-            Suffix_Edit = string.Empty;
-            CompanyName_Edit = string.Empty;
-            UID_Edit = string.Empty;
-            CompanyID_Edit = null;
-            _EditCommand.RaiseCanExecuteChanged();
-        }
-        public void fillEdit(XmlExchange.contact con){
-
-
-            if (con.isCompany == false)
-            {
-                Title_Edit = con.title;
-                FirstName_Edit = con.name;
-                LastName_Edit = con.lastName;
-                Suffix_Edit = con.Suffix;
-
-                EmployingCompanyData_Edit = _proxy.searchCompany("", "");
-
-                foreach( var item in _EmployingCompanyData_Edit){
-                    if (item.id == con.companyID)
-                    {
-                        CompanyID_Edit = item;
-                    }
-                }
-               /* var company = new XmlExchange.contact();
-
-                company.id = con.companyID;
-                company.name = con.company;
-                company.uid = con.uid;
-
-                CompanyID_Edit = company;*/
-            }
-            else
-            {
-                CompanyName_Edit = con.name;
-                UID_Edit = con.uid;
-            }
-
-
-            _ContactID = con.id;
-            _EditCommand.RaiseCanExecuteChanged();
-            Address_Edit = con.address;
-            BillingAddress_Edit = con.billingAddress;
-            ShippingAddress_Edit = con.shippingAddress;
-
-            CreationDate_Edit = con.creationDate;
-
-            tabItem = 2;
-  
-        }
-
         #region commands
         private readonly DelegateCommand<string> _SearchCommand;
-        private readonly DelegateCommand<string> _EditCommand;
-        private readonly DelegateCommand<string> _ClearEditCommand;
-        private readonly DelegateCommand<string> _LoadAllCompaniesCommand;
-        private readonly DelegateCommand<string> _SearchCompanyRefCommand;
+        private readonly DelegateCommand<string> _SelectionCommand;
 
         public ViewModel()
         {
@@ -87,10 +23,11 @@ namespace SWE_UI.ViewModel
 
             _SearchCommand = new DelegateCommand<string>(
                 (s) =>
-                {
+                {       
 
                     var result = new List<XmlExchange.contact>();
-                    EmployingCompanyData_Edit = result;
+                    //EmployingCompanyData_Edit = result;
+
 
                     try
                     {
@@ -115,28 +52,25 @@ namespace SWE_UI.ViewModel
 
                     if (result.Count == 1)
                     {
+                        /*
                         clearEdit();
-                        fillEdit(result.Last());
+                        fillEdit(result.Last());*/
+
+                        EditContactWIndow _editContactWindow = new EditContactWIndow();
+                        Edit_ViewModel _editViewModel = new Edit_ViewModel();
+
+                        _editContactWindow.DataContext = _editViewModel;
+                        _editViewModel.setMainViewModel(this);
+                        _editViewModel.setWindow(_editContactWindow);
+                        _editViewModel.fillEdit(result.Last());
+
+                        _editContactWindow.Show();
+
+                        contactData = result;
                         return;
                     }
 
-                     SearchResults _searchResultWindow = new SearchResults();
-                     Search_ViewModel _searchViewModel = new Search_ViewModel();
-
-                     _searchResultWindow.DataContext = _searchViewModel;
-                     _searchViewModel.setMainViewModel(this);
-                     _searchViewModel.setWindow(_searchResultWindow);
-
-                    _searchViewModel.contacts = result;
-                    _searchResultWindow.Show();
-
-                    /*var sb = new StringBuilder();
-
-                    foreach (var con in result)
-                    {
-                        sb.AppendFormat("{0} | {1} | \n", con.name, con.lastName);
-                    }
-                    Contacts = sb.ToString();*/
+                    contactData = result;
 
                 }, //Execute
                 (s) =>
@@ -153,144 +87,34 @@ namespace SWE_UI.ViewModel
                 } //CanExecute
                 );
 
-            _EditCommand = new DelegateCommand<string>(
+            _SelectionCommand = new DelegateCommand<string>(
                 (s) =>
                 {
+                    EditContactWIndow _editContactWindow = new EditContactWIndow();
+                    Edit_ViewModel _editViewModel = new Edit_ViewModel();
 
-                    var result = new XmlExchange.message();
-                    var contact = new XmlExchange.contact();
+                    _editContactWindow.DataContext = _editViewModel;
+                    _editViewModel.setMainViewModel(this);
+                    _editViewModel.setWindow(_editContactWindow);
+                    _editViewModel.fillEdit(SelectedContact);
 
-                    if (string.IsNullOrWhiteSpace(_UID_Edit))
-                    {
-                        contact.title = _Title_Edit;
-                        contact.name = _FirstName_Edit;
-                        contact.lastName = _LastName_Edit;
-                        contact.Suffix = _Suffix_Edit;
-                        contact.uid = string.Empty;
-                        contact.companyID = _CompanyID_Edit.id;
-                    }
-                    else
-                    {
-                        contact.title = string.Empty;
-                        contact.Suffix = string.Empty;
-                        contact.name = _CompanyName_Edit;
-                        contact.uid = _UID_Edit;
-                        contact.lastName = string.Empty;
-                        contact.companyID = null;
-
-                    }
-
-                    contact.creationDate = _CreationDate_Edit;
-                    contact.address = _Address_Edit;
-                    contact.billingAddress = _BillingAddress_Edit;
-                    contact.shippingAddress = _ShippingAddress_Edit;
-                    contact.id = _ContactID;
-
-                    try
-                    {
-                        result = _proxy.EditContact(contact);
-                    }
-                    catch (Exception)
-                    {
-                        return;
-                    }
-                    if (result.error)
-                    {
-                        System.Windows.MessageBox.Show(result.text);
-                    }
-                    EmployingCompanyData_Edit = _proxy.searchCompany("", "");
-                    clearEdit();
-                    tabItem = 0;
-
-                }, //Execute
-                (s) =>
-                {
-                    if (_ContactID == null)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-
-                } //CanExecute
-                );
-
-            _ClearEditCommand = new DelegateCommand<string>(
-                (s) =>
-                {
-                    clearEdit();
-                    _EditCommand.RaiseCanExecuteChanged();
+                    _editContactWindow.Show();
                 }, //Execute
                 (s) =>
                 {
                     return true;
-
                 } //CanExecute
                 );
-
-            _LoadAllCompaniesCommand = new DelegateCommand<string>(
-                (s) =>
-                {
-                    EmployingCompanyData_Edit = _proxy.searchCompany("", "");
-                }, //Execute
-                (s) =>
-                {
-                    return true;
-
-                } //CanExecute
-                );
-
-            _SearchCompanyRefCommand = new DelegateCommand<string>(
-                (s) =>
-                {
-                    var result = _proxy.searchCompany(_CompanyRefName, "");
-                    if (result.Count == 0)
-                    {
-                        CompanyRefName = "No Company found";
-                        CompanyID_Edit = null;
-                        return;
-
-                    } else if(result.Count == 1){
-                        EmployingCompanyData_Edit = result;
-                        CompanyID_Edit = _EmployingCompanyData_Edit[0];
-                        return;
-                    }
-                    EmployingCompanyData_Edit = result;
-                    CompanySelectorOpen = true;
-                }, //Execute
-                (s) =>
-                {
-                    return true;
-
-                } //CanExecute
-                );
+       
         }
 
         public DelegateCommand<string> SearchContactClicked
         {
             get { return _SearchCommand; }
         }
-
-        public DelegateCommand<string> EditContactClicked
+        public DelegateCommand<string> ContactSelected
         {
-            get { return _EditCommand; }
-        }
-
-        public DelegateCommand<string> ClearEditClicked
-        {
-            get { return _ClearEditCommand; }
-        }
-
-        public DelegateCommand<string> SearchCompanyRef_Edit
-        {
-            get { return _SearchCompanyRefCommand; }
-        }
-
-        public DelegateCommand<string> LoadAllCompanies_Edit
-        {
-            get { return _LoadAllCompaniesCommand; }
+            get { return _SelectionCommand; }
         }
 
         #endregion
@@ -314,6 +138,35 @@ namespace SWE_UI.ViewModel
         #endregion
 
         #region SearchContact
+
+        private List<XmlExchange.contact> _contactData;
+        public List<XmlExchange.contact> contactData
+        {
+            set
+            {
+                _contactData = value;
+                OnPropertyChanged("contactData");
+            }
+            get
+            {
+                return _contactData;
+            }
+        }
+
+        private XmlExchange.contact _SelectedContact;
+        public XmlExchange.contact SelectedContact
+        {
+            set
+            {
+                _SelectedContact = value;
+                OnPropertyChanged("SelectedContact");
+            }
+            get
+            {
+                return _SelectedContact;
+            }
+        }
+
         private string _contacts;
         public string Contacts
         {
@@ -419,232 +272,5 @@ namespace SWE_UI.ViewModel
 
         #endregion
 
-        #region EditContact
-
-        private int? _ContactID;
-
-        private bool _CompanySelectorOpen;
-        public bool CompanySelectorOpen
-        {
-            set
-            {
-                _CompanySelectorOpen = value;
-                OnPropertyChanged("CompanySelectorOpen");
-            }
-            get
-            {
-                return _CompanySelectorOpen;
-            }
-        }
-
-        private string _CompanyRefName;
-        public string CompanyRefName
-        {
-            set {
-                _CompanyRefName = value;
-                OnPropertyChanged("CompanyRefName");
-            }
-            get {
-                return _CompanyRefName;
-            }
-        }
-
-        private XmlExchange.contact _CompanyID_Edit;
-        public XmlExchange.contact CompanyID_Edit
-        {
-            get {
-                return _CompanyID_Edit;
-            }
-
-            set
-            {
-                _CompanyID_Edit = value;
-                OnPropertyChanged("CompanyID_Edit");
-            }
-        }
-
-        private List<XmlExchange.contact> _EmployingCompanyData_Edit;
-        public List<XmlExchange.contact> EmployingCompanyData_Edit
-        {
-            set
-            {
-                _EmployingCompanyData_Edit = value;
-                var empty = new XmlExchange.contact();
-                empty.id = null;
-                _EmployingCompanyData_Edit.Add(empty);
-                OnPropertyChanged("EmployingCompanyData_Edit");
-            }
-            get {
-                //var list = new List<string>();
-
-                /*_EmployingCompanyData_Edit = _proxy.searchCompany("", "");
-
-                var empty = new XmlExchange.contact();
-                empty.id = null;
-                _EmployingCompanyData_Edit.Add(empty);*/
-
-
-                return _EmployingCompanyData_Edit;
-            }
-        }
-
-        private DateTime _CreationDate_Edit = DateTime.Now;
-        public DateTime CreationDate_Edit
-        {
-            get { return _CreationDate_Edit; }
-            set
-            {
-                _CreationDate_Edit = value;
-                OnPropertyChanged("CreationDate_Edit");
-            }
-        }
-
-        private string _Title_Edit;
-        public string Title_Edit
-        {
-            get { return _Title_Edit; }
-            set
-            {      
-                _Title_Edit = value;
-                NotifyChange_Edit();
-                OnPropertyChanged("Title_Edit");
-            }
-        }
-
-        private string _FirstName_Edit;
-        public string FirstName_Edit
-        {
-            get { return _FirstName_Edit; }
-            set
-            {
-                _FirstName_Edit = value;
-                NotifyChange_Edit();
-                OnPropertyChanged("FirstName_Edit");
-                //           _clickCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        private string _LastName_Edit;
-        public string LastName_Edit
-        {
-            get { return _LastName_Edit; }
-            set
-            {
-                _LastName_Edit = value;
-                NotifyChange_Edit();
-                OnPropertyChanged("LastName_Edit");
-                //           _clickCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        private string _Suffix_Edit;
-        public string Suffix_Edit
-        {
-            get { return _Suffix_Edit; }
-            set
-            {
-                _Suffix_Edit = value;
-                NotifyChange_Edit();
-                OnPropertyChanged("Suffix_Edit");
-                //           _clickCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        private string _CompanyName_Edit;
-        public string CompanyName_Edit
-        {
-            get { return _CompanyName_Edit; }
-            set
-            {
-                _CompanyName_Edit = value;
-                NotifyChange_Edit();
-                OnPropertyChanged("CompanyName_Edit");
-                //           _clickCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        private string _UID_Edit;
-        public string UID_Edit
-        {
-            get { return _UID_Edit; }
-            set
-            {
-                _UID_Edit = value;
-                NotifyChange_Edit();
-                OnPropertyChanged("UID_Edit");
-                //           _clickCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        private string _Address_Edit;
-        public string Address_Edit
-        {
-            get { return _Address_Edit; }
-            set
-            {
-                _Address_Edit = value;
-                OnPropertyChanged("Address_Edit");
-            }
-        }
-
-        private string _ShippingAddress_Edit;
-        public string ShippingAddress_Edit
-        {
-            get { return _ShippingAddress_Edit; }
-            set
-            {
-                _ShippingAddress_Edit = value;
-                OnPropertyChanged("ShippingAddress_Edit");
-            }
-        }
-
-        private string _BillingAddress_Edit;
-        public string BillingAddress_Edit
-        {
-            get { return _BillingAddress_Edit; }
-            set
-            {
-                _BillingAddress_Edit = value;
-                OnPropertyChanged("BillingAddress_Edit");
-            }
-        }
-
-        public bool? IsPerson_Edit
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(FirstName_Edit) && string.IsNullOrWhiteSpace(LastName_Edit) && string.IsNullOrWhiteSpace(Title_Edit) && string.IsNullOrWhiteSpace(CompanyName_Edit) && string.IsNullOrWhiteSpace(Suffix_Edit) && string.IsNullOrWhiteSpace(UID_Edit))
-                {
-                    return null;
-                }
-                return !string.IsNullOrWhiteSpace(CompanyName_Edit) || !string.IsNullOrWhiteSpace(UID_Edit);
-
-            }
-        }
-
-        public bool CanEditCompany
-        {
-            get
-            {
-                return IsPerson_Edit == null || IsPerson_Edit == true;
-            }
-        }
-
-        public bool CanEditPerson
-        {
-            get
-            {
-                return IsPerson_Edit == null || IsPerson_Edit == false;
-            }
-        }
-
-        private void NotifyChange_Edit()
-        {
-            OnPropertyChanged("IsPerson");
-            OnPropertyChanged("CanEditCompany");
-            OnPropertyChanged("CanEditPerson");
-        }
-
-        #endregion
     }
 }

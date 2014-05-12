@@ -82,15 +82,22 @@
     <Compile Include="Content\new_edit_contact.xaml.cs">
       <DependentUpon>new_edit_contact.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditContactWIndow.xaml.cs">
+      <DependentUpon>EditContactWIndow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchResults.xaml.cs">
       <DependentUpon>SearchResults.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\Search-ViewModel.cs" />
+    <Compile Include="ViewModel\Edit-ViewModel.cs" />
     <Compile Include="ViewModel\proxy.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Page Include="Content\new_edit_contact.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditContactWIndow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
