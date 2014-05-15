@@ -52,3 +52,9 @@ C:\Users\Alexander\Documents\repo\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_w
 C:\Users\Dreydn\Dropbox\FH\swe2\Server\SWE1_webserver_KR\bin\Debug\SWE1_webserver_KR.exe.config
 C:\Users\Dreydn\Dropbox\FH\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.exe
 C:\Users\Dreydn\Dropbox\FH\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.pdb
+C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\SWE1_webserver_KR.exe
+C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\SWE1_webserver_KR.pdb
+C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Form1.resources
+C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Properties.Resources.resources
+C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.csproj.GenerateResource.Cache

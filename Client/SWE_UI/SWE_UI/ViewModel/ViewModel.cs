@@ -272,5 +272,11 @@ namespace SWE_UI.ViewModel
 
         #endregion
 
+        #region SearchBill
+
+
+
+        #endregion
+
     }
 }

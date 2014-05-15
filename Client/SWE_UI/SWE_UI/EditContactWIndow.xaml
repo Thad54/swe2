@@ -6,11 +6,6 @@
         xmlns:b="Window"
         Title="EditContactWIndow" Height="572.942" Width="503.948">
     
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Closing">
-            <i:InvokeCommandAction Command="{Binding WindowClosing}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
     <StackPanel>
         <GroupBox Header="Name">
             <StackPanel>

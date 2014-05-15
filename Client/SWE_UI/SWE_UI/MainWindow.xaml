@@ -54,90 +54,16 @@
             </StackPanel>
         </TabItem>
         <TabItem Header="Search Bill">
-        </TabItem>
-        <TabItem Header="Edit Contact">
             <StackPanel>
-                <GroupBox Header="Name">
+                <GroupBox>
                     <StackPanel>
-                        <GroupBox Header="Person" IsEnabled="{Binding CanEditPerson}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="75"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="75"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Content ="Title"/>
-                                <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding Title_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                                <Label Grid.Row="0" Grid.Column="1" Content ="First Name"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FirstName_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                                <Label Grid.Row="0" Grid.Column="2" Content ="Last Name"/>
-                                <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding LastName_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                                <Label Grid.Row="0" Grid.Column="3" Content ="Suffix"/>
-                                <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Suffix_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                            </Grid>
-                        </GroupBox>
-                        <GroupBox Header="Company" IsEnabled="{Binding CanEditCompany}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Content ="Name"/>
-                                <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding CompanyName_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                                <Label Grid.Row="0" Grid.Column="1" Content ="UID"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding UID_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                            </Grid>
-                        </GroupBox>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Header="Address">
-                    <StackPanel>
-                        <Label Content="Home Address"/>
-                        <TextBox Text="{Binding Address_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                        <Label Content="Billing Address"/>
-                        <TextBox Text="{Binding BillingAddress_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                        <Label Content="Shipping Address"/>
-                        <TextBox Text="{Binding ShippingAddress_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Header="Employing Company" IsEnabled="{Binding CanEditPerson}">
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 8 ">
-                            <TextBox Width="350" Margin="0 0 4 0" Text="{Binding CompanyRefName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                                <TextBox.InputBindings>
-                                    <KeyBinding Key="Enter" Command="{Binding SearchCompanyRef_Edit}"/>
-                                </TextBox.InputBindings>
-                            </TextBox>
-                            <Button Content="Search" Margin="0 0 4 0" Height="22" Width="50" Command="{Binding SearchCompanyRef_Edit}"/>
-                            <Button Content="Load All" Height="22" Width="55" Command="{Binding LoadAllCompanies_Edit}"/>
+                        <Label Content="Bill isued by"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="auto"/>
+                            <Button Content="Search"/>
                         </StackPanel>
-                        <ComboBox ItemsSource="{Binding EmployingCompanyData_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding CompanyID_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsDropDownOpen="{Binding CompanySelectorOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate DataType="{x:Type XmlExchange:contact}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Margin="0 0 4 0" Text="{Binding name}"></TextBlock>
-                                        <TextBlock Text="{Binding uid}"></TextBlock>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
                     </StackPanel>
                 </GroupBox>
-                <Label Content="Date of Birth / Founded"/>
-                <DatePicker SelectedDate="{Binding CreationDate_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="7"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="Submit" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding EditContactClicked}" />
-                    <Button Content="Clear" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding ClearEditClicked}"/>
-                </StackPanel>
             </StackPanel>
         </TabItem>
         <TabItem Header="New Bill">

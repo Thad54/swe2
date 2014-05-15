@@ -1,14 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
+using System.Windows.Media;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace SWE_UI.ViewModel
 {
     class Edit_ViewModel : BaseViewModel
     {
         private proxy _proxy  = new SWE_UI.proxy();
+
+        void WindowClosing(object sender, CancelEventArgs e){
+            if (ContactAltered())
+            {
+                MessageBoxResult result =
+                MessageBox.Show("You are about to abandon the changes made to the Contact " + _originalContact.name + ". \nDo you wish to continue?",
+                "", MessageBoxButton.OKCancel);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    e.Cancel = false;
+                    return;
+                }
+                else
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+            else
+            {
+                e.Cancel = false;
+            }
+        }
 
         private ViewModel _mainViewModel;
         public void setMainViewModel(ViewModel view)
@@ -21,6 +48,7 @@ namespace SWE_UI.ViewModel
         public void setWindow(EditContactWIndow window)
         {
             _window = window;
+            _window.Closing += new CancelEventHandler(WindowClosing);
         }
 
         private readonly DelegateCommand<string> _EditCommand;
@@ -162,21 +190,6 @@ namespace SWE_UI.ViewModel
         public DelegateCommand<string> LoadAllCompanies_Edit
         {
             get { return _LoadAllCompaniesCommand; }
-        }
-
-        public DelegateCommand<ConsoleCancelEventArgs> WindowClosing
-        {
-            get {
-                return new DelegateCommand<ConsoleCancelEventArgs>(
-                        (args) =>{
-                            /*if (ContactAltered())
-                            {
-                                args.Cancel = false;
-                                return;
-                            }
-                            //args.Cancel = true;*/
-                        });
-            }
         }
 
         public void clearEdit()
