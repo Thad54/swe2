@@ -39,7 +39,7 @@ namespace accessDB
                         con.shippingAddress = reader[8] as string;
                         con.company = reader[9] as string;
                         con.uid = reader[10] as string;
-                        con.companyID = reader[11] as int? ?? default(int);
+                        con.companyID = reader[11] as int? ?? null;
                         con.isCompany = false;
 
                         list.Add(con);

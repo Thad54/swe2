@@ -75,7 +75,7 @@ namespace SWE_UI.ViewModel
                 }, //Execute
                 (s) =>
                 {
-                    if (!string.IsNullOrEmpty(_FirstName) || !string.IsNullOrEmpty(_LastName) || !string.IsNullOrEmpty(_CompanyName) || !string.IsNullOrEmpty(_UID))
+                    if (!string.IsNullOrWhiteSpace(_FirstName) || !string.IsNullOrWhiteSpace(_LastName) || !string.IsNullOrWhiteSpace(_CompanyName) || !string.IsNullOrWhiteSpace(_UID))
                     {
                         return true;
                     }
@@ -238,12 +238,11 @@ namespace SWE_UI.ViewModel
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(FirstName) && string.IsNullOrWhiteSpace(LastName) && string.IsNullOrWhiteSpace(CompanyName) && string.IsNullOrWhiteSpace(UID))
+                if (string.IsNullOrWhiteSpace(_FirstName) && string.IsNullOrWhiteSpace(_LastName) && string.IsNullOrWhiteSpace(_CompanyName) && string.IsNullOrWhiteSpace(_UID))
                 {
                     return null;
                 }
-                return !string.IsNullOrWhiteSpace(CompanyName) || !string.IsNullOrWhiteSpace(UID);
-
+                return !string.IsNullOrWhiteSpace(_CompanyName) || !string.IsNullOrWhiteSpace(_UID);
             }
         }
 

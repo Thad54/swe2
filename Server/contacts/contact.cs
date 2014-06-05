@@ -22,5 +22,20 @@ namespace XmlExchange
         public string company { get; set; }
         public bool isCompany { get; set; }
 
+        public void setData(contact con){
+            name = con.name;
+            lastName = con.lastName;
+            title = con.title;
+            Suffix = con.Suffix;
+            address = con.address;
+            billingAddress = con.billingAddress;
+            shippingAddress = con.shippingAddress;
+            creationDate = con.creationDate;
+            uid = con.uid;
+            id = con.id;
+            companyID = con.companyID;
+            company = con.company;
+            isCompany = con.isCompany;
+        }
     }
 }

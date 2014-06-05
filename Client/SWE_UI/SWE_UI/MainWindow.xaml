@@ -27,7 +27,7 @@
                 </GroupBox>
                 <Button IsDefault="True" Content="Search" HorizontalAlignment="Left" Margin="7" VerticalAlignment="Top" Width="75" Command="{Binding SearchContactClicked}"/>
                 <TextBox HorizontalAlignment="Left" x:Name="SearchResult" Height="37"  TextWrapping="Wrap" Text="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="677" Margin="7,0,0,0"/>
-                <ListView Margin="7" ItemsSource="{Binding contactData}" SelectedItem="{Binding SelectedContact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <ListView Margin="7" ItemsSource="{Binding contactData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedContact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding ContactSelected}"/>

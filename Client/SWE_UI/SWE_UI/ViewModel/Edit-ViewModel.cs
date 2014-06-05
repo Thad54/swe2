@@ -14,7 +14,7 @@ namespace SWE_UI.ViewModel
         private proxy _proxy  = new SWE_UI.proxy();
 
         void WindowClosing(object sender, CancelEventArgs e){
-            if (ContactAltered())
+            if (ContactAltered() && !_submit)
             {
                 MessageBoxResult result =
                 MessageBox.Show("You are about to abandon the changes made to the Contact " + _originalContact.name + ". \nDo you wish to continue?",
@@ -44,6 +44,7 @@ namespace SWE_UI.ViewModel
 
         }
 
+        private bool _submit = false;
         private EditContactWIndow _window;
         public void setWindow(EditContactWIndow window)
         {
@@ -74,6 +75,7 @@ namespace SWE_UI.ViewModel
                         contact.Suffix = _Suffix_Edit;
                         contact.uid = string.Empty;
                         contact.companyID = _CompanyID_Edit.id;
+                        contact.company = _CompanyID_Edit.name;
                     }
                     else
                     {
@@ -105,6 +107,21 @@ namespace SWE_UI.ViewModel
                         System.Windows.MessageBox.Show(result.text);
                     }
 
+                    var searchResults = _mainViewModel.contactData;
+                    var newList = new List<XmlExchange.contact>();
+
+                    foreach (var elem in searchResults)
+                    {
+                        if (elem.id == contact.id)
+                        {
+                            elem.setData(contact);
+                        }
+                        newList.Add(elem);
+                    }
+
+                    _mainViewModel.contactData = newList;
+
+                    _submit = true;
                     _window.Close();
                    /* EmployingCompanyData_Edit = _proxy.searchCompany("", "");
                     clearEdit();*/
@@ -299,7 +316,17 @@ namespace SWE_UI.ViewModel
                 {
                     return true;
                 }
-                if (_originalContact.companyID != CompanyID_Edit.id)
+                if (CompanyID_Edit == null)
+                {
+                    if (_originalContact.companyID == null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                } else if (_originalContact.companyID != CompanyID_Edit.id)
                 {
                     return true;
                 }

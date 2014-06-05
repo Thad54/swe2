@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Threading.Tasks;
+using System.Linq;
 using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration;
 
 namespace SWE_UI
 {
@@ -82,6 +83,7 @@ namespace SWE_UI
         public void SendString(String input)
         {
             request = WebRequest.Create("http://localhost:8080/accessDB");
+//            request = WebRequest.Create(ConfigurationManager.AppSettings["SERVER"].ToString());
             request.Method = "POST";
             request.ContentType = "text/xml";
 
