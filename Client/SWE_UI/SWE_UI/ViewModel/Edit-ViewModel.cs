@@ -54,8 +54,6 @@ namespace SWE_UI.ViewModel
 
         private readonly DelegateCommand<string> _EditCommand;
         private readonly DelegateCommand<string> _RestoreEditCommand;
-        private readonly DelegateCommand<string> _LoadAllCompaniesCommand;
-        private readonly DelegateCommand<string> _SearchCompanyRefCommand;
 
         public Edit_ViewModel()
         {
@@ -158,16 +156,6 @@ namespace SWE_UI.ViewModel
         public DelegateCommand<string> RestoreEditClicked
         {
             get { return _RestoreEditCommand; }
-        }
-
-        public DelegateCommand<string> SearchCompanyRef_Edit
-        {
-            get { return _SearchCompanyRefCommand; }
-        }
-
-        public DelegateCommand<string> LoadAllCompanies_Edit
-        {
-            get { return _LoadAllCompaniesCommand; }
         }
 
         public void clearEdit()

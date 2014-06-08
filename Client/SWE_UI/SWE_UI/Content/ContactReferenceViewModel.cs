@@ -13,12 +13,12 @@ namespace SWE_UI.Content
     class ContactReferenceViewModel: BaseViewModel
     {
 
+        public ContactReference control;
         private proxy _proxy  = new SWE_UI.proxy();
 
         private readonly DelegateCommand<string> _LoadAllCompaniesCommand;
         private readonly DelegateCommand<string> _SearchCompanyRefCommand;
 
-        public ContactReference UserControl;
 
 
         public ContactReferenceViewModel()
@@ -112,6 +112,7 @@ namespace SWE_UI.Content
             set
             {
                 _CompanyID_Edit = value;
+                Search = value.name;
                 OnPropertyChanged("CompanyID_Edit");
                 OnPropertyChanged("SelectedItem");
             }
@@ -140,8 +141,20 @@ namespace SWE_UI.Content
             get { return _CompanyName_Edit; }
             set
             {
-                _CompanyName_Edit = value;
+                _CompanyName_Edit = value;    
                 OnPropertyChanged("CompanyName_Edit");
+            }
+        }
+
+        private string _Search;
+        public string Search
+        {
+            get { return _Search; }
+            set
+            {
+                _Search = value;
+                control.Search = _Search;
+                OnPropertyChanged("Search");
             }
         }
     }

@@ -82,7 +82,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>-->
-            <custom:ContactReference SelectedItem="{Binding CompanyID_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">              
+            <custom:ContactReference Search="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.Suffix_Edit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CompanyID_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemSource="{Binding EmployingCompanyData_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">              
             </custom:ContactReference>
         </GroupBox>
         <Label Content="Date of Birth / Founded"/>
