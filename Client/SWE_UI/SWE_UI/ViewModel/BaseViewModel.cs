@@ -12,7 +12,7 @@ namespace SWE_UI.ViewModel
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string prop)
+        public void OnPropertyChanged(string prop)
         {
             var temp = PropertyChanged;
             if (temp != null)

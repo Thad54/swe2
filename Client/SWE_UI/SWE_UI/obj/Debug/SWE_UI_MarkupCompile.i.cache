@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\
 SWE_UI
 none
 false
 DEBUG;TRACE
-C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\App.xaml
-5-1866823624
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\App.xaml
+4-2097043878
 
-182040681286
-21-1851898303
-Content\new_edit_contact.xaml;EditContactWIndow.xaml;MainWindow.xaml;SearchResults.xaml;Themes\Generic.xaml;
+17359259210
+21-699310115
+Content\ContactReference.xaml;EditContactWIndow.xaml;MainWindow.xaml;Themes\Generic.xaml;
 
-True
+False
 

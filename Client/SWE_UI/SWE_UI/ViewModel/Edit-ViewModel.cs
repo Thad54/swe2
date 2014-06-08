@@ -148,45 +148,6 @@ namespace SWE_UI.ViewModel
 
                 } //CanExecute
                 );
-
-            _LoadAllCompaniesCommand = new DelegateCommand<string>(
-                (s) =>
-                {
-                    EmployingCompanyData_Edit = _proxy.searchCompany("", "");
-                }, //Execute
-                (s) =>
-                {
-                    return true;
-
-                } //CanExecute
-                );
-
-            _SearchCompanyRefCommand = new DelegateCommand<string>(
-                (s) =>
-                {
-                    var result = _proxy.searchCompany(_CompanyRefName, "");
-                    if (result.Count == 0)
-                    {
-                        CompanyRefName = "No Company found";
-                        CompanyID_Edit = null;
-                        return;
-
-                    }
-                    else if (result.Count == 1)
-                    {
-                        EmployingCompanyData_Edit = result;
-                        CompanyID_Edit = _EmployingCompanyData_Edit[0];
-                        return;
-                    }
-                    EmployingCompanyData_Edit = result;
-                    CompanySelectorOpen = true;
-                }, //Execute
-                (s) =>
-                {
-                    return true;
-
-                } //CanExecute
-                );
         } 
 
         public DelegateCommand<string> EditContactClicked
@@ -424,18 +385,10 @@ namespace SWE_UI.ViewModel
             }
             get
             {
-                //var list = new List<string>();
-
-                /*_EmployingCompanyData_Edit = _proxy.searchCompany("", "");
-
-                var empty = new XmlExchange.contact();
-                empty.id = null;
-                _EmployingCompanyData_Edit.Add(empty);*/
-
 
                 return _EmployingCompanyData_Edit;
             }
-        }
+        } 
 
         private DateTime _CreationDate_Edit = DateTime.Now;
         public DateTime CreationDate_Edit

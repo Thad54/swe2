@@ -34,3 +34,7 @@ C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\SWE1_webse
 C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\obj\Debug\WebserverTests.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\obj\Debug\WebserverTests.dll
 C:\Users\Martin\Documents\GitHub\swe2\Server\WebserverTests\obj\Debug\WebserverTests.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\accessDB.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\contacts.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\accessDB.pdb
+C:\Users\Dreydn\Documents\GitHub\swe2\Server\WebserverTests\bin\Debug\contacts.pdb

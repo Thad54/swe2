@@ -28,10 +28,6 @@ C:\Users\Alexander\Documents\repo\swe2.1\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI_M
 C:\Users\Alexander\Documents\repo\swe2.1\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.g.resources
 C:\Users\Alexander\Documents\repo\swe2.1\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.Properties.Resources.resources
 C:\Users\Alexander\Documents\repo\swe2.1\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csproj.GenerateResource.Cache
-C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SearchResults.baml
-C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SearchResults.g.cs
-C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\new_edit_contact.baml
-C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\new_edit_contact.g.cs
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI_MarkupCompile.lref
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Themes\Generic.baml
@@ -221,3 +217,7 @@ C:\Users\Dreydn\Dropbox\FH\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Themes\Generic.ba
 C:\Users\Dreydn\Dropbox\FH\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.g.resources
 C:\Users\Dreydn\Dropbox\FH\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.Properties.Resources.resources
 C:\Users\Dreydn\Dropbox\FH\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csproj.GenerateResource.Cache
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\ContactReference.baml
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\ContactReference.g.cs
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditContactWIndow.g.cs
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditContactWIndow.baml

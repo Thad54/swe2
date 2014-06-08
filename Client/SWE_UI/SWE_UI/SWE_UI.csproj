@@ -78,22 +78,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Content\CustomControl1.cs" />
-    <Compile Include="Content\new_edit_contact.xaml.cs">
-      <DependentUpon>new_edit_contact.xaml</DependentUpon>
+    <Compile Include="Content\ContactReference.xaml.cs">
+      <DependentUpon>ContactReference.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\ContactReferenceViewModel.cs" />
     <Compile Include="EditContactWIndow.xaml.cs">
       <DependentUpon>EditContactWIndow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SearchResults.xaml.cs">
-      <DependentUpon>SearchResults.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Edit-ViewModel.cs" />
     <Compile Include="ViewModel\proxy.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
-    <Page Include="Content\new_edit_contact.xaml">
+    <Page Include="Content\ContactReference.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,10 +110,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SearchResults.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
