@@ -39,32 +39,54 @@ namespace accessDB
         {
             var answer = new StringBuilder();
             var xml = new StringReader(data["Xml"]);
-         //   var xml = new System.Xml.XmlReader();
+            //   var xml = new System.Xml.XmlReader();
 
             var xs = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.command));
-            var com = (XmlExchange.command) xs.Deserialize(xml);
-            
+            var com = (XmlExchange.command)xs.Deserialize(xml);
+
 
             if (com.type == "search")
             {
-                var result = new List<XmlExchange.contact>();
+
 
                 if (com.table == "person")
                 {
+                    var result = new List<XmlExchange.contact>();
                     result = _bl.searchPerson(com.contact);
+
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<XmlExchange.contact>));
+
+                    using (TextWriter writer = new StringWriter(answer))
+                    {
+                        serializer.Serialize(writer, result);
+                    }
                 }
-                else
+                else if (com.table == "company")
                 {
+                    var result = new List<XmlExchange.contact>();
                     result = _bl.searchCompany(com.contact);
+
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<XmlExchange.contact>));
+
+                    using (TextWriter writer = new StringWriter(answer))
+                    {
+                        serializer.Serialize(writer, result);
+                    }
                 }
-
-                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<XmlExchange.contact>));
-
-                using (TextWriter writer = new StringWriter(answer))
+                else if (com.table == "bill")
                 {
-                    serializer.Serialize(writer, result);
+                    var result = new List<XmlExchange.bill>();
+                    result = _bl.searchBill(com);
+
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<XmlExchange.bill>));
+
+                    using (TextWriter writer = new StringWriter(answer))
+                    {
+                        serializer.Serialize(writer, result);
+                    }
                 }
             }
+
             else if (com.type == "edit" && com.table == "contacts")
             {
                 var result = _bl.editContact(com.contact);
@@ -77,8 +99,8 @@ namespace accessDB
                 }
             }
 
- 
-             WriteResponse(answer.ToString(), "text/html", OutPutStream);
+
+            WriteResponse(answer.ToString(), "text/html", OutPutStream);
         }
 
         private void WriteResponse(string content, string type, StreamWriter OutPutStream)

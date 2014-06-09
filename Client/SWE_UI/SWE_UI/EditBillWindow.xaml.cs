@@ -17,9 +17,9 @@ namespace SWE_UI
     /// <summary>
     /// Interaction logic for EditContactWIndow.xaml
     /// </summary>
-    public partial class EditBillWIndow : Window
+    public partial class EditBillWindow : Window
     {
-        public EditBillWIndow()
+        public EditBillWindow()
         {
             InitializeComponent();
         }

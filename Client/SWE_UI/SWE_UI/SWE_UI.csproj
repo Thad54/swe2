@@ -89,6 +89,7 @@
       <DependentUpon>EditContactWIndow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\EditBillViewModel.cs" />
     <Compile Include="ViewModel\Edit-ViewModel.cs" />
     <Compile Include="ViewModel\proxy.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />

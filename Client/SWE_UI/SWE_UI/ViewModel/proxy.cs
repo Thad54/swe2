@@ -61,6 +61,28 @@ namespace SWE_UI
             return contacts;
         }
 
+        public List<XmlExchange.bill> searchBill(int? ContactID, DateTime dateFrom, DateTime dateTo, decimal? billingAmount)
+        {
+            var com = new XmlExchange.command();
+
+            com.type = "search";
+            com.table = "bill";
+            com.amount = billingAmount;
+            com.from = dateFrom;
+            com.to = dateTo;
+            com.ContactID = ContactID;
+
+            SendString(serialize(com));
+            string answer = ReceiveString();
+
+            var xml = new StringReader(answer);
+
+            var xs = new System.Xml.Serialization.XmlSerializer(typeof(List<XmlExchange.bill>));
+            var bills = (List<XmlExchange.bill>)xs.Deserialize(xml);
+
+            return bills;
+        }
+
         public XmlExchange.message EditContact(XmlExchange.contact contact)
         {
             var com = new XmlExchange.command();

@@ -9,6 +9,47 @@ namespace accessDB
 {
     class dataAccessL
     {
+        public List<XmlExchange.bill> searchBill(XmlExchange.command com, bool onlyActive)
+        {
+            var list = new List<XmlExchange.bill>();
+
+            using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
+            {
+                string query = "Select B.BLL_ID, B.Comment, B.Contact_FK, B.Date, B.DueBy, B.Message, SUM(BP.Price * Bp.Amount * Bp.Tax) BillingAmount from Bill B inner join BillingPosition BP on BP.Bill_FK = B.BLL_ID where B.Contact_FK = @ContactFK and (B.Date between @DateFrom and @DateTo) group by B.BLL_ID, B.Comment, B.Contact_FK, B.Date, B.DueBy, B.Message having SUM(BP.Price * Bp.Amount * Bp.Tax) between ROUND(@Amount, -1) and @Amount";
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ContactFK", com.ContactID);
+                cmd.Parameters.AddWithValue("@DateFrom", com.from);
+                cmd.Parameters.AddWithValue("@DateTo", com.to);
+                cmd.Parameters.AddWithValue("@Amount", com.amount);
+
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        var bill = new XmlExchange.bill();
+                        bill.ID = reader[0] as int? ?? default(int);
+                        bill.comment = reader[1] as string;
+                        bill.contactId = reader[2] as int? ?? null;
+                        bill.BillingDate = reader[3] as DateTime? ?? null;
+                        bill.DueByDate = reader[4] as DateTime? ?? null;
+                        bill.
+
+                        list.Add(bill);
+
+                    }
+
+
+
+                } // end reader using
+            } // end connection using
+            
+
+            return list;
+        }
+
 
         public List<XmlExchange.contact> searchPerson(XmlExchange.contact contact, bool onlyActive)
         {

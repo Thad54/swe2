@@ -12,6 +12,8 @@ namespace XmlExchange
         public string table;
         public string searchParameter;
         public XmlExchange.contact contact;
+        public int? ContactID;
+        public decimal? amount;
         public DateTime from;
         public DateTime to;
         public string searchText;

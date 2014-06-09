@@ -29,11 +29,11 @@
                 <Button IsDefault="True" Content="Search" HorizontalAlignment="Left" Margin="7" VerticalAlignment="Top" Width="75" Command="{Binding SearchContactClicked}"/>
                 <TextBox HorizontalAlignment="Left" x:Name="SearchResult" Height="24"  TextWrapping="Wrap" Text="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="857" Margin="7,0,0,0"/>
                 <ListView Margin="7" ItemsSource="{Binding contactData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedContact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                    <i:Interaction.Triggers>
+                    <!--<i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding ContactSelected}"/>
                         </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                    </i:Interaction.Triggers>-->
                     <ListView.InputBindings>
                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ContactSelected}"/>
                     </ListView.InputBindings>
@@ -57,25 +57,25 @@
         <TabItem Header="Search Bill">
             <StackPanel Margin="0,0,3,0">
                 <GroupBox Header="Bill Issued By" Margin="0,0,10,0">
-                    <custom:ContactReference Margin="10,7,64,7"></custom:ContactReference>
+                    <custom:ContactReference ItemSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BillContactDataSource, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             Margin="10,7,-2,7"
+                                             SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BillContact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ></custom:ContactReference>
                 </GroupBox>
                 <GroupBox Header="Billing Date">
                     <StackPanel Margin="10">
                         <Label Content="From"/>
-                        <DatePicker></DatePicker>
+                        <DatePicker SelectedDate="{Binding DateFrom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></DatePicker>
                         <Label Content="To"/>
-                        <DatePicker></DatePicker>
+                        <DatePicker SelectedDate="{Binding DateTo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></DatePicker>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Header="Billing Amount">
                     <StackPanel Margin="10">
-                        <Label Content="From"/>
-                        <DatePicker></DatePicker>
-                        <Label Content="To"/>
-                        <DatePicker></DatePicker>
+                        <TextBox  Text="{Binding BillingAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></TextBox>
                     </StackPanel>
                 </GroupBox>
-                <Button Content="Search" Margin="10"></Button>
+                <Button IsDefault="True" Command="{Binding SearchBillClicked}" Content="Search" Margin="10"></Button>
             </StackPanel>
         </TabItem>
         <TabItem Header="New Bill">

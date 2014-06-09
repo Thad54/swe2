@@ -16,6 +16,7 @@ namespace SWE_UI.ViewModel
         #region commands
         private readonly DelegateCommand<string> _SearchCommand;
         private readonly DelegateCommand<string> _SelectionCommand;
+        private readonly DelegateCommand<string> _SearchBillCommand;
 
         public ViewModel()
         {
@@ -105,12 +106,79 @@ namespace SWE_UI.ViewModel
                     return true;
                 } //CanExecute
                 );
+
+            _SearchBillCommand = new DelegateCommand<string>(
+                (s) =>
+                {
+                    var result = new List<XmlExchange.bill>();
+                    //EmployingCompanyData_Edit = result;
+
+
+                    try
+                    {
+                        if (_BillContact != null)
+                        {
+                            result = _proxy.searchBill(_BillContact.id, _DateFrom, _DateTo, _BillingAmount);
+                        }
+                        else
+                        {
+                            result = _proxy.searchBill(null, _DateFrom, _DateTo, _BillingAmount);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
+                    if (result.Count == 0)
+                    {
+                        Contacts = "No Bill Found";
+                        return;
+                    }
+
+                    if (result.Count == 1)
+                    {
+                        /*
+                        clearEdit();
+                        fillEdit(result.Last());*/
+
+                        EditBillWindow _editBillWindow = new EditBillWindow();
+                        EditBillViewModel _editViewModel = new EditBillViewModel();
+
+                        _editBillWindow.DataContext = _editViewModel;
+                        _editViewModel.setMainViewModel(this);
+                        _editViewModel.setWindow(_editBillWindow);
+                        _editViewModel.fillEdit(result.Last());
+
+                        _editBillWindow.Show();
+                        _BillData = result;
+                        return;
+                    }
+
+                    _BillData = result;
+                    
+                }, //Execute
+                (s) =>
+                {
+                    if (_BillContact != null || _DateFrom != null || _DateTo != null || _BillingAmount != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                } //CanExecute
+                );
        
         }
 
         public DelegateCommand<string> SearchContactClicked
         {
             get { return _SearchCommand; }
+        }
+        public DelegateCommand<string> SearchBillClicked
+        {
+            get { return _SearchBillCommand; }
         }
         public DelegateCommand<string> ContactSelected
         {
@@ -273,7 +341,89 @@ namespace SWE_UI.ViewModel
 
         #region SearchBill
 
+        private List<XmlExchange.bill> _BillData;
+        public List<XmlExchange.bill> BillData
+        {
+            get { return _BillData; }
+            set
+            {
+                _BillData = value;
+                //_SearchCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("BillData");
+            }
+        }
 
+        private XmlExchange.contact _BillContact;
+        public XmlExchange.contact BillContact
+        {
+            get { return _BillContact; }
+            set
+            {
+                _BillContact = value;
+                _SearchBillCommand.RaiseCanExecuteChanged();
+                //_SearchCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("BillContact");
+            }
+        }
+
+        private List<XmlExchange.contact> _BillContactDataSource;
+        public List<XmlExchange.contact> BillContactDataSource
+        {
+            get { return _BillContactDataSource; }
+            set
+            {
+                _BillContactDataSource = value;
+                _SearchBillCommand.RaiseCanExecuteChanged();
+                //_SearchCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("BillContactDataSource");
+            }
+        }
+
+        private DateTime _DateFrom;
+        public DateTime DateFrom
+        {
+            get { return _DateFrom; }
+            set
+            {
+                _DateFrom = value;
+                _SearchBillCommand.RaiseCanExecuteChanged();
+                //_SearchCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("DateFrom");
+            }
+        }
+
+        private DateTime _DateTo;
+        public DateTime DateTo
+        {
+            get { return _DateTo; }
+            set
+            {
+                _DateTo = value;
+                _SearchBillCommand.RaiseCanExecuteChanged();
+                //_SearchCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("DateTo");
+            }
+        }
+
+        private decimal? _BillingAmount;
+        public decimal? BillingAmount
+        {
+            get { return _BillingAmount; }
+            set
+            {
+                try
+                {
+                    _BillingAmount = Convert.ToDecimal(value);
+                }
+                catch (Exception e)
+                {
+                    _BillingAmount = null;
+                }
+                _SearchBillCommand.RaiseCanExecuteChanged();
+                //_SearchCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("BillingAmount");
+            }
+        }
 
         #endregion
 

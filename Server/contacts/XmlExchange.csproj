@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bill.cs" />
+    <Compile Include="billingPosition.cs" />
     <Compile Include="command.cs" />
     <Compile Include="contact.cs" />
     <Compile Include="iTable.cs" />

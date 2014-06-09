@@ -15,6 +15,11 @@ namespace accessDB
             _dl = new dataAccessL();
         }
 
+       public List<XmlExchange.bill> searchBill(XmlExchange.command com)
+       {
+           return _dl.searchBill(com, onlyActive: true);
+       }
+
        public List<XmlExchange.contact> searchPerson(XmlExchange.contact contact)
         {
             return _dl.searchPerson(contact, onlyActive: true);
