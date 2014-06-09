@@ -72,8 +72,16 @@ namespace SWE_UI.ViewModel
                         contact.lastName = _LastName_Edit;
                         contact.Suffix = _Suffix_Edit;
                         contact.uid = string.Empty;
-                        contact.companyID = _CompanyID_Edit.id;
-                        contact.company = _CompanyID_Edit.name;
+                        if (_CompanyID_Edit == null)
+                        {
+                            contact.companyID = null;
+                            contact.company = string.Empty;
+                        }
+                        else
+                        {
+                            contact.companyID = _CompanyID_Edit.id;
+                            contact.company = _CompanyID_Edit.name;
+                        }
                     }
                     else
                     {
@@ -365,9 +373,6 @@ namespace SWE_UI.ViewModel
             set
             {
                 _EmployingCompanyData_Edit = value;
-                var empty = new XmlExchange.contact();
-                empty.id = null;
-                _EmployingCompanyData_Edit.Add(empty);
                 OnPropertyChanged("EmployingCompanyData_Edit");
                 _EditCommand.RaiseCanExecuteChanged();
             }

@@ -27,6 +27,16 @@ namespace SWE_UI.Content
             _LoadAllCompaniesCommand = new DelegateCommand<string>(
                 (s) =>
                 {
+                    bool hold;
+
+                    EmployingCompanyData_Edit = _EmployingCompanyData_Edit;
+                    CompanyID_Edit = _CompanyID_Edit;
+
+                    foreach (var item in control.ItemSource)
+                    {
+                        hold = item.Equals(_CompanyID_Edit);
+                    }
+
                     EmployingCompanyData_Edit = _proxy.searchCompany("", "");
                 }, //Execute
                 (s) =>
@@ -112,7 +122,7 @@ namespace SWE_UI.Content
             set
             {
                 _CompanyID_Edit = value;
-                Search = value.name;
+                control.SelectedItem = value;
                 OnPropertyChanged("CompanyID_Edit");
                 OnPropertyChanged("SelectedItem");
             }
@@ -124,9 +134,15 @@ namespace SWE_UI.Content
             set
             {
                 _EmployingCompanyData_Edit = value;
-                var empty = new XmlExchange.contact();
-                empty.id = null;
-                _EmployingCompanyData_Edit.Add(empty);
+                
+                if (!_EmployingCompanyData_Edit.Contains(null))
+                {
+                    var empty = new XmlExchange.contact();
+                    empty.id = null;
+                    _EmployingCompanyData_Edit.Add(empty);
+                }
+                
+                control.ItemSource = _EmployingCompanyData_Edit;
                 OnPropertyChanged("EmployingCompanyData_Edit");
             }
             get

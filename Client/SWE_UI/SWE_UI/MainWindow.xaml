@@ -1,12 +1,13 @@
 ﻿<Window x:Class="SWE_UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:custom="clr-namespace:SWE_UI.Content"
         xmlns:XmlExchange="clr-namespace:XmlExchange;assembly=contacts"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        Title="MainWindow" Height="572.942" Width="710.348">
-    <TabControl SelectedIndex="{Binding tabItem}">
+        Title="MainWindow" Height="571.942" Width="639.348">
+    <TabControl SelectedIndex="{Binding tabItem}" Margin="0,0,0,16" HorizontalAlignment="Left" Width="629">
         <TabItem Header="Search Contact">
-            <StackPanel>
+            <StackPanel Margin="0,0,-1,5">
                 <GroupBox Header="Person" IsEnabled="{Binding CanSearchPerson}">
                     <StackPanel>
                         <Label Content="First Name" />
@@ -26,7 +27,7 @@
                     </StackPanel>
                 </GroupBox>
                 <Button IsDefault="True" Content="Search" HorizontalAlignment="Left" Margin="7" VerticalAlignment="Top" Width="75" Command="{Binding SearchContactClicked}"/>
-                <TextBox HorizontalAlignment="Left" x:Name="SearchResult" Height="37"  TextWrapping="Wrap" Text="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="677" Margin="7,0,0,0"/>
+                <TextBox HorizontalAlignment="Left" x:Name="SearchResult" Height="24"  TextWrapping="Wrap" Text="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="857" Margin="7,0,0,0"/>
                 <ListView Margin="7" ItemsSource="{Binding contactData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedContact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
@@ -54,16 +55,27 @@
             </StackPanel>
         </TabItem>
         <TabItem Header="Search Bill">
-            <StackPanel>
-                <GroupBox>
-                    <StackPanel>
-                        <Label Content="Bill isued by"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Width="auto"/>
-                            <Button Content="Search"/>
-                        </StackPanel>
+            <StackPanel Margin="0,0,3,0">
+                <GroupBox Header="Bill Issued By" Margin="0,0,10,0">
+                    <custom:ContactReference Margin="10,7,64,7"></custom:ContactReference>
+                </GroupBox>
+                <GroupBox Header="Billing Date">
+                    <StackPanel Margin="10">
+                        <Label Content="From"/>
+                        <DatePicker></DatePicker>
+                        <Label Content="To"/>
+                        <DatePicker></DatePicker>
                     </StackPanel>
                 </GroupBox>
+                <GroupBox Header="Billing Amount">
+                    <StackPanel Margin="10">
+                        <Label Content="From"/>
+                        <DatePicker></DatePicker>
+                        <Label Content="To"/>
+                        <DatePicker></DatePicker>
+                    </StackPanel>
+                </GroupBox>
+                <Button Content="Search" Margin="10"></Button>
             </StackPanel>
         </TabItem>
         <TabItem Header="New Bill">

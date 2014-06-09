@@ -23,62 +23,67 @@ namespace SWE_UI.Content
     public partial class ContactReference : UserControl
     {
         ContactReferenceViewModel model = new ContactReferenceViewModel();
-     
-
-        public XmlExchange.contact SelectedItem
-        {
-            get
-            {
-                return model.CompanyID_Edit;
-               // return (XmlExchange.contact)GetValue(SelectedItemProperty);
-            }
-            set {
-                model.CompanyID_Edit = value;
-                //SetValue(SelectedItemProperty, value);                          
-            }
-        }
-
-        public static readonly DependencyProperty SelectedItemProperty =
-         DependencyProperty.Register("SelectedItem", typeof(XmlExchange.contact),
-        typeof(ContactReference), new UIPropertyMetadata(null));
 
         public List<XmlExchange.contact> ItemSource
         {
             get
             {
-                return model.EmployingCompanyData_Edit;
-               // return (List<XmlExchange.contact>)GetValue(ItemSourceProperty);
+                return (List<XmlExchange.contact>)GetValue(ItemSourceProperty);
             }
             set
             {
-                model.EmployingCompanyData_Edit = value;
-               // SetValue(ItemSourceProperty, value);
+                SetValue(ItemSourceProperty, value);
             }
         }
 
         public static readonly DependencyProperty ItemSourceProperty =
          DependencyProperty.Register("ItemSource", typeof(List<XmlExchange.contact>),
-        typeof(ContactReference), new UIPropertyMetadata(null));
+        typeof(ContactReference), new UIPropertyMetadata(null, new PropertyChangedCallback(OnItemSourcePropertyChanged)));
 
+        private static void OnItemSourcePropertyChanged(DependencyObject source,
+        DependencyPropertyChangedEventArgs e)
+        {
+            ContactReference control = source as ContactReference;
+            control.model.EmployingCompanyData_Edit = (List<XmlExchange.contact>)e.NewValue;
+        }
+
+        public XmlExchange.contact SelectedItem
+        {
+            get
+            {
+               return (XmlExchange.contact)GetValue(SelectedItemProperty);
+            }
+            set {
+                SetValue(SelectedItemProperty, value);                          
+            }
+        }
+
+        public static readonly DependencyProperty SelectedItemProperty =
+         DependencyProperty.Register("SelectedItem", typeof(XmlExchange.contact),
+        typeof(ContactReference), new UIPropertyMetadata(null, new PropertyChangedCallback(OnItemSelectedPropertyChanged)));
+
+        private static void OnItemSelectedPropertyChanged(DependencyObject source,
+        DependencyPropertyChangedEventArgs e)
+        {
+            ContactReference control = source as ContactReference;
+            control.model.CompanyID_Edit = (XmlExchange.contact)e.NewValue;
+        }
 
         public string Search
         {
             get
             {
-                //return model.Search;
                 return (string)GetValue(SearchProperty);
             }
             set
             {
-                //model.Search = value;
-                //OnPropertyChanged("Search");
                 SetValue(SearchProperty, value);
             }
         }
 
         public static readonly DependencyProperty SearchProperty =
          DependencyProperty.Register("Search", typeof(string),
-        typeof(ContactReference), new FrameworkPropertyMetadata("Nope", new PropertyChangedCallback(OnSearchPropertyChanged)));
+        typeof(ContactReference), new FrameworkPropertyMetadata("Search", new PropertyChangedCallback(OnSearchPropertyChanged)));
 
         private static void OnSearchPropertyChanged(DependencyObject source,
         DependencyPropertyChangedEventArgs e)
@@ -93,5 +98,10 @@ namespace SWE_UI.Content
             model.control = this;
             this.DataContext = model;
         }
+
+       /* private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           // SelectedItem = (XmlExchange.contact)e.AddedItems[0];
+        }*/
     }
 }

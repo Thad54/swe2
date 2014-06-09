@@ -221,3 +221,5 @@ C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\Con
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\ContactReference.g.cs
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditContactWIndow.g.cs
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditContactWIndow.baml
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditBillWindow.g.cs
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditBillWindow.baml

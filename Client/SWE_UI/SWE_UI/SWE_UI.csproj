@@ -82,6 +82,9 @@
       <DependentUpon>ContactReference.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\ContactReferenceViewModel.cs" />
+    <Compile Include="EditBillWindow.xaml.cs">
+      <DependentUpon>EditBillWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditContactWIndow.xaml.cs">
       <DependentUpon>EditContactWIndow.xaml</DependentUpon>
     </Compile>
@@ -93,6 +96,10 @@
     <Page Include="Content\ContactReference.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditBillWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="EditContactWIndow.xaml">
       <SubType>Designer</SubType>
