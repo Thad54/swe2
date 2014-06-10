@@ -13,9 +13,10 @@ namespace XmlExchange
         public string searchParameter;
         public XmlExchange.contact contact;
         public int? ContactID;
-        public decimal? amount;
-        public DateTime from;
-        public DateTime to;
+        public decimal? amountFrom;
+        public decimal? amountTo;
+        public DateTime? from;
+        public DateTime? to;
         public string searchText;
         public int column;
 

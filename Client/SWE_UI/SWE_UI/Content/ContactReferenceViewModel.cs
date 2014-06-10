@@ -19,6 +19,8 @@ namespace SWE_UI.Content
         private readonly DelegateCommand<string> _LoadAllCompaniesCommand;
         private readonly DelegateCommand<string> _SearchCompanyRefCommand;
 
+        public bool OnlyCompanies = true;
+
 
 
         public ContactReferenceViewModel()
@@ -27,7 +29,7 @@ namespace SWE_UI.Content
             _LoadAllCompaniesCommand = new DelegateCommand<string>(
                 (s) =>
                 {
-                    bool hold;
+                    /*bool hold;
 
                     EmployingCompanyData_Edit = _EmployingCompanyData_Edit;
                     CompanyID_Edit = _CompanyID_Edit;
@@ -35,9 +37,18 @@ namespace SWE_UI.Content
                     foreach (var item in control.ItemSource)
                     {
                         hold = item.Equals(_CompanyID_Edit);
+                    }*/
+
+                    var result = _proxy.searchCompany("", "");
+
+                    if (OnlyCompanies == false)
+                    {
+                        var addendum = _proxy.searchPerson("", "");
+                        result.AddRange(addendum);
                     }
 
-                    EmployingCompanyData_Edit = _proxy.searchCompany("", "");
+                    EmployingCompanyData_Edit = result;
+                    CompanySelectorOpen = true;
                 }, //Execute
                 (s) =>
                 {
@@ -50,9 +61,25 @@ namespace SWE_UI.Content
                 (s) =>
                 {
                     var result = _proxy.searchCompany(_CompanyRefName, "");
+                    if (OnlyCompanies == false)
+                    {
+                        var addendum = _proxy.searchPerson(_CompanyRefName, "");
+                        var addendum2 = _proxy.searchPerson("", _CompanyRefName);
+
+                        result.AddRange(addendum);
+                        result.AddRange(addendum2);
+                    }
+
                     if (result.Count == 0)
                     {
-                        CompanyRefName = "No Company found";
+                        if (OnlyCompanies == true)
+                        {
+                            CompanyRefName = "No Company found";
+                        }
+                        else
+                        {
+                            CompanyRefName = "No Contact found";
+                        }
                         CompanyID_Edit = null;
                         return;
 
@@ -122,6 +149,11 @@ namespace SWE_UI.Content
             set
             {
                 _CompanyID_Edit = value;
+                if (value != null)
+                {
+                    CompanyRefName = value.name;
+                }
+
                 control.SelectedItem = value;
                 OnPropertyChanged("CompanyID_Edit");
                 OnPropertyChanged("SelectedItem");
@@ -159,18 +191,6 @@ namespace SWE_UI.Content
             {
                 _CompanyName_Edit = value;    
                 OnPropertyChanged("CompanyName_Edit");
-            }
-        }
-
-        private string _Search;
-        public string Search
-        {
-            get { return _Search; }
-            set
-            {
-                _Search = value;
-                control.Search = _Search;
-                OnPropertyChanged("Search");
             }
         }
     }

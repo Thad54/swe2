@@ -82,11 +82,11 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>-->
-            <custom:ContactReference Search="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.Suffix_Edit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.EmployingCompanyData_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.CompanyID_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">              
+            <custom:ContactReference OnlyCompanies="True" ItemSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.EmployingCompanyData_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.CompanyID_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">              
             </custom:ContactReference>
         </GroupBox>
         <Label Content="Date of Birth / Founded"/>
-        <DatePicker SelectedDate="{Binding CreationDate_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="7"/>
+        <DatePicker SelectedDate="{Binding CreationDate_Edit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="7" DisplayDateStart="1/1/1753"/>
         <StackPanel Orientation="Horizontal">
             <Button Content="Submit" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding EditContactClicked}" />
             <Button Content="Restore" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding RestoreEditClicked}"/>

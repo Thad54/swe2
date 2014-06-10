@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +16,49 @@ namespace accessDB
 
             using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
             {
-                string query = "Select B.BLL_ID, B.Comment, B.Contact_FK, B.Date, B.DueBy, B.Message, SUM(BP.Price * Bp.Amount * Bp.Tax) BillingAmount from Bill B inner join BillingPosition BP on BP.Bill_FK = B.BLL_ID where B.Contact_FK = @ContactFK and (B.Date between @DateFrom and @DateTo) group by B.BLL_ID, B.Comment, B.Contact_FK, B.Date, B.DueBy, B.Message having SUM(BP.Price * Bp.Amount * Bp.Tax) between ROUND(@Amount, -1) and @Amount";
+                string query = "Select B.BLL_ID, B.Comment, B.Contact_FK, B.Date, B.DueBy, B.Message, SUM(BP.Price * Bp.Amount * Bp.Tax) BillingAmount from Bill B inner join BillingPosition BP on BP.Bill_FK = B.BLL_ID where B.Contact_FK like @ContactFK and (B.Date between @DateFrom and @DateTo) group by B.BLL_ID, B.Comment, B.Contact_FK, B.Date, B.DueBy, B.Message having SUM(BP.Price * Bp.Amount * Bp.Tax) between @AmountFrom and @AmountTo";
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@ContactFK", com.ContactID);
-                cmd.Parameters.AddWithValue("@DateFrom", com.from);
-                cmd.Parameters.AddWithValue("@DateTo", com.to);
-                cmd.Parameters.AddWithValue("@Amount", com.amount);
-
+                if (com.ContactID != null)
+                {
+                    cmd.Parameters.AddWithValue("@ContactFK", com.ContactID);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@ContactFK", "%");
+                }
+                if (com.from != null)
+                {
+                    cmd.Parameters.AddWithValue("@DateFrom", com.from);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@DateFrom", new DateTime(1753, 1, 1));
+                }
+                if (com.to != null)
+                {
+                    cmd.Parameters.AddWithValue("@DateTo", com.to);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@DateTo", new DateTime(9999, 12, 31));
+                }
+                if (com.amountFrom != null)
+                {
+                    cmd.Parameters.AddWithValue("@AmountFrom", com.amountFrom);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@AmountFrom", 0);
+                }
+                if (com.amountTo != null)
+                {
+                    cmd.Parameters.AddWithValue("@AmountTo", com.amountTo);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@AmountTo", 2147483646);
+                }
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -35,7 +71,9 @@ namespace accessDB
                         bill.contactId = reader[2] as int? ?? null;
                         bill.BillingDate = reader[3] as DateTime? ?? null;
                         bill.DueByDate = reader[4] as DateTime? ?? null;
-                        bill.
+                        bill.message = reader[5] as string;
+                        bill.billAmount = 0;
+                        bill.billingPositions = new ObservableCollection<XmlExchange.billingPosition>();
 
                         list.Add(bill);
 
@@ -44,6 +82,74 @@ namespace accessDB
 
 
                 } // end reader using
+                foreach (var elem in list)
+                {
+                    if (elem.contactId != null)
+                    {
+
+                        query = "Select Con.CNT_ID, Con.Title, Con.FirstName, Con.LastName, Con.Suffix, Con.Address, Con.CreationDate, Con.BillingAddress, Con.DeliveryAddress, C.FirstName Company, C.UID, C.CNT_ID   from Contact Con left join Contact C on C.CNT_ID = Con.Company_FK  where Con.CNT_ID = @ContactFK";
+
+                        cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@ContactFK", elem.contactId);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+                                var con = new XmlExchange.contact();
+                                con.id = reader[0] as int? ?? default(int);
+                                con.title = reader[1] as string;
+                                con.name = reader[2] as string;
+                                con.lastName = reader[3] as string;
+                                con.Suffix = reader[4] as string;
+                                con.address = reader[5] as string;
+                                con.creationDate = reader[6] as DateTime? ?? default(DateTime);
+                                con.billingAddress = reader[7] as string;
+                                con.shippingAddress = reader[8] as string;
+                                con.company = reader[9] as string;
+                                con.uid = reader[10] as string;
+                                con.companyID = reader[11] as int? ?? null;
+                                if (con.uid != null)
+                                {
+                                    con.isCompany = true;
+                                }
+                                else
+                                {
+                                    con.isCompany = false;
+                                }
+
+                                elem.contact = con;
+
+                            }
+                        } // end reader using      
+
+
+
+                    }
+                    query = "Select Name, Price, Tax, Amount from BillingPosition where Bill_FK = @BillFK";
+                    
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@BillFK", elem.ID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            var bp = new XmlExchange.billingPosition();
+                            bp.name = reader[0] as string;
+                            bp.price = reader[1] as decimal? ?? null;
+                            bp.tax = reader[2] as decimal? ?? null;
+                            bp.amount = reader[3] as int? ?? null;
+
+                            elem.billAmount += bp.price * bp.tax * bp.amount;
+                            elem.billingPositions.Add(bp);
+
+                        }
+                    } // end reader using    
+                }
+
             } // end connection using
             
 

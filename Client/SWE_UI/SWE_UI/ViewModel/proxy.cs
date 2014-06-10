@@ -61,13 +61,14 @@ namespace SWE_UI
             return contacts;
         }
 
-        public List<XmlExchange.bill> searchBill(int? ContactID, DateTime dateFrom, DateTime dateTo, decimal? billingAmount)
+        public List<XmlExchange.bill> searchBill(int? ContactID, DateTime? dateFrom, DateTime? dateTo, decimal? billingAmountFrom, decimal? billingAmountTo)
         {
             var com = new XmlExchange.command();
 
             com.type = "search";
             com.table = "bill";
-            com.amount = billingAmount;
+            com.amountFrom = billingAmountFrom;
+            com.amountTo = billingAmountTo;
             com.from = dateFrom;
             com.to = dateTo;
             com.ContactID = ContactID;

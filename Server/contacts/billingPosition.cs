@@ -8,9 +8,9 @@ namespace XmlExchange
 {
     public class billingPosition
     {
-        public string name;
-        public decimal? price;
-        public int? amount;
-        public decimal? tax; 
+        public string name { get; set; }
+        public decimal? price { get; set; }
+        public int? amount { get; set; }
+        public decimal? tax { get; set; }
     }
 }

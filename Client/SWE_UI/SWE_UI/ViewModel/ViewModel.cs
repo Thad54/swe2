@@ -17,6 +17,7 @@ namespace SWE_UI.ViewModel
         private readonly DelegateCommand<string> _SearchCommand;
         private readonly DelegateCommand<string> _SelectionCommand;
         private readonly DelegateCommand<string> _SearchBillCommand;
+        private readonly DelegateCommand<string> _BillSelectionCommand;
 
         public ViewModel()
         {
@@ -107,6 +108,25 @@ namespace SWE_UI.ViewModel
                 } //CanExecute
                 );
 
+            _BillSelectionCommand = new DelegateCommand<string>(
+                (s) =>
+                {
+                    EditBillWindow _editBillWindow = new EditBillWindow();
+                    EditBillViewModel _editViewModel = new EditBillViewModel();
+
+                    _editBillWindow.DataContext = _editViewModel;
+                    _editViewModel.setMainViewModel(this);
+                    _editViewModel.setWindow(_editBillWindow);
+                    _editViewModel.fillEdit(SelectedBill);
+
+                    _editBillWindow.Show();
+                }, //Execute
+                (s) =>
+                {
+                    return true;
+                } //CanExecute
+                );
+
             _SearchBillCommand = new DelegateCommand<string>(
                 (s) =>
                 {
@@ -118,11 +138,11 @@ namespace SWE_UI.ViewModel
                     {
                         if (_BillContact != null)
                         {
-                            result = _proxy.searchBill(_BillContact.id, _DateFrom, _DateTo, _BillingAmount);
+                            result = _proxy.searchBill(_BillContact.id, _DateFrom, _DateTo, _BillingAmountFrom, _BillingAmountTo);
                         }
                         else
                         {
-                            result = _proxy.searchBill(null, _DateFrom, _DateTo, _BillingAmount);
+                            result = _proxy.searchBill(null, _DateFrom, _DateTo, _BillingAmountFrom, _BillingAmountTo);
                         }
                     }
                     catch (Exception)
@@ -154,12 +174,12 @@ namespace SWE_UI.ViewModel
                         return;
                     }
 
-                    _BillData = result;
+                    BillData = result;
                     
                 }, //Execute
                 (s) =>
                 {
-                    if (_BillContact != null || _DateFrom != null || _DateTo != null || _BillingAmount != null)
+                    if (_BillContact != null || _DateFrom != null || _DateTo != null || _BillingAmountFrom != null || _BillingAmountTo != null)
                     {
                         return true;
                     }
@@ -183,6 +203,10 @@ namespace SWE_UI.ViewModel
         public DelegateCommand<string> ContactSelected
         {
             get { return _SelectionCommand; }
+        }
+        public DelegateCommand<string> BillSelected
+        {
+            get { return _BillSelectionCommand; }
         }
 
         #endregion
@@ -341,6 +365,20 @@ namespace SWE_UI.ViewModel
 
         #region SearchBill
 
+        private XmlExchange.bill _SelectedBill;
+        public XmlExchange.bill SelectedBill
+        {
+            set
+            {
+                _SelectedBill = value;
+                OnPropertyChanged("SelectedBill");
+            }
+            get
+            {
+                return _SelectedBill;
+            }
+        }
+
         private List<XmlExchange.bill> _BillData;
         public List<XmlExchange.bill> BillData
         {
@@ -379,52 +417,78 @@ namespace SWE_UI.ViewModel
             }
         }
 
-        private DateTime _DateFrom;
-        public DateTime DateFrom
+        private DateTime? _DateFrom;
+        public DateTime? DateFrom
         {
             get { return _DateFrom; }
             set
             {
-                _DateFrom = value;
-                _SearchBillCommand.RaiseCanExecuteChanged();
-                //_SearchCommand.RaiseCanExecuteChanged();
-                OnPropertyChanged("DateFrom");
+                if (DateFrom != null || !DateFrom.Equals(value))
+                {
+                    _DateFrom = value;
+                    _SearchBillCommand.RaiseCanExecuteChanged();
+                    //_SearchCommand.RaiseCanExecuteChanged();
+                    OnPropertyChanged("DateFrom");
+                }
             }
         }
 
-        private DateTime _DateTo;
-        public DateTime DateTo
+        private DateTime? _DateTo;
+        public DateTime? DateTo
         {
             get { return _DateTo; }
             set
             {
-                _DateTo = value;
-                _SearchBillCommand.RaiseCanExecuteChanged();
-                //_SearchCommand.RaiseCanExecuteChanged();
-                OnPropertyChanged("DateTo");
+                if (DateTo != null || !DateTo.Equals(value))
+                {
+                    _DateTo = value;
+                    _SearchBillCommand.RaiseCanExecuteChanged();
+                    //_SearchCommand.RaiseCanExecuteChanged();
+                    OnPropertyChanged("DateTo");
+                }
             }
         }
 
-        private decimal? _BillingAmount;
-        public decimal? BillingAmount
+        private decimal? _BillingAmountFrom;
+        public decimal? BillingAmountFrom
         {
-            get { return _BillingAmount; }
+            get { return _BillingAmountFrom; }
+            set
+            {
+               /* try
+                {
+                    _BillingAmountFrom = Convert.ToDecimal(value);
+                }
+                catch
+                {
+                    _BillingAmountFrom = null;
+                }*/
+                _BillingAmountFrom = value;
+                _SearchBillCommand.RaiseCanExecuteChanged();
+                //_SearchCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged("BillingAmountFrom");
+            }
+        }
+
+        private decimal? _BillingAmountTo;
+        public decimal? BillingAmountTo
+        {
+            get { return _BillingAmountTo; }
             set
             {
                 try
                 {
-                    _BillingAmount = Convert.ToDecimal(value);
+                    _BillingAmountTo = Convert.ToDecimal(value);
                 }
-                catch (Exception e)
+                catch
                 {
-                    _BillingAmount = null;
+                    _BillingAmountTo = null;
                 }
                 _SearchBillCommand.RaiseCanExecuteChanged();
                 //_SearchCommand.RaiseCanExecuteChanged();
-                OnPropertyChanged("BillingAmount");
+                OnPropertyChanged("BillingAmountTo");
             }
         }
-
         #endregion
 
     }

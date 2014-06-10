@@ -14,7 +14,7 @@
                     <KeyBinding Key="Enter" Command="{Binding SearchCompanyRef_Edit}"/>
                 </TextBox.InputBindings>
             </TextBox>
-            <Button Content="{Binding ElementName=myControl, Path=Search, Mode=TwoWay}" Margin="0 0 4 0" Height="22" Width="50" Command="{Binding SearchCompanyRef_Edit}"/>
+            <Button Content="Search" Margin="0 0 4 0" Height="22" Width="50" Command="{Binding SearchCompanyRef_Edit}"/>
             <Button Content="Load All" Height="22" Width="55" Command="{Binding LoadAllCompanies_Edit}"/>
         </StackPanel>
         <ComboBox ItemsSource="{Binding EmployingCompanyData_Edit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CompanyID_Edit,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsDropDownOpen="{Binding CompanySelectorOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
@@ -22,6 +22,8 @@
                 <DataTemplate DataType="{x:Type XmlExchange:contact}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="0 0 4 0" Text="{Binding name}"></TextBlock>
+                        <TextBlock Margin="0 0 4 0" Text="{Binding lastName}"></TextBlock>
+                        <TextBlock Margin="0 0 4 0" Text="{Binding company}"></TextBlock>
                         <TextBlock Text="{Binding uid}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>

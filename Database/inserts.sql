@@ -19,4 +19,23 @@ Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK)
 Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK)
 	values('Produkt 2', 200, 1.10, 30, 0);
 	
+Insert into Bill([DATE], DueBy, Comment, Message, Contact_FK)	
+	Values(GETDATE(),DATEADD(DAY, 60 ,GETDATE()), 'Kommentar', 'Nachricht', 2);
 	
+Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK)
+	values('Produkt 1', 200, 1.20, 30, 1);
+	
+Insert into Bill([DATE], DueBy, Comment, Message, Contact_FK)	
+	Values(GETDATE(),DATEADD(DAY, 60 ,GETDATE()), 'Kommentar', 'Nachricht', 3);
+	
+Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK)
+	values('Produkt 1', 100, 1.20, 10, 2);
+	
+Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK)
+	values('Produkt 2', 200, 1.10, 30, 2);	
+
+Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK)
+	values('Produkt 3', 50, 1.20, 12, 2);
+	
+Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK)
+	values('Produkt 4', 3000, 1.10, 3, 

@@ -69,32 +69,33 @@ namespace SWE_UI.Content
             control.model.CompanyID_Edit = (XmlExchange.contact)e.NewValue;
         }
 
-        public string Search
+        public bool OnlyCompanies
         {
             get
             {
-                return (string)GetValue(SearchProperty);
+                return (bool)GetValue(OnlyCompaniesProperty);
             }
             set
             {
-                SetValue(SearchProperty, value);
+                SetValue(OnlyCompaniesProperty, value);
             }
         }
 
-        public static readonly DependencyProperty SearchProperty =
-         DependencyProperty.Register("Search", typeof(string),
-        typeof(ContactReference), new FrameworkPropertyMetadata("Search", new PropertyChangedCallback(OnSearchPropertyChanged)));
+        public static readonly DependencyProperty OnlyCompaniesProperty =
+         DependencyProperty.Register("OnlyCompanies", typeof(bool),
+        typeof(ContactReference), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnOnlyCompaniesPropertyChanged)));
 
-        private static void OnSearchPropertyChanged(DependencyObject source,
+        private static void OnOnlyCompaniesPropertyChanged(DependencyObject source,
         DependencyPropertyChangedEventArgs e)
         {
             ContactReference control = source as ContactReference;
-            control.model.Search = (string)e.NewValue;
+            control.model.OnlyCompanies = (bool)e.NewValue;
         }
 
         public ContactReference()
         {
             InitializeComponent();
+            model.OnlyCompanies = OnlyCompanies;
             model.control = this;
             this.DataContext = model;
         }
