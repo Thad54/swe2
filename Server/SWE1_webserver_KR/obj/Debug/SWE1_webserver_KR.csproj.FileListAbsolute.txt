@@ -58,3 +58,6 @@ C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_we
 C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Form1.resources
 C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Properties.Resources.resources
 C:\Users\Martin\Documents\GitHub\swe2\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.csproj.GenerateResource.Cache
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\SWE1_webserver_KR\bin\Debug\SWE1_webserver_KR.exe.config
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.exe
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.pdb
