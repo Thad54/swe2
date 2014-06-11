@@ -131,6 +131,14 @@ namespace SWE_UI.ViewModel
                 }, //Execute
                 (s) =>
                 {
+                    if (_BillingPositionData.Count == 0)
+                    {
+                        return false;
+                    }
+                    if (_BillDate == null || _DueDate == null)
+                    {
+                        return false;
+                    }
                     return ContactAltered();
                 } //CanExecute
                 );
@@ -205,6 +213,10 @@ namespace SWE_UI.ViewModel
                     if(_SelectedBillingPosition == null){
                         return false;
                     }
+                    if (string.IsNullOrWhiteSpace(_EditBillingPositionName) || _EditBillingPositionAmount == null || _EditBillingPositionPrice == null || _EditBillingPositionTax == null)
+                    {
+                        return false;
+                    }
                     if(_SelectedBillingPosition.name != _EditBillingPositionName || _SelectedBillingPosition.price != _EditBillingPositionPrice || _SelectedBillingPosition.tax != _EditBillingPositionTax || _SelectedBillingPosition.amount != _EditBillingPositionAmount)
                     {
                         return true;
@@ -254,14 +266,18 @@ namespace SWE_UI.ViewModel
                     Document document = new Document();
                     Section section = document.AddSection();
                     section.AddParagraph("Rechnung "+bill.ID.ToString() +" für "+ bill.BillingDate.ToString());
+                    section.AddParagraph();
                     if (Kunde.isCompany == true)//Kunde ist eine Firma
                     {
-                        section.AddParagraph(Kunde.company + "\n" + Kunde.billingAddress);
+                        section.AddParagraph(Kunde.company + " " + Kunde.uid + "\n" + Kunde.billingAddress);
                     }else{
-                        section.AddParagraph(Kunde.title + " " + Kunde.name + " " + Kunde.lastName + Kunde.Suffix + "\n" + Kunde.billingAddress);
+                        section.AddParagraph(Kunde.title + " " + Kunde.name + " " + Kunde.lastName + Kunde.Suffix + "\n" + Kunde.billingAddress + "\n");
 
                     }
+                    section.AddParagraph();
                     section.AddParagraph("Rechnung über folgenge Posten.");
+                    section.AddParagraph();
+
                     decimal netto = 0;
                     decimal nettogesamt = 0;
                     decimal brutto = 0;
@@ -272,24 +288,46 @@ namespace SWE_UI.ViewModel
 
                         netto = (int)zeile.amount * (decimal)zeile.price;
                         brutto = netto + (decimal)zeile.tax;
-                        section.AddParagraph(zeile.amount.ToString() + "\t á " + zeile.price.ToString() + "\t:" + netto.ToString());
+                        section.AddParagraph(zeile.amount + "x " + zeile.name + " Netto: " + (zeile.price * zeile.amount) + " Brutto: " + (zeile.price * zeile.amount * zeile.tax));
+   //                     section.AddParagraph(zeile.amount.ToString() + "\t á " + zeile.price.ToString() + "\t:" + netto.ToString());
                         nettogesamt += netto;
                         bruttogesamt += brutto;
                     }
-                    section.AddParagraph("/t Gesammtpreis (ohne Steuer): € " + nettogesamt.ToString() + "  Gesamtpreis (inkl. Steuer): € " + bruttogesamt.ToString());
+                    section.AddParagraph();
+                    section.AddParagraph("Gesammtpreis (ohne Steuer): € " + nettogesamt.ToString() + "\nGesamtpreis (inkl. Steuer): € " + bruttogesamt.ToString());
+                    section.AddParagraph();
 
-                    section.AddParagraph("Der Rechnungsbetrag ist bis inkl. " + bill.DueByDate.ToString() + " zu bezahlen");
+                    DateTime date = (DateTime)bill.DueByDate;
+
+                    section.AddParagraph("Der Rechnungsbetrag ist bis inkl. " + date.ToString("dd.MM.yyyy") + " zu bezahlen");
+                    section.AddParagraph();
 
                     section.AddParagraph(bill.message);
+                    section.AddParagraph();
 
-                    section.AddParagraph(bill.comment);
+                    section.AddParagraph(bill.comment );
+                    section.AddParagraph();
 
                     PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(false, PdfFontEmbedding.Always);
 
-                    DateTime date = (DateTime)bill.BillingDate;
+                    DateTime formatDate = (DateTime)bill.BillingDate;
                     pdfRenderer.Document = document;
                     pdfRenderer.RenderDocument();
-                    string filename = "Bill" + bill.ID + "_" + Kunde.name + "_" + date.ToString("dd.MM.yyyy") + ".pdf";//hier gehört der pfad hin
+                    string filename = "Bill" + bill.ID + "_" + Kunde.name + "_" + formatDate.ToString("dd.MM.yyyy");// + ".pdf";//hier gehört der pfad hin
+
+                    if (System.IO.File.Exists(filename + ".pdf"))
+                    {
+                        filename = filename + "_Newer.pdf";
+                    }
+                    else
+                    {
+                        filename = filename + ".pdf";
+                    }
+                    if (System.IO.File.Exists(filename + "_Newer.pdf"))
+                    {
+                        System.IO.File.Delete(filename + "_Newer.pdf");
+                        filename = filename + "_Newer.pdf";
+                    }
                     pdfRenderer.PdfDocument.Save(filename);
                     System.Diagnostics.Process.Start(filename);
 

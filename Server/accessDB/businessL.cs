@@ -34,6 +34,14 @@ namespace accessDB
         {
             return _dl.editContact(contact);
         }
+
+        public XmlExchange.message editBill(XmlExchange.bill bill)
+        {
+            return _dl.editBill(bill);
+        }
+
+
+
         public bool checkContactID(XmlExchange.contact contact)
         {
             if (contact.id != null)

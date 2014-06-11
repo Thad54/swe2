@@ -31,7 +31,6 @@ C:\Users\Alexander\Documents\repo\swe2.1\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.c
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI_MarkupCompile.lref
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Themes\Generic.baml
-C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csprojResolveAssemblyReference.cache
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\Microsoft.Expression.Interactions.dll
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\Xceed.Wpf.AvalonDock.dll

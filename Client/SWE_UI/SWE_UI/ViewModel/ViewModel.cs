@@ -151,7 +151,8 @@ namespace SWE_UI.ViewModel
                     }
                     if (result.Count == 0)
                     {
-                        Contacts = "No Bill Found";
+                        //Contacts = "No Bill Found";
+                        BillData = new List<XmlExchange.bill>();
                         return;
                     }
 

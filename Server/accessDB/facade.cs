@@ -87,15 +87,29 @@ namespace accessDB
                 }
             }
 
-            else if (com.type == "edit" && com.table == "contacts")
+            else if (com.type == "edit")
             {
-                var result = _bl.editContact(com.contact);
-
-                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.message));
-
-                using (TextWriter writer = new StringWriter(answer))
+                if (com.table == "contacts")
                 {
-                    serializer.Serialize(writer, result);
+                    var result = _bl.editContact(com.contact);
+
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.message));
+
+                    using (TextWriter writer = new StringWriter(answer))
+                    {
+                        serializer.Serialize(writer, result);
+                    }
+                }
+                else if (com.table == "bill")
+                {
+                    var result = _bl.editBill(com.bill);
+
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.message));
+
+                    using (TextWriter writer = new StringWriter(answer))
+                    {
+                        serializer.Serialize(writer, result);
+                    }
                 }
             }
 

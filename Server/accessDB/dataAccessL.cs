@@ -366,5 +366,90 @@ namespace accessDB
 
             return message;
         }
+
+        public XmlExchange.message editBill(XmlExchange.bill bill)
+        {
+            int rows;
+            var message = new XmlExchange.message();
+
+            using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
+            {
+                string query = "Delete BillingPosition where Bill_FK = @Bill_ID";
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Bill_ID", bill.ID);
+
+                rows = cmd.ExecuteNonQuery();
+
+                if (rows == 0)
+                {
+                    message.error = true;
+                    message.text = "Database Error occurred";
+                    return message;
+                }
+
+                foreach (var bp in bill.billingPositions)
+                {
+                    query = "Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK) values(@Name, @Price, @Tax, @Amount, @Bill_ID)";
+
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Bill_ID", bill.ID);
+                    cmd.Parameters.AddWithValue("@Name", bp.name);
+                    cmd.Parameters.AddWithValue("@Price", bp.price);
+                    cmd.Parameters.AddWithValue("@Tax", bp.tax);
+                    cmd.Parameters.AddWithValue("@Amount", bp.amount);
+
+                    rows = cmd.ExecuteNonQuery();
+
+                    if (rows == 0)
+                    {
+                        message.error = true;
+                        message.text = "Database Error occurred";
+                        return message;
+                    }
+                }
+
+                query = "Update Bill set Comment = @Comment, Message = @Message, Date = @Date, DueBy = @DueBy, Contact_FK = @Contact_FK where BLL_ID = @Bill_ID";
+
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Bill_ID", bill.ID);
+                if (bill.comment == string.Empty || bill.comment == null)
+                {
+                    cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Comment", bill.comment);
+                }
+                if (bill.message == string.Empty || bill.message == null)
+                {
+                    cmd.Parameters.AddWithValue("@Message", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Message", bill.message);
+                }
+                cmd.Parameters.AddWithValue("@Date", bill.BillingDate);
+                cmd.Parameters.AddWithValue("@DueBy", bill.DueByDate);
+                cmd.Parameters.AddWithValue("@Contact_FK", bill.contactId);
+                
+
+                rows = cmd.ExecuteNonQuery();
+
+                if (rows == 0)
+                {
+                    message.error = true;
+                    message.text = "Database Error occurred";
+                }
+                else
+                {
+                    message.error = false;
+                    message.text = string.Empty;
+                }
+            } // end connection using
+
+            return message;
+        }
     }
 }
