@@ -111,6 +111,29 @@ namespace accessDB
                         serializer.Serialize(writer, result);
                     }
                 }
+            } else if(com.type == "insert"){
+                if (com.table == "contacts")
+                {
+                    var result = _bl.addContact(com.contact);
+
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.message));
+
+                    using (TextWriter writer = new StringWriter(answer))
+                    {
+                        serializer.Serialize(writer, result);
+                    }
+                }
+                else if (com.table == "bill")
+                {
+                    var result = _bl.addBill(com.bill);
+
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.message));
+
+                    using (TextWriter writer = new StringWriter(answer))
+                    {
+                        serializer.Serialize(writer, result);
+                    }
+                }
             }
 
 

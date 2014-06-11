@@ -163,7 +163,7 @@ namespace accessDB
         {
             var list = new List<XmlExchange.contact>();
 
-            using ( SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["DbConnectionString"]))
             {
                 string query = "Select Con.CNT_ID, Con.Title, Con.FirstName, Con.LastName, Con.Suffix, Con.Address, Con.CreationDate, Con.BillingAddress, Con.DeliveryAddress, C.FirstName Company, C.UID, C.CNT_ID   from Contact Con left join Contact C on C.CNT_ID = Con.Company_FK  where Con.FirstName like @FirstName and Con.LastName like @LastName";
                 conn.Open();
@@ -176,6 +176,7 @@ namespace accessDB
 
                     while (reader.Read())
                     {
+
                         var con = new XmlExchange.contact();
                         con.id = reader[0] as int? ?? default(int);
                         con.title = reader[1] as string;
@@ -208,7 +209,7 @@ namespace accessDB
         {
             var list = new List<XmlExchange.contact>();
 
-            using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["DbConnectionString"]))
             {
                 string query = "Select CNT_ID, FirstName, UID, Address, CreationDate, BillingAddress, DeliveryAddress  from Contact where FirstName like @CompanyName and UID like @UID";
                 conn.Open();
@@ -248,7 +249,7 @@ namespace accessDB
         {
             var message = new XmlExchange.message();
 
-            using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["DbConnectionString"]))
             {
                 string query = "Update Contact set Title = @title, FirstName = @firstName, LastName = @lastName, UID = @uid, Suffix = @suffix, CreationDate = @creationDate, Address = @address, BillingAddress = @billingAddress, DeliveryAddress = @shippingAddress, Company_FK = @company_fk where CNT_ID = @id";
                 conn.Open();
@@ -374,7 +375,7 @@ namespace accessDB
             int rows;
             var message = new XmlExchange.message();
 
-            using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["DbConnectionString"]))
             {
                 string query = "Delete BillingPosition where Bill_FK = @Bill_ID";
                 conn.Open();
@@ -438,6 +439,198 @@ namespace accessDB
                 
 
                 rows = cmd.ExecuteNonQuery();
+
+                if (rows == 0)
+                {
+                    message.error = true;
+                    message.text = "Database Error occurred";
+                }
+                else
+                {
+                    message.error = false;
+                    message.text = string.Empty;
+                }
+            } // end connection using
+
+            return message;
+        }
+
+        public XmlExchange.message addBill(XmlExchange.bill bill)
+        {
+            int id;
+            int rows;
+            var message = new XmlExchange.message();
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["DbConnectionString"]))
+            {
+                string query = "Insert into Bill(Comment, Message, Date, DueBy, Contact_FK) OUTPUT INSERTED.BLL_ID values(@Comment, @Message, @Date,  @DueBy, @Contact_FK)";
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd = new SqlCommand(query, conn);
+                if (bill.comment == string.Empty || bill.comment == null)
+                {
+                    cmd.Parameters.AddWithValue("@Comment", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Comment", bill.comment);
+                }
+                if (bill.message == string.Empty || bill.message == null)
+                {
+                    cmd.Parameters.AddWithValue("@Message", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Message", bill.message);
+                }
+                cmd.Parameters.AddWithValue("@Date", bill.BillingDate);
+                cmd.Parameters.AddWithValue("@DueBy", bill.DueByDate);
+                cmd.Parameters.AddWithValue("@Contact_FK", bill.contactId);
+
+
+                id = (int)cmd.ExecuteScalar();
+
+                foreach (var bp in bill.billingPositions)
+                {
+                    query = "Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK) values(@Name, @Price, @Tax, @Amount, @Bill_ID)";
+
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Bill_ID", id);
+                    cmd.Parameters.AddWithValue("@Name", bp.name);
+                    cmd.Parameters.AddWithValue("@Price", bp.price);
+                    cmd.Parameters.AddWithValue("@Tax", bp.tax);
+                    cmd.Parameters.AddWithValue("@Amount", bp.amount);
+
+                    rows = cmd.ExecuteNonQuery();
+
+                    if (rows == 0)
+                    {
+                        message.error = true;
+                        message.text = "Database Error occurred";
+                        return message;
+                    }
+                }
+
+            } // end connection using
+
+            message.error = false;
+            message.text = string.Empty;
+
+            return message;
+        }
+
+        public XmlExchange.message addContact(XmlExchange.contact contact)
+        {
+            var message = new XmlExchange.message();
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["DbConnectionString"]))
+            {
+                string query = "Update Contact set Title = @title, FirstName = @firstName, LastName = @lastName, UID = @uid, Suffix = @suffix, CreationDate = @creationDate, Address = @address, BillingAddress = @billingAddress, DeliveryAddress = @shippingAddress, Company_FK = @company_fk where CNT_ID = @id";
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                if (contact.title == string.Empty || contact.title == null)
+                {
+                    cmd.Parameters.AddWithValue("@title", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@title", contact.title);
+                }
+
+                if (contact.Suffix == string.Empty || contact.Suffix == null)
+                {
+                    cmd.Parameters.AddWithValue("@suffix", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@suffix", contact.Suffix);
+                }
+
+                if (contact.lastName == string.Empty || contact.lastName == null)
+                {
+                    cmd.Parameters.AddWithValue("@lastName", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@lastName", contact.lastName);
+                }
+
+                if (contact.uid == string.Empty || contact.uid == null)
+                {
+                    cmd.Parameters.AddWithValue("@uid", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@uid", contact.uid);
+                }
+
+                if (contact.companyID == null)
+                {
+                    cmd.Parameters.AddWithValue("@company_fk", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@company_fk", contact.companyID);
+                }
+
+                if (contact.name == string.Empty || contact.name == null)
+                {
+                    cmd.Parameters.AddWithValue("@firstName", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@firstName", contact.name);
+                }
+
+                if (contact.creationDate == null)
+                {
+                    cmd.Parameters.AddWithValue("@creationDate", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@creationDate", contact.creationDate);
+                }
+
+                if (contact.address == string.Empty || contact.address == null)
+                {
+                    cmd.Parameters.AddWithValue("@address", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@address", contact.address);
+                }
+
+                if (contact.billingAddress == string.Empty || contact.billingAddress == null)
+                {
+                    cmd.Parameters.AddWithValue("@billingAddress", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@billingAddress", contact.billingAddress);
+                }
+
+                if (contact.shippingAddress == string.Empty || contact.shippingAddress == null)
+                {
+                    cmd.Parameters.AddWithValue("@shippingAddress", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@shippingAddress", contact.shippingAddress);
+                }
+
+                if (contact.id == null)
+                {
+                    cmd.Parameters.AddWithValue("@id", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@id", contact.id);
+                }
+
+
+                int rows = cmd.ExecuteNonQuery();
 
                 if (rows == 0)
                 {
