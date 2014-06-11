@@ -1,8 +1,3 @@
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\bin\Debug\contacts.dll
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\bin\Debug\contacts.pdb
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\obj\Debug\XmlExchange.csprojResolveAssemblyReference.cache
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\obj\Debug\contacts.dll
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\obj\Debug\contacts.pdb
 C:\Users\Alexander\Documents\repo\swe2\Server\contacts\bin\Debug\contacts.dll
 C:\Users\Alexander\Documents\repo\swe2\Server\contacts\bin\Debug\contacts.pdb
 C:\Users\Alexander\Documents\repo\swe2\Server\contacts\obj\Debug\XmlExchange.csprojResolveAssemblyReference.cache

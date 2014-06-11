@@ -111,6 +111,7 @@ namespace SWE_UI.ViewModel
                     if (result.error)
                     {
                         System.Windows.MessageBox.Show(result.text);
+                        return;
                     }
 
                     var searchResults = _mainViewModel.contactData;

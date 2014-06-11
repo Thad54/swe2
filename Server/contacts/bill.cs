@@ -18,5 +18,26 @@ namespace XmlExchange
         public string comment { get; set; }
         public decimal? billAmount { get; set; }
         public ObservableCollection<billingPosition> billingPositions;
+
+        public void setData(bill bill)
+        {
+            ID = bill.ID;
+            BillingDate = bill.BillingDate;
+            DueByDate = bill.DueByDate;
+            contact = bill.contact;
+            contactId = bill.contactId;
+            message = bill.message;
+            comment = bill.comment;
+            billAmount = bill.billAmount;
+
+            var bp = new ObservableCollection<XmlExchange.billingPosition>();
+
+            foreach (var elem in bill.billingPositions)
+            {
+                bp.Add(elem);
+            }
+
+            billingPositions = bp;
+        }
     }
 }

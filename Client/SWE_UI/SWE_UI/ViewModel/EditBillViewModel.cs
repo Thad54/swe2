@@ -116,12 +116,28 @@ namespace SWE_UI.ViewModel
                     bill.DueByDate = _DueDate;
                     bill.ID = _originalBill.ID;
                     bill.message = _Message;
+                    bill.billAmount = Brutto;
 
                     var message = _proxy.EditBill(bill);
 
                     if(message.error){
                         MessageBox.Show(message.text);
+                        return;
                     }
+
+                    var searchResults = _mainViewModel.BillData;
+                    var newList = new List<XmlExchange.bill>();
+
+                    foreach (var elem in searchResults)
+                    {
+                        if (elem.ID == bill.ID)
+                        {
+                            elem.setData(bill);
+                        }
+                        newList.Add(elem);
+                    }
+
+                    _mainViewModel.BillData = newList;
 
                     _submit = true;
                     _window.Close();
@@ -451,6 +467,7 @@ namespace SWE_UI.ViewModel
                 net += bp.price * bp.amount;
                 brut += bp.price * bp.amount * bp.tax;
             }
+
             Netto = net;
             Brutto = brut;
         }
