@@ -38,4 +38,4 @@ Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK)
 	values('Produkt 3', 50, 1.20, 12, 2);
 	
 Insert into BillingPosition(Name, Price, Tax, Amount, Bill_FK)
-	values('Produkt 4', 3000, 1.10, 3, 
+	values('Produkt 4', 3000, 1.10, 3, 2);

@@ -59,7 +59,36 @@ namespace SWE_UI.ViewModel
         private readonly DelegateCommand<string> _RemoveBillingPositionCommand;
         private readonly DelegateCommand<string> _AddBillingPositionCommand;
         private readonly DelegateCommand<string> _EditBillingPositionCommand;
-        private readonly DelegateCommand<string> _SelectBillingPositionCommand;
+//        private readonly DelegateCommand<string> _SelectBillingPositionCommand;
+
+        private void fillBillingPositionEdit()
+        {
+            if (_SelectedBillingPosition != null)
+            {
+                EditActive = true;
+                EditBillingPositionName = _SelectedBillingPosition.name;
+                EditBillingPositionPrice = _SelectedBillingPosition.price;
+                EditBillingPositionTax = _SelectedBillingPosition.tax;
+                EditBillingPositionAmount = _SelectedBillingPosition.amount;
+            }
+            else
+            {
+
+                EditActive = false;
+                EditBillingPositionName = null;
+                EditBillingPositionPrice = null;
+                EditBillingPositionTax = null;
+                EditBillingPositionAmount = null;
+            }
+        }
+
+        private void clearNewBillingPosition()
+        {
+            NewBillingPositionName = null;
+            NewBillingPositionPrice = null;
+            NewBillingPositionTax = null;
+            NewBillingPositionAmount = null;
+        }
 
         public EditBillViewModel()
         {
@@ -67,6 +96,30 @@ namespace SWE_UI.ViewModel
             _EditBillCommand = new DelegateCommand<string>(
                 (s) =>
                 {
+                    var bill = new XmlExchange.bill();
+
+                    bill.BillingDate = _BillDate;
+                    bill.billingPositions = _BillingPositionData;
+                    bill.comment = _Comment;
+                    bill.contact = _BillContact;
+                    if (_BillContact != null)
+                    {
+                        bill.contactId = _BillContact.id;
+                    }
+                    else
+                    {
+                        bill.contactId = null;
+                    }
+                    bill.DueByDate = _DueDate;
+                    bill.ID = _originalBill.ID;
+                    bill.message = _Message;
+
+                    var message = _proxy.EditBill(bill);
+
+                    if(message.error){
+                        MessageBox.Show(message.text);
+                    }
+
                     _submit = true;
                     _window.Close();
                    /* EmployingCompanyData_Edit = _proxy.searchCompany("", "");
@@ -95,6 +148,96 @@ namespace SWE_UI.ViewModel
 
                 } //CanExecute
                 );
+
+            _RemoveBillingPositionCommand = new DelegateCommand<string>(
+                (s) =>
+                {
+                    BillingPositionData.Remove(_SelectedBillingPosition);
+                    SelectedBillingPosition = null;
+                    calculateBillingAmount();
+                    _EditBillCommand.RaiseCanExecuteChanged();
+
+                }, //Execute
+                (s) =>
+                {
+                    if (_SelectedBillingPosition != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                } //CanExecute
+                );
+
+            _EditBillingPositionCommand = new DelegateCommand<string>(
+                (s) =>
+                {
+
+                    var bp = new XmlExchange.billingPosition();
+
+                    bp.name = _EditBillingPositionName;
+                    bp.price = _EditBillingPositionPrice;
+                    bp.amount = _EditBillingPositionAmount;
+                    bp.tax = _EditBillingPositionTax;
+
+                    BillingPositionData.Remove(SelectedBillingPosition);
+                    BillingPositionData.Add(bp);
+
+                    OnPropertyChanged("BillingPositionData");
+
+                    SelectedBillingPosition = null;
+                    calculateBillingAmount();
+                    _BillingPositionEdited = true;
+                    _EditBillCommand.RaiseCanExecuteChanged();
+
+                }, //Execute
+                (s) =>
+                {
+                    if(_SelectedBillingPosition == null){
+                        return false;
+                    }
+                    if(_SelectedBillingPosition.name != _EditBillingPositionName || _SelectedBillingPosition.price != _EditBillingPositionPrice || _SelectedBillingPosition.tax != _EditBillingPositionTax || _SelectedBillingPosition.amount != _EditBillingPositionAmount)
+                    {
+                        return true;
+                    } else {
+                        return false;
+                    }
+
+                } //CanExecute
+                );
+
+            _AddBillingPositionCommand = new DelegateCommand<string>(
+                (s) =>
+                {
+                    var bp = new XmlExchange.billingPosition();
+                    bp.name = _NewBillingPositionName;
+                    bp.price = _NewBillingPositionPrice;
+                    bp.tax = _NewBillingPositionTax;
+                    bp.amount = _NewBillingPositionAmount;
+
+                    BillingPositionData.Add(bp);
+                    calculateBillingAmount();
+                    clearNewBillingPosition();
+
+                    _EditBillCommand.RaiseCanExecuteChanged();
+
+                }, //Execute
+                (s) =>
+                {
+                    if( !string.IsNullOrWhiteSpace(_NewBillingPositionName) && _NewBillingPositionAmount != null && _NewBillingPositionPrice != null && _NewBillingPositionTax != null )
+                    {
+                        return true;
+                    } else{
+                        return false;
+                    }
+
+
+                } //CanExecute
+                );
+
         } 
 
         public DelegateCommand<string> EditBillClicked
@@ -123,12 +266,44 @@ namespace SWE_UI.ViewModel
         {
             get { return _EditBillingPositionCommand; }
         }
-        public DelegateCommand<string> SelectBillingPositionClicked
+  /*      public DelegateCommand<string> SelectBillingPositionClicked
         {
             get { return _SelectBillingPositionCommand; }
-        }
+        }*/
         public void clearEdit()
         {
+        }
+
+        private bool _BillingPositionEdited = false;
+
+        private bool BillingPositionsChanged()
+        {
+            int match = 0;
+
+            if (_BillingPositionEdited)
+            {
+                return true;
+            }
+            if(_originalBill.billingPositions.Count != BillingPositionData.Count){
+                return true;
+            }
+
+            foreach (var bp in _originalBill.billingPositions)
+            {
+                if (BillingPositionData.Contains(bp))
+                {
+                    match++;
+                }
+            }
+            if (match == _originalBill.billingPositions.Count)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
         public void fillEdit(XmlExchange.bill bill)
         {
@@ -151,7 +326,15 @@ namespace SWE_UI.ViewModel
                 }
             }
 
-            BillingPositionData = bill.billingPositions;
+           // BillingPositionData = bill.billingPositions;
+            var bp = new ObservableCollection<XmlExchange.billingPosition>();
+
+            foreach (var elem in bill.billingPositions)
+            {
+                bp.Add(elem);
+            }
+
+            BillingPositionData = bp;
             calculateBillingAmount();
 
         }
@@ -192,9 +375,21 @@ namespace SWE_UI.ViewModel
             }
             else
             {
+                return false;
+            }
+            if (_originalBill.DueByDate != _DueDate)
+            {
                 return true;
             }
-
+            if (_originalBill.message != _Message)
+            {
+                return true;
+            }
+            if (BillingPositionsChanged())
+            {
+                return true;
+            }
+            return false;
             /*if (_originalContact.address != Address_Edit)
             {
                 return true;
@@ -251,7 +446,6 @@ namespace SWE_UI.ViewModel
                     return true;
                 }
             }*/
-            return false;
         }
 
 
@@ -350,8 +544,9 @@ namespace SWE_UI.ViewModel
             set
             {
                 _SelectedBillingPosition = value;
+                fillBillingPositionEdit();
                 OnPropertyChanged("SelectedBillingPosition");
-                _EditBillCommand.RaiseCanExecuteChanged();
+                _RemoveBillingPositionCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -444,7 +639,7 @@ namespace SWE_UI.ViewModel
             {
                 _NewBillingPositionName = value;
                 OnPropertyChanged("NewBillingPositionName");
-                _EditBillCommand.RaiseCanExecuteChanged();
+                _AddBillingPositionCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -459,7 +654,7 @@ namespace SWE_UI.ViewModel
             {
                 _EditBillingPositionName = value;
                 OnPropertyChanged("EditBillingPositionName");
-                _EditBillCommand.RaiseCanExecuteChanged();
+                _EditBillingPositionCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -474,7 +669,7 @@ namespace SWE_UI.ViewModel
             {
                 _NewBillingPositionPrice = value;
                 OnPropertyChanged("NewBillingPositionPrice");
-                _EditBillCommand.RaiseCanExecuteChanged();
+                _AddBillingPositionCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -489,7 +684,7 @@ namespace SWE_UI.ViewModel
             {
                 _EditBillingPositionPrice = value;
                 OnPropertyChanged("EditBillingPositionPrice");
-                _EditBillCommand.RaiseCanExecuteChanged();
+                _EditBillingPositionCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -504,7 +699,7 @@ namespace SWE_UI.ViewModel
             {
                 _EditBillingPositionTax = value;
                 OnPropertyChanged("EditBillingPositionTax");
-                _EditBillCommand.RaiseCanExecuteChanged();
+                _EditBillingPositionCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -519,7 +714,7 @@ namespace SWE_UI.ViewModel
             {
                 _NewBillingPositionTax = value;
                 OnPropertyChanged("NewBillingPositionTax");
-                _EditBillCommand.RaiseCanExecuteChanged();
+                _AddBillingPositionCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -534,7 +729,7 @@ namespace SWE_UI.ViewModel
             {
                 _NewBillingPositionAmount = value;
                 OnPropertyChanged("NewBillingPositionAmount");
-                _EditBillCommand.RaiseCanExecuteChanged();
+                _AddBillingPositionCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -549,7 +744,7 @@ namespace SWE_UI.ViewModel
             {
                 _EditBillingPositionAmount = value;
                 OnPropertyChanged("EditBillingPositionAmount");
-                _EditBillCommand.RaiseCanExecuteChanged();
+                _EditBillingPositionCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -564,7 +759,6 @@ namespace SWE_UI.ViewModel
             {
                 _EditActive = value;
                 OnPropertyChanged("EditActive");
-                _EditBillCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -572,6 +766,20 @@ namespace SWE_UI.ViewModel
             }
         }
 
+/*        private bool _CanAddBillingPosition;
+        public bool CanAddBillingPosition
+        {
+            set
+            {
+                _CanAddBillingPosition = value;
+                OnPropertyChanged("CanAddBillingPosition");
+            }
+            get
+            {
+                return _EditActive;
+            }
+        }
+*/
         private bool _CanRemoveBillingPosition;
         public bool CanRemoveBillingPosition
         {

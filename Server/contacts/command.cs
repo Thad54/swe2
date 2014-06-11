@@ -12,6 +12,7 @@ namespace XmlExchange
         public string table;
         public string searchParameter;
         public XmlExchange.contact contact;
+        public XmlExchange.bill bill;
         public int? ContactID;
         public decimal? amountFrom;
         public decimal? amountTo;

@@ -14,7 +14,7 @@
         </GroupBox>
         <GroupBox Header="Billing Positions">
             <StackPanel>
-                <ListView Margin="7" ItemsSource="{Binding BillingPositionData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedBillingPosition, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <ListView Margin="7" ItemsSource="{Binding BillingPositionData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True}" SelectedItem="{Binding SelectedBillingPosition, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding SelectBillingPositionClicked}"/>
@@ -32,7 +32,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <Button IsEnabled="{Binding CanRemoveBillingPosition}" Content="Remove Billing Position" Margin="0,0,302,0" Command="{Binding RemoveBillingPositionClicked}"></Button>
+                <Button Content="Remove Billing Position" Margin="0,0,302,0" Command="{Binding RemoveBillingPositionClicked}"></Button>
                 <GroupBox IsEnabled="{Binding EditActive}" Header="Edit Billing Position">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -50,11 +50,11 @@
                         <Label Grid.Row="0" Grid.Column="0" Content ="Name" Grid.ColumnSpan="2"/>
                         <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding EditBillingPositionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.ColumnSpan="2"/>
                         <Label Grid.Row="0" Grid.Column="2" Content ="Price/Unit"/>
-                        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding EditBillingPositionPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding EditBillingPositionPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay, TargetNullValue=''}"/>
                         <Label Grid.Row="0" Grid.Column="3" Content ="Tax"/>
-                        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding EditBillingPositionTax, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding EditBillingPositionTax, UpdateSourceTrigger=LostFocus, Mode=TwoWay, TargetNullValue=''}"/>
                         <Label Grid.Row="0" Grid.Column="4" Content ="Amount"/>
-                        <TextBox Grid.Row="1" Grid.Column="4" Text="{Binding EditBillingPositionAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Row="1" Grid.Column="4" Text="{Binding EditBillingPositionAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}"/>
                         <Button Grid.Row="1" Grid.Column="5" Content="Submit" Command="{Binding EditBillingPositionClicked}"/>
                     </Grid>
                 </GroupBox>
@@ -74,11 +74,11 @@
                         <Label Grid.Row="0" Grid.Column="0" Content ="Name"/>
                         <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding NewBillingPositionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         <Label Grid.Row="0" Grid.Column="1" Content ="Price/Unit"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewBillingPositionPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewBillingPositionPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay, TargetNullValue=''}"/>
                         <Label Grid.Row="0" Grid.Column="2" Content ="Tax"/>
-                        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding NewBillingPositionTax, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding NewBillingPositionTax, UpdateSourceTrigger=LostFocus, Mode=TwoWay, TargetNullValue=''}"/>
                         <Label Grid.Row="0" Grid.Column="3" Content ="Amount"/>
-                        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding NewBillingPositionAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding NewBillingPositionAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}"/>
                         <Button Grid.Row="1" Grid.Column="4" Content="Add" Command="{Binding AddBillingPositionClicked}"/>
                     </Grid>
                 </GroupBox>

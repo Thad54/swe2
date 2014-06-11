@@ -148,12 +148,8 @@ C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\ru\Xceed.Wp
 C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csprojResolveAssemblyReference.cache
-C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\new_edit_contact.baml
 C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\MainWindow.baml
-C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SearchResults.baml
-C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\new_edit_contact.g.cs
 C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\MainWindow.g.cs
-C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SearchResults.g.cs
 C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\App.g.cs
 C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI_MarkupCompile.cache
@@ -223,56 +219,7 @@ C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditContact
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditContactWIndow.baml
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditBillWindow.g.cs
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditBillWindow.baml
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\SWE_UI.exe.config
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.exe
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.pdb
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\SWE_UI.exe
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\SWE_UI.pdb
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\contacts.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\Microsoft.Expression.Interactions.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\Xceed.Wpf.AvalonDock.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\Xceed.Wpf.DataGrid.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\Xceed.Wpf.Toolkit.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\contacts.pdb
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\Microsoft.Expression.Interactions.xml
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\de\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\en\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\es\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\fr\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\it\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\ja\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\ko\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\ru\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csprojResolveAssemblyReference.cache
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\Content\ContactReference.baml
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\Content\ContactReference.g.cs
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\EditBillWindow.g.cs
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\EditContactWIndow.g.cs
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\MainWindow.g.cs
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\App.g.cs
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI_MarkupCompile.cache
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI_MarkupCompile.lref
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\EditBillWindow.baml
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\EditContactWIndow.baml
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\MainWindow.baml
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\Themes\Generic.baml
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.g.resources
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.Properties.Resources.resources
-C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csproj.GenerateResource.Cache
+C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\ContactReference.baml
+C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\Content\ContactReference.g.cs
+C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditBillWindow.g.cs
+C:\Users\Martin\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\EditBillWindow.baml
