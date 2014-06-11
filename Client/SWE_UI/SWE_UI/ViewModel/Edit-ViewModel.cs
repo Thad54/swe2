@@ -263,6 +263,10 @@ namespace SWE_UI.ViewModel
             {
                 return true;
             }
+            if (_originalContact.shippingAddress != ShippingAddress_Edit)
+            {
+                return true;
+            }
             if (_originalContact.creationDate != CreationDate_Edit)
             {
                 return true;

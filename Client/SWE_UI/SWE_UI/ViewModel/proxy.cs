@@ -121,7 +121,10 @@ namespace SWE_UI
         }
         public void SendString(String input)
         {
-            request = WebRequest.Create("http://localhost:8080/accessDB");
+            //request = WebRequest.Create("http://localhost:8080/accessDB");
+
+            request = WebRequest.Create(ConfigurationManager.AppSettings["ServerConnectionString"]);
+
 //            request = WebRequest.Create(ConfigurationManager.AppSettings["SERVER"].ToString());
             request.Method = "POST";
             request.ContentType = "text/xml";

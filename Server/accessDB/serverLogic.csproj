@@ -35,6 +35,7 @@
       <HintPath>..\contacts\bin\Debug\contacts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,7 @@
     <Compile Include="businessL.cs" />
     <Compile Include="dataAccessL.cs" />
     <Compile Include="facade.cs" />
+    <Compile Include="mockDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

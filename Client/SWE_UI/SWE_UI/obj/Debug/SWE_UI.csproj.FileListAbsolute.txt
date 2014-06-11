@@ -305,3 +305,4 @@ C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\de\MigraDoc
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\de\PdfSharp.resources.dll
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI\obj\Debug\SWE_UI.csprojResolveAssemblyReference.cache

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace accessDB
 {
@@ -14,6 +15,7 @@ namespace accessDB
         {
             var list = new List<XmlExchange.bill>();
 
+            //using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
             using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=MicroERP;integrated Security=SSPI"))
             {
                 string query = "Select B.BLL_ID, B.Comment, B.Contact_FK, B.Date, B.DueBy, B.Message, SUM(BP.Price * Bp.Amount * Bp.Tax) BillingAmount from Bill B inner join BillingPosition BP on BP.Bill_FK = B.BLL_ID where B.Contact_FK like @ContactFK and (B.Date between @DateFrom and @DateTo) group by B.BLL_ID, B.Comment, B.Contact_FK, B.Date, B.DueBy, B.Message having SUM(BP.Price * Bp.Amount * Bp.Tax) between @AmountFrom and @AmountTo";
