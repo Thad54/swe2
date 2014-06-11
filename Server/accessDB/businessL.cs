@@ -8,11 +8,20 @@ namespace accessDB
 {
     public class businessL
     {
-        private dataAccessL _dl;
+        private DAL _dl;
 
-        public businessL()
+        public businessL(bool MockDAL)
         {
-            _dl = new dataAccessL();
+            if (MockDAL)
+            {
+                _dl = new mockDB();
+            }
+            else
+            {
+                _dl = new dataAccessL();
+            }
+
+            
         }
 
         public List<XmlExchange.bill> searchBill(XmlExchange.command com)

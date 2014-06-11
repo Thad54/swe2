@@ -9,9 +9,9 @@ using System.Configuration;
 
 namespace accessDB
 {
-    class dataAccessL
+    class dataAccessL :  DAL
     {
-        public List<XmlExchange.bill> searchBill(XmlExchange.command com, bool onlyActive)
+        public override List<XmlExchange.bill> searchBill(XmlExchange.command com, bool onlyActive)
         {
             var list = new List<XmlExchange.bill>();
 
@@ -159,7 +159,7 @@ namespace accessDB
         }
 
 
-        public List<XmlExchange.contact> searchPerson(XmlExchange.contact contact, bool onlyActive)
+        public override List<XmlExchange.contact> searchPerson(XmlExchange.contact contact, bool onlyActive)
         {
             var list = new List<XmlExchange.contact>();
 
@@ -205,7 +205,7 @@ namespace accessDB
             return list;
         }
 
-        public List<XmlExchange.contact> searchCompany(XmlExchange.contact contact, bool onlyActive)
+        public override List<XmlExchange.contact> searchCompany(XmlExchange.contact contact, bool onlyActive)
         {
             var list = new List<XmlExchange.contact>();
 
@@ -245,7 +245,7 @@ namespace accessDB
             return list;
         }
 
-        public XmlExchange.message editContact(XmlExchange.contact contact)
+        public override XmlExchange.message editContact(XmlExchange.contact contact)
         {
             var message = new XmlExchange.message();
 
@@ -370,7 +370,7 @@ namespace accessDB
             return message;
         }
 
-        public XmlExchange.message editBill(XmlExchange.bill bill)
+        public override XmlExchange.message editBill(XmlExchange.bill bill)
         {
             int rows;
             var message = new XmlExchange.message();
@@ -455,7 +455,7 @@ namespace accessDB
             return message;
         }
 
-        public XmlExchange.message addBill(XmlExchange.bill bill)
+        public override XmlExchange.message addBill(XmlExchange.bill bill)
         {
             int id;
             int rows;
@@ -520,13 +520,13 @@ namespace accessDB
             return message;
         }
 
-        public XmlExchange.message addContact(XmlExchange.contact contact)
+        public override XmlExchange.message addContact(XmlExchange.contact contact)
         {
             var message = new XmlExchange.message();
 
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["DbConnectionString"]))
             {
-                string query = "Update Contact set Title = @title, FirstName = @firstName, LastName = @lastName, UID = @uid, Suffix = @suffix, CreationDate = @creationDate, Address = @address, BillingAddress = @billingAddress, DeliveryAddress = @shippingAddress, Company_FK = @company_fk where CNT_ID = @id";
+                string query = "Insert into Contact(Title, FirstName, LastName, UID, Suffix, CreationDate, Address, BillingAddress, DeliveryAddress,Company_FK) values( @title, @firstName, @lastName, @uid, @suffix, @creationDate, @address, @billingAddress, @shippingAddress, @company_fk)";
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -618,15 +618,6 @@ namespace accessDB
                 else
                 {
                     cmd.Parameters.AddWithValue("@shippingAddress", contact.shippingAddress);
-                }
-
-                if (contact.id == null)
-                {
-                    cmd.Parameters.AddWithValue("@id", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@id", contact.id);
                 }
 
 

@@ -47,6 +47,7 @@
     <Compile Include="businessL.cs" />
     <Compile Include="dataAccessL.cs" />
     <Compile Include="facade.cs" />
+    <Compile Include="iDAL.cs" />
     <Compile Include="mockDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

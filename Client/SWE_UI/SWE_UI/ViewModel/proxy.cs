@@ -138,6 +138,24 @@ namespace SWE_UI
             return message;
         }
 
+        public XmlExchange.message AddContact(XmlExchange.contact con)
+        {
+            var com = new XmlExchange.command();
+            com.type = "insert";
+            com.table = "contacts";
+            com.contact = con;
+
+            SendString(serialize(com));
+            string answer = ReceiveString();
+
+            var xml = new StringReader(answer);
+
+            var xs = new System.Xml.Serialization.XmlSerializer(typeof(XmlExchange.message));
+            var message = (XmlExchange.message)xs.Deserialize(xml);
+
+            return message;
+        }
+
         public void SendString(String input)
         {
             //request = WebRequest.Create("http://localhost:8080/accessDB");

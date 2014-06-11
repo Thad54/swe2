@@ -78,7 +78,7 @@ namespace WebserverTests
         {
             //Arrange
             bool expected_result = true;
-            accessDB.businessL bl = new businessL();
+            accessDB.businessL bl = new businessL(MockDAL: false);
                     //creating a fake Contact
             XmlExchange.contact contact = new XmlExchange.contact();
             contact.id = 1;
@@ -92,7 +92,7 @@ namespace WebserverTests
         {
             //Arrange
             bool expected_result = false;
-            accessDB.businessL bl = new businessL();
+            accessDB.businessL bl = new businessL(MockDAL: false);
             //creating a fake Contact
             XmlExchange.contact contact = new XmlExchange.contact();
             contact.id = null;
@@ -106,7 +106,7 @@ namespace WebserverTests
         {
             //Arrange
             bool expected_result = true;
-            accessDB.businessL bl = new businessL();
+            accessDB.businessL bl = new businessL(MockDAL: false);
             //creating a fake Contact
             XmlExchange.contact contact = new XmlExchange.contact();
             contact.name = "Musterman";
@@ -120,7 +120,7 @@ namespace WebserverTests
         {
             //Arrange
             bool expected_result = false;
-            accessDB.businessL bl = new businessL();
+            accessDB.businessL bl = new businessL(MockDAL: false);
             //creating a fake Contact
             XmlExchange.contact contact = new XmlExchange.contact();
             contact.name = "";
@@ -134,7 +134,7 @@ namespace WebserverTests
         {
             //Arrange
             bool expected_result = false;
-            accessDB.businessL bl = new businessL();
+            accessDB.businessL bl = new businessL(MockDAL: false);
             //creating a fake Contact
             XmlExchange.contact contact = new XmlExchange.contact();
             contact.name = null;
@@ -148,7 +148,7 @@ namespace WebserverTests
         {
             //Arrange
             bool expected_result = false;
-            accessDB.businessL bl = new businessL();
+            accessDB.businessL bl = new businessL(MockDAL: false);
             //creating a fake Contact
             XmlExchange.contact contact = new XmlExchange.contact();
             contact.name = " ";
@@ -162,7 +162,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.shippingAddress = "Mühlfeldgasse 15/3/34 1020 Wien";
@@ -176,7 +176,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.shippingAddress = "";
@@ -190,7 +190,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.shippingAddress = null;
@@ -204,7 +204,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.shippingAddress = " ";
@@ -218,7 +218,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.address = "Mühlfeldgasse 15/3/34 1020 Wien";
@@ -232,7 +232,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.address = "";
@@ -246,7 +246,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.address = null;
@@ -260,7 +260,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.address = " ";
@@ -275,7 +275,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.billingAddress = "Mühlfeldgasse 15/3/34 1020 Wien";
@@ -289,7 +289,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.billingAddress = "";
@@ -303,7 +303,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.billingAddress = null;
@@ -317,7 +317,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.billingAddress = " ";
@@ -332,7 +332,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.bill bill = new XmlExchange.bill();
                bill.ID = 1;
@@ -346,7 +346,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.bill bill = new XmlExchange.bill();
                bill.ID = null;
@@ -361,7 +361,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.bill bill = new XmlExchange.bill();
                bill.contactId = 1;
@@ -375,7 +375,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.bill bill = new XmlExchange.bill();
                bill.contactId = null;
@@ -390,7 +390,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.bill bill = new XmlExchange.bill();
                bill.BillingDate=System.DateTime.Now;
@@ -404,7 +404,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.bill bill = new XmlExchange.bill();
                bill.BillingDate = null;
@@ -419,7 +419,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.bill bill = new XmlExchange.bill();
                bill.DueByDate = System.DateTime.Now;
@@ -433,7 +433,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.bill bill = new XmlExchange.bill();
                bill.DueByDate = null;
@@ -448,7 +448,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
                position1.name = "position1";
@@ -469,7 +469,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
                position1.name = "position1";
@@ -494,7 +494,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
               
                System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
@@ -514,7 +514,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
                position1.name = "position1";
@@ -538,7 +538,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
                position1.name = "position1";
@@ -573,7 +573,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
               
                System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
@@ -592,7 +592,7 @@ namespace WebserverTests
     {
         //Arrange
         bool expected_result = false;
-        accessDB.businessL bl = new businessL();
+        accessDB.businessL bl = new businessL(MockDAL: false);
         //creating a fake Contact
 
         System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
@@ -615,7 +615,7 @@ namespace WebserverTests
           {
               //Arrange
               bool expected_result = false;
-              accessDB.businessL bl = new businessL();
+              accessDB.businessL bl = new businessL(MockDAL: false);
               //creating a fake Contact
 
               System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
@@ -638,7 +638,7 @@ namespace WebserverTests
           {
               //Arrange
               bool expected_result = false;
-              accessDB.businessL bl = new businessL();
+              accessDB.businessL bl = new businessL(MockDAL: false);
               //creating a fake Contact
 
               System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
@@ -673,7 +673,7 @@ namespace WebserverTests
           {
               //Arrange
               bool expected_result = false;
-              accessDB.businessL bl = new businessL();
+              accessDB.businessL bl = new businessL(MockDAL: false);
               //creating a fake Contact
 
               System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
@@ -709,7 +709,7 @@ namespace WebserverTests
           {
               //Arrange
               bool expected_result = false;
-              accessDB.businessL bl = new businessL();
+              accessDB.businessL bl = new businessL(MockDAL: false);
               //creating a fake Contact
 
               System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
@@ -732,7 +732,7 @@ namespace WebserverTests
           {
               //Arrange
               bool expected_result = false;
-              accessDB.businessL bl = new businessL();
+              accessDB.businessL bl = new businessL(MockDAL: false);
               //creating a fake Contact
 
               System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
@@ -767,7 +767,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
               
                System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
@@ -785,7 +785,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = true;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
                position1.name = "position1";
@@ -826,7 +826,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
                position1.name = "position1";
@@ -867,7 +867,7 @@ namespace WebserverTests
            { 
            //Arrange
             bool expected_result = true;
-            accessDB.businessL bl = new businessL();
+            accessDB.businessL bl = new businessL(MockDAL: false);
                     //creating a fake Contact
             XmlExchange.contact contact = new XmlExchange.contact();
             contact.id = 1;
@@ -887,7 +887,7 @@ namespace WebserverTests
            {
                //Arrange
                bool expected_result = false;
-               accessDB.businessL bl = new businessL();
+               accessDB.businessL bl = new businessL(MockDAL: false);
                //creating a fake Contact
                XmlExchange.contact contact = new XmlExchange.contact();
                contact.id = 1;
