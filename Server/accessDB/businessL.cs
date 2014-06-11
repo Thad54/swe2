@@ -153,17 +153,33 @@ namespace accessDB
         }
         public bool checkBillPositions(XmlExchange.bill bill )
         {
-
+            int count = 0;
+            int emty = 0;
+                
             foreach (XmlExchange.billingPosition zeile in bill.billingPositions)
             {
+                emty++;
                 if (zeile.amount == null)
-                { return false; }
+                { count++; }
                 else if (zeile.price == null)
-                { return false; }
-                else
-                { return true; }
+                { count++; }
+                
             }
-            return false;
+            if (count > 0|| emty==0)
+            { return false; }
+            else
+            { return true; }
+        }
+        public bool checkBill(XmlExchange.bill bill)
+        {
+            if (checkBillDueByDate(bill) == true && checkBillID(bill) == true && checkBillingDate(bill) == true && checkBillPositioncount(bill) == true && checkBillPositions(bill) == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

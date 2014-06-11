@@ -34,3 +34,12 @@ C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI_TEST\bin\Debug\contac
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI_TEST\obj\Debug\SWE_UI_TEST.csprojResolveAssemblyReference.cache
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI_TEST\obj\Debug\SWE_UI_TEST.dll
 C:\Users\Dreydn\Documents\GitHub\swe2\Client\SWE_UI\SWE_UI_TEST\obj\Debug\SWE_UI_TEST.pdb
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI_TEST\bin\Debug\SWE_UI_TEST.dll
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI_TEST\bin\Debug\SWE_UI_TEST.pdb
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI_TEST\bin\Debug\SWE_UI.exe
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI_TEST\bin\Debug\contacts.dll
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI_TEST\bin\Debug\SWE_UI.pdb
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI_TEST\bin\Debug\contacts.pdb
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI_TEST\obj\Debug\SWE_UI_TEST.csprojResolveAssemblyReference.cache
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI_TEST\obj\Debug\SWE_UI_TEST.dll
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Client\SWE_UI\SWE_UI_TEST\obj\Debug\SWE_UI_TEST.pdb

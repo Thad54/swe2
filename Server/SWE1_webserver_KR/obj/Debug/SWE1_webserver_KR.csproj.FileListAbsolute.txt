@@ -66,3 +66,4 @@ C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\SWE1_webserver_KR\bi
 C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Form1.resources
 C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.Properties.Resources.resources
 C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.csproj.GenerateResource.Cache
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\SWE1_webserver_KR\obj\Debug\SWE1_webserver_KR.csprojResolveAssemblyReference.cache
