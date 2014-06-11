@@ -13,3 +13,7 @@ C:\Users\Martin\Documents\GitHub\swe2\Server\contacts\bin\Debug\contacts.pdb
 C:\Users\Martin\Documents\GitHub\swe2\Server\contacts\obj\Debug\XmlExchange.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Documents\GitHub\swe2\Server\contacts\obj\Debug\contacts.dll
 C:\Users\Martin\Documents\GitHub\swe2\Server\contacts\obj\Debug\contacts.pdb
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\contacts\bin\Debug\contacts.dll
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\contacts\bin\Debug\contacts.pdb
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\contacts\obj\Debug\contacts.dll
+C:\Users\Alexander Rechberger\Documents\repo\swe2neu\Server\contacts\obj\Debug\contacts.pdb

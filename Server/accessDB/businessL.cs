@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace accessDB
 {
-    class businessL
+    public class businessL
     {
         private dataAccessL _dl;
 
