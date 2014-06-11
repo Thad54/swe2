@@ -101,8 +101,19 @@ namespace accessDB
 
         }
 
-
-
+        //checkbillcontactID
+        //checkbilltax
+        public bool checkBillContactID(XmlExchange.bill bill)
+        {
+            if (bill.contactId != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool checkBillID(XmlExchange.bill bill)
         {
             if (bill.ID != null)
@@ -163,6 +174,8 @@ namespace accessDB
                 { count++; }
                 else if (zeile.price == null)
                 { count++; }
+                else if(zeile.tax ==null)
+                { count++; }
                 
             }
             if (count > 0|| emty==0)
@@ -172,7 +185,7 @@ namespace accessDB
         }
         public bool checkBill(XmlExchange.bill bill)
         {
-            if (checkBillDueByDate(bill) == true && checkBillID(bill) == true && checkBillingDate(bill) == true && checkBillPositioncount(bill) == true && checkBillPositions(bill) == true)
+            if (checkBillContactID(bill)==true && checkBillDueByDate(bill) == true && checkBillID(bill) == true && checkBillingDate(bill) == true && checkBillPositioncount(bill) == true && checkBillPositions(bill) == true)
             {
                 return true;
             }
@@ -180,6 +193,18 @@ namespace accessDB
             {
                 return false;
             }
+        }
+        public bool checkContact(XmlExchange.contact contact)
+        {
+            if (checkaddress(contact)==true && checkbillingadress(contact)==true && checkContactID(contact)==true && checkname(contact)==true&&checkshippingadress(contact)==true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

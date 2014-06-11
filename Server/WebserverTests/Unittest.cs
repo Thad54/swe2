@@ -357,6 +357,35 @@ namespace WebserverTests
                Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
            }
            [TestMethod]
+           public void businessL_checkBillContactID_confirm()
+           {
+               //Arrange
+               bool expected_result = true;
+               accessDB.businessL bl = new businessL();
+               //creating a fake Contact
+               XmlExchange.bill bill = new XmlExchange.bill();
+               bill.contactId = 1;
+
+               bool result = bl.checkBillContactID(bill);
+
+               Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
+           }
+           [TestMethod]
+           public void businessL_checkBillContactID_denied_null()
+           {
+               //Arrange
+               bool expected_result = false;
+               accessDB.businessL bl = new businessL();
+               //creating a fake Contact
+               XmlExchange.bill bill = new XmlExchange.bill();
+               bill.contactId = null;
+
+               bool result = bl.checkBillContactID(bill);
+
+
+               Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
+           }
+           [TestMethod]
            public void businessL_checkBillingDate_confirm()
            {
                //Arrange
@@ -460,7 +489,7 @@ namespace WebserverTests
 
                Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
            }
-    [TestMethod]
+             [TestMethod]
            public void businessL_checkBillPositioncount_denied()
            {
                //Arrange
@@ -481,7 +510,7 @@ namespace WebserverTests
      
          
          [TestMethod]
-    public void businessL_checkBillPositions_confirm_one()
+           public void businessL_checkBillPositions_confirm_one()
            {
                //Arrange
                bool expected_result = true;
@@ -491,6 +520,7 @@ namespace WebserverTests
                position1.name = "position1";
                position1.amount = 1;
                position1.price = 3;
+               position1.tax=1;
                System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
                test.Add(position1);
 
@@ -514,14 +544,18 @@ namespace WebserverTests
                position1.name = "position1";
                position1.amount = 1;
                position1.price = 3;
+               position1.tax = 1;
                XmlExchange.billingPosition position2 = new XmlExchange.billingPosition();
                position2.name = "position2";
                position2.amount = 2;
                position2.price = 4;
+               position2.tax = 1;
                XmlExchange.billingPosition position3 = new XmlExchange.billingPosition();
                position3.name = "position3";
                position3.amount = 3;
                position3.price = 5;
+               position3.tax = 1;
+
                System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
                test.Add(position1);
                test.Add(position2);
@@ -534,7 +568,7 @@ namespace WebserverTests
 
                Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
            }
-    [TestMethod]
+          [TestMethod]
            public void businessL_checkBillPositions_denied_nopositions()
            {
                //Arrange
@@ -554,7 +588,7 @@ namespace WebserverTests
                Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
            }
           [TestMethod]
-    public void businessL_checkBillPositions_denied_one_amountNULL()
+          public void businessL_checkBillPositions_denied_one_amountNULL()
     {
         //Arrange
         bool expected_result = false;
@@ -566,6 +600,7 @@ namespace WebserverTests
               position1.name = "position1";
         position1.amount = null;
         position1.price = 3;
+        position1.tax = 1;
         test.Add(position1);
         XmlExchange.bill bill = new XmlExchange.bill();
         bill.billingPositions = test;
@@ -587,6 +622,7 @@ namespace WebserverTests
               XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
               position1.name = "position1";
               position1.amount = 4;
+              position1.tax = 1;
               position1.price = null;
               test.Add(position1);
               XmlExchange.bill bill = new XmlExchange.bill();
@@ -610,14 +646,17 @@ namespace WebserverTests
               position1.name = "position1";
               position1.amount = 1;
               position1.price = 3;
+              position1.tax = 1;
               XmlExchange.billingPosition position2 = new XmlExchange.billingPosition();
               position2.name = "position2";
               position2.amount = 2;
+              position2.tax = 1;
               position2.price = 4;
               XmlExchange.billingPosition position3 = new XmlExchange.billingPosition();
               position3.name = "position3";
               position3.amount = null;
               position3.price = 5;
+              position3.tax = 1;
               test.Add(position1);
               test.Add(position2);
               test.Add(position3);
@@ -643,14 +682,75 @@ namespace WebserverTests
               position1.name = "position1";
               position1.amount = 1;
               position1.price = 3;
+              position1.tax = 1;
               XmlExchange.billingPosition position2 = new XmlExchange.billingPosition();
               position2.name = "position2";
               position2.amount = 2;
               position2.price = 4;
+              position2.tax = 1;
               XmlExchange.billingPosition position3 = new XmlExchange.billingPosition();
               position3.name = "position3";
               position3.amount = 3;
+              position3.tax = 3;
               position3.price = null;
+              test.Add(position1);
+              test.Add(position2);
+              test.Add(position3);
+              XmlExchange.bill bill = new XmlExchange.bill();
+              bill.billingPositions = test;
+
+
+              bool result = bl.checkBillPositions(bill);
+
+              Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
+          }
+          [TestMethod]
+          public void businessL_checkBillPositions_denied_one_taxNULL()
+          {
+              //Arrange
+              bool expected_result = false;
+              accessDB.businessL bl = new businessL();
+              //creating a fake Contact
+
+              System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
+              XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
+              position1.name = "position1";
+              position1.amount = 4;
+              position1.tax = null;
+              position1.price = 1;
+              test.Add(position1);
+              XmlExchange.bill bill = new XmlExchange.bill();
+              bill.billingPositions = test;
+
+
+              bool result = bl.checkBillPositions(bill);
+
+              Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
+          }
+          [TestMethod]
+          public void businessL_checkBillPositions_denied_more_taxNULL()
+          {
+              //Arrange
+              bool expected_result = false;
+              accessDB.businessL bl = new businessL();
+              //creating a fake Contact
+
+              System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
+              XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
+              position1.name = "position1";
+              position1.amount = 1;
+              position1.price = 3;
+              position1.tax = 1;
+              XmlExchange.billingPosition position2 = new XmlExchange.billingPosition();
+              position2.name = "position2";
+              position2.amount = 2;
+              position2.tax = 1;
+              position2.price = 4;
+              XmlExchange.billingPosition position3 = new XmlExchange.billingPosition();
+              position3.name = "position3";
+              position3.amount = 1;
+              position3.price = 5;
+              position3.tax = null;
               test.Add(position1);
               test.Add(position2);
               test.Add(position3);
@@ -691,14 +791,17 @@ namespace WebserverTests
                position1.name = "position1";
                position1.amount = 1;
                position1.price = 3;
+               position1.tax = 1;
                XmlExchange.billingPosition position2 = new XmlExchange.billingPosition();
                position2.name = "position2";
                position2.amount = 2;
                position2.price = 4;
+               position2.tax = 1;
                XmlExchange.billingPosition position3 = new XmlExchange.billingPosition();
                position3.name = "position3";
                position3.amount = 3;
                position3.price = 5;
+               position3.tax = 1;
                System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
                test.Add(position1);
                test.Add(position2);
@@ -709,6 +812,7 @@ namespace WebserverTests
                bill.BillingDate = System.DateTime.Now;
                bill.DueByDate = System.DateTime.Now;
                bill.ID = 1;
+               bill.contactId = 2;
 
 
 
@@ -716,6 +820,87 @@ namespace WebserverTests
 
                Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
 
+           }
+           [TestMethod]
+           public void businessL_checkBill_denied_IDNULL()
+           {
+               //Arrange
+               bool expected_result = false;
+               accessDB.businessL bl = new businessL();
+               //creating a fake Contact
+               XmlExchange.billingPosition position1 = new XmlExchange.billingPosition();
+               position1.name = "position1";
+               position1.amount = 1;
+               position1.price = 3;
+               position1.tax = 1;
+               XmlExchange.billingPosition position2 = new XmlExchange.billingPosition();
+               position2.name = "position2";
+               position2.amount = 2;
+               position2.price = 4;
+               position2.tax = 1;
+               XmlExchange.billingPosition position3 = new XmlExchange.billingPosition();
+               position3.name = "position3";
+               position3.amount = 3;
+               position3.price = 5;
+               position3.tax = 1;
+               System.Collections.ObjectModel.ObservableCollection<billingPosition> test = new System.Collections.ObjectModel.ObservableCollection<billingPosition>();
+               test.Add(position1);
+               test.Add(position2);
+               test.Add(position3);
+
+               XmlExchange.bill bill = new XmlExchange.bill();
+               bill.billingPositions = test;
+               bill.BillingDate = System.DateTime.Now;
+               bill.DueByDate = System.DateTime.Now;
+               bill.ID = null;
+               bill.contactId = 2;
+
+
+
+               bool result = bl.checkBill(bill);
+
+               Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
+
+           }
+           [TestMethod]
+           public void businessL_checkContact_denied()
+           { 
+           //Arrange
+            bool expected_result = true;
+            accessDB.businessL bl = new businessL();
+                    //creating a fake Contact
+            XmlExchange.contact contact = new XmlExchange.contact();
+            contact.id = 1;
+            contact.address = "Mühlfeldgasse 15/34 1020 Wien";
+            contact.billingAddress = contact.address;
+            contact.shippingAddress = contact.address;
+            contact.name = "Andi";
+            
+
+
+            bool result = bl.checkContactID(contact);
+            
+            Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
+           }
+           [TestMethod]
+           public void businessL_checkContact_confirm()
+           {
+               //Arrange
+               bool expected_result = false;
+               accessDB.businessL bl = new businessL();
+               //creating a fake Contact
+               XmlExchange.contact contact = new XmlExchange.contact();
+               contact.id = 1;
+               contact.address = "Mühlfeldgasse 15/34 1020 Wien";
+               contact.billingAddress = contact.address;
+               contact.shippingAddress = null;
+               contact.name = "hallo";
+
+
+
+               bool result = bl.checkContact(contact);
+
+               Assert.AreEqual(expected_result, result, "businessL_checkContactID_confirm");
            }
      
      
