@@ -5,41 +5,95 @@
         xmlns:XmlExchange="clr-namespace:XmlExchange;assembly=contacts"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:b="Window"
-        Title="EditBillWindow" Height="658.442" Width="503.948">
-    
-    <StackPanel Height="543" VerticalAlignment="Top">
+        Title="EditBillWindow" Height="788.942" Width="503.948">
+
+    <StackPanel VerticalAlignment="Top" Margin="0,0,0,-2">
         <GroupBox Header="Issueing Contact">
-            <custom:ContactReference OnlyCompanies="False" ItemSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BillContactData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BillContact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">              
+            <custom:ContactReference OnlyCompanies="False" AllowNullValue="False" ItemSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BillContactData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BillContact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
             </custom:ContactReference>
         </GroupBox>
-        <Label Content="Billing Positions"></Label>
-        <ListView Margin="7" ItemsSource="{Binding BillingPositionData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedBillingPosition, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDoubleClick">
-                    <i:InvokeCommandAction Command=""/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-            <ListView.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command=""/>
-            </ListView.InputBindings>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}"/>
-                    <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding amount}"/>
-                    <GridViewColumn Header="Price/Unit" DisplayMemberBinding="{Binding price}"/>
-                    <GridViewColumn Header="Tax" DisplayMemberBinding="{Binding tax}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <GroupBox Header="Billing Positions">
+            <StackPanel>
+                <ListView Margin="7" ItemsSource="{Binding BillingPositionData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedBillingPosition, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding SelectBillingPositionClicked}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ListView.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding SelectBillingPositionClicked}"/>
+                    </ListView.InputBindings>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}"/>
+                            <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding amount}"/>
+                            <GridViewColumn Header="Price/Unit" DisplayMemberBinding="{Binding price}"/>
+                            <GridViewColumn Header="Tax" DisplayMemberBinding="{Binding tax}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button IsEnabled="{Binding CanRemoveBillingPosition}" Content="Remove Billing Position" Margin="0,0,302,0" Command="{Binding RemoveBillingPositionClicked}"></Button>
+                <GroupBox IsEnabled="{Binding EditActive}" Header="Edit Billing Position">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content ="Name" Grid.ColumnSpan="2"/>
+                        <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding EditBillingPositionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.ColumnSpan="2"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content ="Price/Unit"/>
+                        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding EditBillingPositionPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <Label Grid.Row="0" Grid.Column="3" Content ="Tax"/>
+                        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding EditBillingPositionTax, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <Label Grid.Row="0" Grid.Column="4" Content ="Amount"/>
+                        <TextBox Grid.Row="1" Grid.Column="4" Text="{Binding EditBillingPositionAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <Button Grid.Row="1" Grid.Column="5" Content="Submit" Command="{Binding EditBillingPositionClicked}"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Add Billing Position">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content ="Name"/>
+                        <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding NewBillingPositionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <Label Grid.Row="0" Grid.Column="1" Content ="Price/Unit"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewBillingPositionPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content ="Tax"/>
+                        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding NewBillingPositionTax, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <Label Grid.Row="0" Grid.Column="3" Content ="Amount"/>
+                        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding NewBillingPositionAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <Button Grid.Row="1" Grid.Column="4" Content="Add" Command="{Binding AddBillingPositionClicked}"/>
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+        </GroupBox>
+
         <StackPanel Orientation="Horizontal">
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Netto"/>
-            <Label Content="{Binding Netto, UpdateSourceTrigger=PropertyChanged}"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Brutto"/>
-            <Label Content="{Binding Brutto, UpdateSourceTrigger=PropertyChanged}"/>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Netto"/>
+                <Label Content="{Binding Netto, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Brutto"/>
+                <Label Content="{Binding Brutto, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel>
@@ -56,9 +110,9 @@
         <Label Content="Comment"></Label>
         <TextBox Height="59" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></TextBox>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Submit" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding EditContactClicked}" />
+            <Button Content="Submit" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding EditBillClicked}" />
             <Button Content="Restore" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding RestoreEditClicked}"/>
-            <Button Content="Print" Width="50" HorizontalAlignment="Left" Margin="7" Command=""/>
+            <Button Content="Print" Width="50" HorizontalAlignment="Left" Margin="7" Command="{Binding PrintClicked}"/>
         </StackPanel>
     </StackPanel>
 </Window>

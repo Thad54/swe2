@@ -92,10 +92,34 @@ namespace SWE_UI.Content
             control.model.OnlyCompanies = (bool)e.NewValue;
         }
 
+        public bool AllowNullValue
+        {
+            get
+            {
+                return (bool)GetValue(AllowNullValueProperty);
+            }
+            set
+            {
+                SetValue(AllowNullValueProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty AllowNullValueProperty =
+         DependencyProperty.Register("AllowNullValue", typeof(bool),
+        typeof(ContactReference), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnAllowNullValueChanged)));
+
+        private static void OnAllowNullValueChanged(DependencyObject source,
+        DependencyPropertyChangedEventArgs e)
+        {
+            ContactReference control = source as ContactReference;
+            control.model.AllowNullValue = (bool)e.NewValue;
+        }
+
         public ContactReference()
         {
             InitializeComponent();
             model.OnlyCompanies = OnlyCompanies;
+            model.AllowNullValue = AllowNullValue;
             model.control = this;
             this.DataContext = model;
         }

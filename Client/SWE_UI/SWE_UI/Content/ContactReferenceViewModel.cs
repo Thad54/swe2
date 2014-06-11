@@ -20,6 +20,7 @@ namespace SWE_UI.Content
         private readonly DelegateCommand<string> _SearchCompanyRefCommand;
 
         public bool OnlyCompanies = true;
+        public bool AllowNullValue = true;
 
 
 
@@ -166,12 +167,15 @@ namespace SWE_UI.Content
             set
             {
                 _EmployingCompanyData_Edit = value;
-                
-                if (!_EmployingCompanyData_Edit.Contains(null))
+
+                if (AllowNullValue)
                 {
-                    var empty = new XmlExchange.contact();
-                    empty.id = null;
-                    _EmployingCompanyData_Edit.Add(empty);
+                    if (!_EmployingCompanyData_Edit.Contains(null))
+                    {
+                        var empty = new XmlExchange.contact();
+                        empty.id = null;
+                        _EmployingCompanyData_Edit.Add(empty);
+                    }
                 }
                 
                 control.ItemSource = _EmployingCompanyData_Edit;
