@@ -5,7 +5,7 @@
         xmlns:XmlExchange="clr-namespace:XmlExchange;assembly=contacts"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:b="Window"
-        Title="EditBillWindow" Height="788.942" Width="503.948">
+        Title="EditBillWindow" Height="708" Width="503.948">
 
     <StackPanel VerticalAlignment="Top" Margin="0,0,0,-2">
         <GroupBox Header="Issueing Contact">
@@ -14,7 +14,7 @@
         </GroupBox>
         <GroupBox Header="Billing Positions">
             <StackPanel>
-                <ListView Margin="7" ItemsSource="{Binding BillingPositionData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True}" SelectedItem="{Binding SelectedBillingPosition, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <ListView Height="100" Margin="7" ItemsSource="{Binding BillingPositionData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True}" SelectedItem="{Binding SelectedBillingPosition, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding SelectBillingPositionClicked}"/>

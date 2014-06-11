@@ -7,6 +7,9 @@ using System.Windows.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
+using PdfSharp.Pdf;
 
 namespace SWE_UI.ViewModel
 {
@@ -139,6 +142,7 @@ namespace SWE_UI.ViewModel
                     {
                         //RestoreEdit();
                         fillEdit(_originalBill);
+                        _PrintCommand.RaiseCanExecuteChanged();
                     }
                     _EditBillCommand.RaiseCanExecuteChanged();
                 }, //Execute
@@ -156,6 +160,7 @@ namespace SWE_UI.ViewModel
                     SelectedBillingPosition = null;
                     calculateBillingAmount();
                     _EditBillCommand.RaiseCanExecuteChanged();
+                    _PrintCommand.RaiseCanExecuteChanged();
 
                 }, //Execute
                 (s) =>
@@ -192,6 +197,7 @@ namespace SWE_UI.ViewModel
                     calculateBillingAmount();
                     _BillingPositionEdited = true;
                     _EditBillCommand.RaiseCanExecuteChanged();
+                    _PrintCommand.RaiseCanExecuteChanged();
 
                 }, //Execute
                 (s) =>
@@ -223,6 +229,7 @@ namespace SWE_UI.ViewModel
                     clearNewBillingPosition();
 
                     _EditBillCommand.RaiseCanExecuteChanged();
+                    _PrintCommand.RaiseCanExecuteChanged();
 
                 }, //Execute
                 (s) =>
@@ -234,6 +241,62 @@ namespace SWE_UI.ViewModel
                         return false;
                     }
 
+
+                } //CanExecute
+                );
+
+            _PrintCommand = new DelegateCommand<string>(
+                (s) =>
+                    {
+                    var bill = _originalBill;
+
+                    XmlExchange.contact Kunde = bill.contact;
+                    Document document = new Document();
+                    Section section = document.AddSection();
+                    section.AddParagraph("Rechnung "+bill.ID.ToString() +" für "+ bill.BillingDate.ToString());
+                    if (Kunde.isCompany == true)//Kunde ist eine Firma
+                    {
+                        section.AddParagraph(Kunde.company + "\n" + Kunde.billingAddress);
+                    }else{
+                        section.AddParagraph(Kunde.title + " " + Kunde.name + " " + Kunde.lastName + Kunde.Suffix + "\n" + Kunde.billingAddress);
+
+                    }
+                    section.AddParagraph("Rechnung über folgenge Posten.");
+                    decimal netto = 0;
+                    decimal nettogesamt = 0;
+                    decimal brutto = 0;
+                    decimal bruttogesamt = 0;
+                    foreach (XmlExchange.billingPosition zeile in bill.billingPositions)
+                    {
+
+
+                        netto = (int)zeile.amount * (decimal)zeile.price;
+                        brutto = netto + (decimal)zeile.tax;
+                        section.AddParagraph(zeile.amount.ToString() + "\t á " + zeile.price.ToString() + "\t:" + netto.ToString());
+                        nettogesamt += netto;
+                        bruttogesamt += brutto;
+                    }
+                    section.AddParagraph("/t Gesammtpreis (ohne Steuer): € " + nettogesamt.ToString() + "  Gesamtpreis (inkl. Steuer): € " + bruttogesamt.ToString());
+
+                    section.AddParagraph("Der Rechnungsbetrag ist bis inkl. " + bill.DueByDate.ToString() + " zu bezahlen");
+
+                    section.AddParagraph(bill.message);
+
+                    section.AddParagraph(bill.comment);
+
+                    PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(false, PdfFontEmbedding.Always);
+
+                    DateTime date = (DateTime)bill.BillingDate;
+                    pdfRenderer.Document = document;
+                    pdfRenderer.RenderDocument();
+                    string filename = "Bill" + bill.ID + "_" + Kunde.name + "_" + date.ToString("dd.MM.yyyy") + ".pdf";//hier gehört der pfad hin
+                    pdfRenderer.PdfDocument.Save(filename);
+                    System.Diagnostics.Process.Start(filename);
+
+                }, //Execute
+                (s) =>
+                {
+                    return !ContactAltered();
 
                 } //CanExecute
                 );
@@ -336,6 +399,7 @@ namespace SWE_UI.ViewModel
 
             BillingPositionData = bp;
             calculateBillingAmount();
+            _BillingPositionEdited = false;
 
         }
 
@@ -463,6 +527,7 @@ namespace SWE_UI.ViewModel
                 _Message = value;
                 OnPropertyChanged("Message");
                 _EditBillCommand.RaiseCanExecuteChanged();
+                _PrintCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -478,6 +543,7 @@ namespace SWE_UI.ViewModel
                 _Comment = value;
                 OnPropertyChanged("Comment");
                 _EditBillCommand.RaiseCanExecuteChanged();
+                _PrintCommand.RaiseCanExecuteChanged();
             }
             get
             {
@@ -498,6 +564,7 @@ namespace SWE_UI.ViewModel
                 _BillContact = value;
                 OnPropertyChanged("BillContact");
                 _EditBillCommand.RaiseCanExecuteChanged();
+                _PrintCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -606,6 +673,7 @@ namespace SWE_UI.ViewModel
                     _BillDate = value;
                     OnPropertyChanged("BillDate");
                     _EditBillCommand.RaiseCanExecuteChanged();
+                    _PrintCommand.RaiseCanExecuteChanged();
                 }
             }
             get
@@ -624,6 +692,7 @@ namespace SWE_UI.ViewModel
                     _DueDate = value;
                     OnPropertyChanged("DueDate");
                     _EditBillCommand.RaiseCanExecuteChanged();
+                    _PrintCommand.RaiseCanExecuteChanged();
                 }
             }
             get
