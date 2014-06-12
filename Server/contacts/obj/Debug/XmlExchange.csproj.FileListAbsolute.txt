@@ -18,8 +18,3 @@ C:\Users\Alexander Rechberger\Documents\repo\swe2merge\Server\contacts\bin\Debug
 C:\Users\Alexander Rechberger\Documents\repo\swe2merge\Server\contacts\obj\Debug\XmlExchange.csprojResolveAssemblyReference.cache
 C:\Users\Alexander Rechberger\Documents\repo\swe2merge\Server\contacts\obj\Debug\contacts.dll
 C:\Users\Alexander Rechberger\Documents\repo\swe2merge\Server\contacts\obj\Debug\contacts.pdb
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\bin\Debug\contacts.dll
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\bin\Debug\contacts.pdb
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\obj\Debug\XmlExchange.csprojResolveAssemblyReference.cache
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\obj\Debug\contacts.dll
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\contacts\obj\Debug\contacts.pdb

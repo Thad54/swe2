@@ -18,8 +18,3 @@ C:\Users\Alexander Rechberger\Documents\repo\swe2merge\Server\SWE1_webserver_KR\
 C:\Users\Alexander Rechberger\Documents\repo\swe2merge\Server\accessDB\obj\Debug\serverLogic.csprojResolveAssemblyReference.cache
 C:\Users\Alexander Rechberger\Documents\repo\swe2merge\Server\accessDB\obj\Debug\accessDB.dll
 C:\Users\Alexander Rechberger\Documents\repo\swe2merge\Server\accessDB\obj\Debug\accessDB.pdb
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\accessDB.dll
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\SWE1_webserver_KR\bin\Debug\accessDB.pdb
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\accessDB\obj\Debug\serverLogic.csprojResolveAssemblyReference.cache
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\accessDB\obj\Debug\accessDB.dll
-C:\Users\Dreydn\Documents\GitHub\swe2\Server\accessDB\obj\Debug\accessDB.pdb

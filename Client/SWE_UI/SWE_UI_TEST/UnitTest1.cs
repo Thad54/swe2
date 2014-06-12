@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SWE_UI;
+using SWE_UI.ViewModel;
 
 namespace SWE_UI_TEST
 {
@@ -22,5 +23,42 @@ namespace SWE_UI_TEST
             actual_parameters = proxy.trimXML(test_response);
             Assert.AreEqual(actual_parameters, expected_parameters, "Address was not parsed correctly");
         }
+
+        [TestMethod]
+        public void check_NewContact_Clearable()
+        {
+            var vm = new ViewModel();
+            string obj = "";
+
+            Assert.IsTrue(vm.ClearContactClicked.CanExecute(obj));
+
+            //Assert.AreEqual(actual_parameters, expected_parameters, "Address was not parsed correctly");
+        }
+
+        [TestMethod]
+        public void check_InsertContact_withoutAddressess_not_possible()
+        {
+            var vm = new ViewModel();
+            string obj = "";
+
+            vm.FirstName_Edit = "Test";
+            vm.LastName_Edit = "Test2";
+            Assert.IsFalse(vm.EditContactClicked.CanExecute(obj));
+
+            //Assert.AreEqual(actual_parameters, expected_parameters, "Address was not parsed correctly");
+        }
+
+        [TestMethod]
+        public void check_bill_ByAmount_From()
+        {
+            var vm = new ViewModel();
+            string obj = "";
+
+            vm.BillingAmountFrom = 100;
+            Assert.IsTrue(vm.SearchBillClicked.CanExecute(obj));
+
+            //Assert.AreEqual(actual_parameters, expected_parameters, "Address was not parsed correctly");
+        }
+
     }
 }

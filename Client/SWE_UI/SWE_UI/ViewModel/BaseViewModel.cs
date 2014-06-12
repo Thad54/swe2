@@ -11,6 +11,8 @@ namespace SWE_UI.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        public bool fakeDB = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
         {
